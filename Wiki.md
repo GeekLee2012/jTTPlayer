@@ -96,10 +96,12 @@ app.runtime=自己本机上的带JavaFX的JDK/JRE 1.8路径
 - 暂不支持 10段均衡器
 
 #### 1.2、下载地址
-- 请前往`资源库项目`下载
+- 请前往[资源库项目](https://github.com/GeekLee2012/jTTPlayer-Resources.git)下载
 
 #### 1.3、设置使用  
-> 千千选项 - 播放 - 播放器内核 - bass，然后设置`播放器内核目录路径`
+> 千千选项 - 播放 - 播放器内核 - bass，然后设置`播放器内核目录路径`  
+`注意`：从[资源库项目](https://github.com/GeekLee2012/jTTPlayer-Resources.git)获取资源并解压后，得到bass目录，该目录下有`不同系统平台子目录`，请选择`与自己平台相应的目录`
+
 
 
 ### 2、mpv
@@ -147,7 +149,7 @@ app.runtime=自己本机上的带JavaFX的JDK/JRE 1.8路径
 > <b>注意：不支持原版.skn文件，需要移植</b>
 
 ### 1、下载地址
-- 请前往`资源库项目`下载
+- 请前往[资源库项目](https://github.com/GeekLee2012/jTTPlayer-Resources.git)下载
 
 ### 2、导入皮肤
 > 千千选项 - 皮肤 - 皮肤根目录
@@ -199,3 +201,10 @@ app.runtime=自己本机上的带JavaFX的JDK/JRE 1.8路径
 #### 皮肤
 - 皮肤根目录
 - 皮肤管理：应用、删除、刷新
+
+## 赞赏支持
+
+<div>
+  <p>若您觉得本项目有所帮助，欢迎扫描下方二维码赞赏，感谢支持 ~</p>
+  <img src="assets/mm-reward-qrcode.png" alt="赞赏码" width="258">
+</div>
