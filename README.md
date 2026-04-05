@@ -40,11 +40,13 @@
 
 - 安装版本选择，请参阅下文：`下载说明`
 - <b>下载安装后，需配置`千千选项 - 播放 - 播放器内核`才可以正常播放</b>
+- 皮肤设置：`千千选项 - 皮肤 - 皮肤根目录`
 - 千千选项：右键菜单（播放器主界面、桌面歌词、迷你模式等） - 千千选项
-- 播放器内核获取：请前往[资源库项目](https://github.com/GeekLee2012/jTTPlayer-Resources.git)下载
-- 内核路径设置：解压得到bass目录后，目录下有`不同系统平台子目录`，请选择`与自己的平台相应`目录
+- 播放器内核、皮肤资源获取：请前往[资源库项目](https://github.com/GeekLee2012/jTTPlayer-Resources.git)下载
+- 播放器内核路径设置：解压得到bass目录后，目录下有`不同系统平台子目录`，请选择`与自己的平台相应`目录
 - mpv内核：仅支持macOS，不支持频谱；请参阅：[Wiki - 播放器内核 - mpv](Wiki.md) 
 - bass内核：不支持10段均衡器；请参阅：[Wiki - 播放器内核 - bass](Wiki.md)
+- 皮肤设置：`千千选项 - 皮肤 - 皮肤根目录`
 - 想了解更多，请参阅：[Wiki](Wiki.md)
 
 ## 下载说明
@@ -139,8 +141,8 @@ app.runtime=自己本机上的带JavaFX的JDK/JRE 1.8路径
 ## 致谢
 - 界面设计：千千静听
 - 播放器内核：mpv、bass
-- 开源项目：jaudiotagger、jackson、pinyin4j、opencc4j、okhttp等
-- 千千静听皮肤以及其他相关的作者们
+- 开源项目：jaudiotagger、jackson、pinyin4j、opencc4j、okhttp、NativeBass等
+- 千千静听皮肤以及相关的作者们
   
 ## 赞赏支持
 
