@@ -1,0 +1,11 @@
+.border_title_view {
+    -fx-border-color: #e4e4e4;
+    -fx-border-insets: 8 0 0 0;
+    -fx-padding: -10 8 6 8;
+}
+
+.border_title_view .title {
+    -fx-translate-x: 0;
+    -fx-padding: -1 3;
+    -fx-background-color: #ffffff;
+}

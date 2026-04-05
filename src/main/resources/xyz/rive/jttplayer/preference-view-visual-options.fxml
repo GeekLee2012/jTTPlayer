@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import xyz.rive.jttplayer.control.BorderTitleView?>
+<?import xyz.rive.jttplayer.control.ColorButton?>
+<?import xyz.rive.jttplayer.control.FontButton?>
+<?import xyz.rive.jttplayer.control.ConfigButton?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="xyz.rive.jttplayer.controller.PreferenceVisualOptionsController"
+      fx:id="visual_options"
+      stylesheets="@css/preference-view-visual-options.css">
+    <BorderTitleView title="选项">
+        <HBox>
+            <Label text="视觉效果类型："/>
+            <ComboBox fx:id="visual_types"/>
+        </HBox>
+        <HBox>
+            <Label text="分析显示速度："/>
+            <ComboBox fx:id="visual_speed"/>
+        </HBox>
+    </BorderTitleView>
+
+    <BorderTitleView title="频谱分析">
+        <HBox spacing="5">
+            <Label text="配色方案："/>
+            <ColorButton text="高峰"/>
+            <ColorButton text="顶端"/>
+            <ColorButton text="中端"/>
+            <ColorButton text="底端"/>
+        </HBox>
+        <CheckBox text="显示粗的频带（柱状）"/>
+    </BorderTitleView>
+
+    <BorderTitleView title="示波显示">
+        <HBox>
+            <Label text="配色方案："/>
+            <ColorButton text="波形"/>
+        </HBox>
+        <HBox spacing="39">
+            <HBox>
+                <Label text="消逝速度："/>
+                <ComboBox />
+            </HBox>
+            <CheckBox text="波形逐渐消逝"/>
+        </HBox>
+    </BorderTitleView>
+
+    <AnchorPane>
+        <BorderTitleView AnchorPane.leftAnchor="0"
+                         AnchorPane.topAnchor="0"
+                         spacing="3"
+                         title="文字显示">
+            <HBox spacing="39">
+                <HBox>
+                    <Label text="颜色："/>
+                    <ColorButton text="文字"/>
+                </HBox>
+                <HBox>
+                    <Label text="字体："/>
+                    <FontButton text="选择"/>
+                </HBox>
+            </HBox>
+        </BorderTitleView>
+        <ConfigButton AnchorPane.rightAnchor="0"
+                      AnchorPane.bottomAnchor="0" />
+    </AnchorPane>
+</VBox>

@@ -1,0 +1,104 @@
+@import url("common.css");
+
+#playback_queue_selection_view {
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-border-width: 1;
+    -fx-border-color: #cecece;
+    /*-fx-effect: innershadow(three-pass-box, #000000, 3, 1, 0, 0);*/
+}
+
+/* Top */
+#playback_queue_selection_view #top {
+    -fx-pref-height: 26;
+    -fx-background-color: #ffffff;
+}
+
+#playback_queue_selection_view #top .title {
+    -fx-text-fill: #777777;
+}
+
+#playback_queue_selection_view #top .close_btn {
+    -fx-pref-width: 36;
+    -fx-pref-height: 26;
+    -fx-cursor: hand;
+    -fx-background-image: url("../images/close4.png");
+    -fx-background-size: 10 10;
+    -fx-background-position: center center;
+}
+
+#playback_queue_selection_view #top .close_btn:hover {
+    -fx-background-color: #de172b;
+    -fx-background-image: url("../images/close5.png");
+}
+
+/* Center */
+#playback_queue_selection_view #center {
+    -fx-padding: 10 12 1 12;
+}
+
+#playback_queue_selection_view #center ListView {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #a1a1a1;
+}
+
+#playback_queue_selection_view #center ListView .list-cell {
+    -fx-padding: 3 5;
+}
+
+#playback_queue_selection_view #center ListView .list-cell:selected {
+    -fx-background-color: #137ad4;
+}
+
+#playback_queue_selection_view #center ListView .list-cell:selected Label {
+    -fx-text-fill: #ffffff;
+}
+
+/* Bottom */
+#playback_queue_selection_view #bottom {
+    -fx-pref-height: 47;
+    -fx-background-color: transparent;
+}
+
+#playback_queue_selection_view #bottom .actions Label {
+    -fx-background-color: #e1e1e1;
+    -fx-border-color: #a9a9a9;
+    -fx-padding: 1 10;
+    -fx-cursor: hand;
+    -fx-pref-width: 88;
+    -fx-alignment: center;
+}
+
+#playback_queue_selection_view  #bottom .actions Label:hover {
+    -fx-background-color: #e5f1fa;
+    -fx-border-color: #3f87d6;
+}
+
+#playback_queue_selection_view #bottom .actions #apply_close {
+    -fx-padding: 0 9;
+    -fx-border-width: 2;
+    -fx-border-color: #006acb;
+}
+
+#playback_queue_selection_view #bottom .actions #apply_close:hover {
+    -fx-padding: 1 10;
+    -fx-border-width: 1;
+}
+
+#playback_queue_selection_view #bottom .actions #apply_close .graphic {
+    -fx-pref-width: 16;
+    -fx-min-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/apply.png");
+    -fx-background-position: center center;
+}
+
+#playback_queue_selection_view #bottom .actions #cancel_close .graphic {
+    -fx-pref-width: 16;
+    -fx-min-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/cancel.png");
+    -fx-background-position: center center;
+}
+

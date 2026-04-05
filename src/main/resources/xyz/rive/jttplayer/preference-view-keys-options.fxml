@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.Region?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="xyz.rive.jttplayer.controller.PreferenceKeysOptionsController"
+      fx:id="keys_options"
+      stylesheets="@css/preference-view-keys-options.css">
+    <ListView fx:id="key_list">
+        <VBox.margin>
+            <Insets top="10" bottom="2"/>
+        </VBox.margin>
+    </ListView>
+    <HBox spacing="2">
+        <Label text="快捷键:"/>
+        <TextField />
+        <Label text="全局键:">
+            <HBox.margin>
+                <Insets left="1" />
+            </HBox.margin>
+        </Label>
+        <TextField />
+        <Label fx:id="setup_btn"
+               styleClass="action"
+               text="设置">
+            <HBox.margin>
+                <Insets left="3" />
+            </HBox.margin>
+            <graphic>
+                <Region styleClass="graphic"/>
+            </graphic>
+        </Label>
+    </HBox>
+    <CheckBox text="启用全局快捷键（播放器后台时也能响应）"/>
+</VBox>

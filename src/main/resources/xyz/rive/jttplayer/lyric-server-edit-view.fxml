@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:id="lyric_server_edit_view"
+            fx:controller="xyz.rive.jttplayer.controller.LyricServerEditController"
+            stylesheets="@css/lyric-server-edit-view.css" >
+    <top>
+        <AnchorPane fx:id="top" >
+            <Label fx:id="title"
+                   text="添加歌词服务器"
+                   AnchorPane.leftAnchor="7"
+                   AnchorPane.topAnchor="3"/>
+            <Region id="close_btn"
+                    AnchorPane.rightAnchor="0"
+                    AnchorPane.topAnchor="0"
+                    onMouseClicked="#closeView"/>
+        </AnchorPane>
+    </top>
+    <center>
+        <VBox fx:id="center"
+              spacing="3">
+            <Label text="服务器名称：" />
+            <TextField fx:id="server_name"/>
+            <Label text="API接口：" />
+            <TextArea fx:id="api_url"
+                      VBox.vgrow="ALWAYS" />
+        </VBox>
+    </center>
+    <bottom>
+        <AnchorPane fx:id="bottom">
+            <HBox AnchorPane.rightAnchor="12"
+                  AnchorPane.topAnchor="3"
+                  styleClass="actions"
+                  spacing="10">
+                <HBox.margin>
+                    <Insets top="5" />
+                </HBox.margin>
+                <Label fx:id="apply_close"
+                       graphicTextGap="7"
+                       text="确定"
+                       onMouseClicked="#applyClose">
+                    <graphic>
+                        <Region styleClass="graphic"/>
+                    </graphic>
+                </Label>
+                <Label fx:id="cancel_close"
+                       text="取消"
+                       graphicTextGap="7"
+                       onMouseClicked="#closeView">
+                    <graphic>
+                        <Region styleClass="graphic"/>
+                    </graphic>
+                </Label>
+            </HBox>
+        </AnchorPane>
+    </bottom>
+</BorderPane>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.CheckBox?>
+<?import xyz.rive.jttplayer.control.BorderTitleView?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.geometry.Insets?>
+<?import xyz.rive.jttplayer.control.FileBrowseButton?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="xyz.rive.jttplayer.controller.PreferenceLyricSearchOptionsController"
+      fx:id="lyric_search_options"
+      onMouseClicked="#clearSelections"
+      stylesheets="@css/preference-view-lyric-search-options.css">
+    <BorderTitleView title="本地搜索(选定表示同时搜索子文件夹，上下移动来设置搜索顺序)">
+        <HBox maxWidth="Infinity">
+            <ListView fx:id="search_orders"
+                      HBox.hgrow="ALWAYS" />
+            <VBox spacing="5"
+                  minWidth="24">
+                <HBox.margin>
+                    <Insets left="6" />
+                </HBox.margin>
+                <Region fx:id="add_btn"
+                        styleClass="action"
+                        onMouseClicked="#addFolder" />
+                <Region fx:id="remove_btn"
+                        styleClass="action"
+                        onMouseClicked="#removeFolder" />
+                <Region fx:id="move_up_btn"
+                        styleClass="action"
+                        onMouseClicked="#moveForward" />
+                <Region fx:id="move_down_btn"
+                        styleClass="action"
+                        onMouseClicked="#moveBackward" />
+            </VBox>
+        </HBox>
+    </BorderTitleView>
+
+    <BorderTitleView title="在线搜索">
+        <HBox maxWidth="Infinity"
+              spacing="5">
+            <Label text="歌词服务器:"/>
+            <ComboBox fx:id="server_list"
+                      HBox.hgrow="ALWAYS"
+                      maxWidth="Infinity"/>
+            <Label styleClass="action"
+                   text="管理"
+                   onMouseClicked="#showLyricServerManageView" />
+            <Label styleClass="link"
+                   text="代理设置"/>
+        </HBox>
+        <HBox spacing="30">
+            <CheckBox text="播放音频文件时自动在线搜索"/>
+            <CheckBox text="当歌曲信息完整时才自动搜索"/>
+        </HBox>
+        <CheckBox text="有多个可选下载时自动选择最佳"/>
+        <CheckBox text="下载后与音频文件进行关联"/>
+        <CheckBox text="自动覆盖已存在的歌词文件"/>
+        <CheckBox text="保存成歌曲文件相同的文件名"/>
+        <VBox spacing="3">
+            <CheckBox text="保存到歌曲所在的文件夹"/>
+            <HBox maxWidth="Infinity"
+                  spacing="5">
+                <VBox.margin>
+                    <Insets left="18" />
+                </VBox.margin>
+                <Label text="保存到其它文件夹:"/>
+                <TextField fx:id="download_path"
+                           HBox.hgrow="ALWAYS"/>
+                <FileBrowseButton onMouseClicked="#setDownloadPath"/>
+            </HBox>
+        </VBox>
+    </BorderTitleView>
+</VBox>

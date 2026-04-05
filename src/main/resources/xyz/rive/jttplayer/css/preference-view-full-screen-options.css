@@ -1,0 +1,13 @@
+@import url("preference-view.css");
+
+#preference_view #full_screen_options {
+
+}
+
+#preference_view #full_screen_options #setup_font_btn .graphic {
+    -fx-pref-width: 16;
+    -fx-min-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/font.png");
+    -fx-background-position: center center;
+}

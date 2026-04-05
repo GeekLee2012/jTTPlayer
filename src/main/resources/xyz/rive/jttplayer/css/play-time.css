@@ -1,0 +1,41 @@
+.play_time {
+    -fx-spacing: 0;
+    -fx-padding: 4 0;
+    -fx-cursor: hand;
+}
+
+
+.play_time Region {
+    -fx-pref-width: 9;
+    -fx-pref-height: 14;
+}
+
+.play_time .time_flag {
+    -fx-background-position: -99 0;
+    -fx-background-image: url("../images/number.bmp");*
+}
+
+.play_time .minutes_h {
+    -fx-background-position: 0 0;
+    -fx-background-image: url("../images/number.bmp");
+}
+
+.play_time .minutes_l {
+    -fx-background-position: 0 0;
+    -fx-background-image: url("../images/number.bmp");
+}
+
+.play_time .time_sp {
+    -fx-background-position: -90 0;
+    -fx-background-image: url("../images/number.bmp");
+}
+
+.play_time .seconds_h {
+    -fx-background-position: 0 0;
+    -fx-background-image: url("../images/number.bmp");
+}
+
+.play_time .seconds_l {
+    -fx-background-position: 0 0;
+    -fx-background-image: url("../images/number.bmp");
+}

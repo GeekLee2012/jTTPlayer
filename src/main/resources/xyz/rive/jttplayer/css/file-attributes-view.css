@@ -1,0 +1,272 @@
+@import url("common.css");
+
+#file_attributes_view {
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-border-width: 1;
+    -fx-border-color: #cecece;
+    /*-fx-effect: innershadow(three-pass-box, #000000, 3, 1, 0, 0);*/
+}
+
+#file_attributes_view HBox {
+    -fx-alignment: center-left;
+}
+
+/* Top */
+#file_attributes_view #top {
+    -fx-pref-height: 30;
+    -fx-background-color: #ffffff;
+}
+
+#file_attributes_view #top #title {
+    -fx-pref-height: 30;
+    -fx-text-fill: -pref-text-fill-1;
+    -fx-alignment: center-left;
+}
+
+#file_attributes_view #top .close_btn {
+    -fx-pref-width: 41;
+    -fx-pref-height: 30;
+    -fx-cursor: hand;
+    -fx-background-image: url("../images/close4.png");
+    -fx-background-size: 10 10;
+    -fx-background-position: center center;
+}
+
+#file_attributes_view #top .close_btn:hover {
+    -fx-background-color: #de172b;
+    -fx-background-image: url("../images/close5.png");
+}
+
+
+/* Center */
+#file_attributes_view #center {
+    -fx-padding: 0 9;
+}
+
+#file_attributes_view #center .tabs {
+    -fx-padding: 6 0 0 0;
+}
+
+#file_attributes_view #center .content #filename {
+    -fx-pref-width: 165;
+    -fx-cursor: default;
+}
+
+#file_attributes_view #center .content #file_source {
+    -fx-pref-width: 150;
+    -fx-cursor: default;
+}
+
+#file_attributes_view #center .content #guess_tags_btn {
+    -fx-background-color: linear-gradient(to bottom, #f6f6f6, #e6e6e6);
+    -fx-padding: 2 4;
+}
+
+#file_attributes_view #center .content #guess_tags_btn:hover {
+    -fx-background-color: #e5f1fa;
+}
+
+#file_attributes_view #center .content #track_number {
+    -fx-pref-width: 39;
+    -fx-min-width: 39;
+}
+
+#file_attributes_view #center .content #genre {
+    -fx-pref-width: 163;
+    -fx-background-color: #ffffff;
+}
+
+#file_attributes_view #center .content #publish_date {
+    -fx-pref-width: 60;
+    -fx-min-width: 60;
+}
+
+#file_attributes_view #center .content TextArea {
+    -fx-border-color: #d2d2d2;
+}
+
+#file_attributes_view #center .content #format_attributes {
+    -fx-pref-width: 215;
+    -fx-min-width: 215;
+}
+
+#file_attributes_view #center .content #format_attributes TextField {
+    -fx-cursor: default;
+}
+
+#file_attributes_view #center .content .small_btn {
+    -fx-padding: 0 3;
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+#file_attributes_view #center .content .separator {
+    -fx-pref-width: 1;
+    -fx-pref-height: 16;
+    -fx-background-color: #bababa;
+}
+
+#file_attributes_view #center .content #advance_btn {
+    -fx-background-color: transparent;
+    -fx-padding: 0 3;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+}
+
+#file_attributes_view #center .content #advance_btn .graphic {
+    -fx-pref-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/file_attributes.png");
+}
+
+#file_attributes_view #center .content #traditional_btn .graphic {
+    -fx-pref-width: 14;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/file_attributes.png");
+    -fx-background-position: -17 1;
+}
+
+#file_attributes_view #center .content #character_btn .graphic {
+    -fx-pref-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/file_attributes.png");
+    -fx-background-position: -32 1;
+}
+
+#file_attributes_view #center .content #traditional_btn .flag,
+#file_attributes_view #center .content #character_btn .flag {
+    -fx-pref-width: 10;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/arrow_down.png");
+    -fx-background-size: 6 6;
+    -fx-background-position: center center;
+}
+
+#file_attributes_view #center .content #capital_btn .graphic {
+    -fx-pref-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/file_attributes.png");
+    -fx-background-position: -48 1;
+}
+
+#file_attributes_view #center .content #add_btn .graphic {
+    -fx-pref-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/file_attributes.png");
+    -fx-background-position: -80 1;
+}
+
+#file_attributes_view #center .content #remove_btn .graphic {
+    -fx-pref-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/file_attributes.png");
+    -fx-background-position: -96 1;
+}
+
+#file_attributes_view #center .content #edit_btn .graphic {
+    -fx-pref-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/file_attributes.png");
+    -fx-background-position: -112 1;
+}
+
+#file_attributes_view #center .content #reset_btn .graphic {
+    -fx-pref-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/file_attributes.png");
+    -fx-background-position: -64 1;
+}
+
+#file_attributes_view #center .content #recovery_btn .graphic {
+    -fx-pref-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/file_attributes.png");
+    -fx-background-position: -128 1;
+}
+
+#file_attributes_view #center .content .small_btn.active,
+#file_attributes_view #center .content .small_btn:hover,
+#file_attributes_view #center .content #advance_btn:hover,
+#file_attributes_view #center .content #advance_btn.active {
+    -fx-background-color: #e5f1fa;
+    -fx-border-color: #3f87d6;
+}
+
+
+#file_attributes_view #center .content .combo_w {
+    -fx-pref-width: 223;
+}
+
+#file_attributes_view #center .content .combo_m {
+    -fx-pref-width: 139;
+}
+
+#file_attributes_view #center .content .album_right_actions .action {
+    -fx-pref-width: 95;
+    -fx-min-width: 95;
+    -fx-padding: 1 3;
+    -fx-alignment: center;
+}
+
+#file_attributes_view #center .content .album_right_actions .link {
+    -fx-min-width: 95;
+}
+
+#file_attributes_view #center .content .album_right_actions #image_source {
+    -fx-pref-width: 95;
+    -fx-min-width: 95;
+    -fx-alignment: center_left;
+}
+
+#file_attributes_view #center #advance_mode_table {
+    -fx-pref-height: 188;
+    -fx-max-height: 188;
+    -fx-border-color: #c5c5c5;
+}
+
+#file_attributes_view #center #advance_mode_table Label.row_cell {
+    -fx-background-color: #f0f0f0;
+}
+
+#file_attributes_view #center #advance_mode_table .header Label {
+    -fx-padding: 3 39;
+}
+
+#file_attributes_view #center #advance_mode_table .header Label.value_field {
+    -fx-padding: 3 86;
+}
+
+/* Bottom */
+#file_attributes_view #bottom {
+    -fx-pref-height: 45;
+    -fx-background-color: transparent;
+    /*-fx-font-size: 13;*/
+}
+
+#file_attributes_view #bottom #previous_track .graphic {
+    -fx-pref-width: 16;
+    -fx-min-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/previous.png");
+    -fx-background-position: center center;
+}
+
+#file_attributes_view #bottom #next_track .graphic {
+    -fx-pref-width: 16;
+    -fx-min-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/next2.png");
+    -fx-background-position: center center;
+}
+
+#file_attributes_view #bottom #cancel_close .graphic {
+    -fx-pref-width: 16;
+    -fx-min-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/cancel.png");
+    -fx-background-position: center center;
+}
+

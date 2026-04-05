@@ -1,0 +1,28 @@
+.volume_bar_vertical {
+    -fx-pref-width: 12;
+    /*-fx-spacing: 4;*/
+    -fx-cursor: hand;
+    -fx-pref-height: 53;
+    -fx-alignment: bottom-center;
+}
+
+.volume_bar_vertical .volume_fill {
+    -fx-pref-width: 12;
+    /*-fx-pref-height: 38;*/
+    -fx-min-height: 1;
+    -fx-cursor: hand;
+    -fx-background-image: url("../images/progress2.bmp");
+    -fx-background-position: center bottom;
+}
+
+.volume_bar_vertical .volume_status {
+    -fx-pref-width: 12;
+    -fx-pref-height: 11;
+    -fx-cursor: hand;
+    /*-fx-background-position: -37 0;*/
+    -fx-background-image: url("../images/mute.bmp");
+}
+
+.volume_bar_vertical .volume_status.mute {
+    -fx-background-position: -12 0;
+}

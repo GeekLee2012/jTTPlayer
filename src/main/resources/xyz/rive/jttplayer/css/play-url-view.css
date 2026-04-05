@@ -1,0 +1,95 @@
+@import url("common.css");
+
+#play_url_view {
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-border-width: 1;
+    -fx-border-color: #cecece;
+    /*-fx-effect: innershadow(three-pass-box, #000000, 3, 1, 0, 0);*/
+}
+
+/* Top */
+#play_url_view #top {
+    -fx-pref-height: 28;
+    -fx-background-color: #ffffff;
+}
+
+#play_url_view #top .title {
+    -fx-text-fill: #777777;
+}
+
+#play_url_view #top .close_btn {
+    -fx-pref-width: 36;
+    -fx-pref-height: 28;
+    -fx-cursor: hand;
+    -fx-background-image: url("../images/close4.png");
+    -fx-background-size: 10 10;
+    -fx-background-position: center center;
+}
+
+#play_url_view #top .close_btn:hover {
+    -fx-background-color: #de172b;
+    -fx-background-image: url("../images/close5.png");
+}
+
+
+/* Center */
+#play_url_view #center {
+    -fx-padding: 10 12 6 12;
+}
+
+#play_url_view #center TextArea {
+    -fx-border-color: #137ad4;
+}
+
+#play_url_view #center .border_title_view {
+    -fx-border-color: #d9d9d9;
+}
+
+#play_url_view #center .border_title_view .title {
+    -fx-background-color: #f0f0f0;
+}
+
+/* Bottom */
+#play_url_view #bottom {
+    -fx-pref-height: 41;
+    -fx-background-color: transparent;
+}
+
+#play_url_view #bottom .actions Label {
+    -fx-background-color: #e1e1e1;
+    -fx-border-color: #a9a9a9;
+    -fx-padding: 1 10;
+    -fx-cursor: hand;
+}
+
+#play_url_view  #bottom .actions Label:hover {
+    -fx-background-color: #e5f1fa;
+    -fx-border-color: #3f87d6;
+}
+
+#play_url_view #bottom .actions #apply_close .graphic {
+    -fx-pref-width: 16;
+    -fx-min-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/apply.png");
+    -fx-background-position: center center;
+}
+
+#play_url_view #bottom .actions #cancel_close .graphic {
+    -fx-pref-width: 16;
+    -fx-min-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/cancel.png");
+    -fx-background-position: center center;
+}
+
+#play_url_view #bottom .actions #browse_btn .graphic {
+    -fx-pref-width: 16;
+    -fx-min-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/browse2.png");
+    -fx-background-position: center center;
+}
+

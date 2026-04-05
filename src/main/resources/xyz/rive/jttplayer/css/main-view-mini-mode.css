@@ -1,0 +1,183 @@
+@import url("common.css");
+
+#app_main_mini_mode {
+    -fx-background-radius: 12;
+    -fx-background-image: url("../images/mini-player.bmp");
+    -fx-background-position: center center;
+    /*-fx-background-size: 383 25;*/
+    /*-fx-border-radius: 12;*/
+    -fx-opacity: 1;
+    -fx-border-width: 1;
+    /*-fx-effect: innershadow(three-pass-box, #000000, 3, 1, 0, 0);*/
+}
+
+#app_main_mini_mode #app_logo {
+    -fx-background-image: url("../images/TTPlayer_x32.png");
+    -fx-background-position: center center;
+    -fx-background-size: 18 18;
+    -fx-pref-width: 18;
+    -fx-pref-height: 18;
+}
+
+#app_main_mini_mode .track_meta {
+    -fx-max-width: 158;
+    -fx-min-width: 158;
+}
+
+#app_main_mini_mode .track_meta Label {
+    -fx-pref-height: 21;
+    -fx-font-size: 12;
+}
+
+
+#app_main_mini_mode .progress_bar_horizontal .progress {
+    -fx-background-image: url("../images/progress_fill_mini.bmp");
+}
+
+#app_main_mini_mode .progress_bar_horizontal .thumb {
+    -fx-pref-width: 10;
+    -fx-pref-height: 10;
+    -fx-background-image: url("../images/progress_thumb2.bmp");
+}
+
+#app_main_mini_mode #actions {
+    -fx-alignment: center;
+    -fx-background-color: transparent;
+}
+
+#app_main_mini_mode #actions Region {
+    -fx-pref-height: 21;
+    -fx-max-height: 21;
+    -fx-cursor: hand;
+}
+
+#app_main_mini_mode #actions Region:hover {
+    -fx-cursor: hand;
+}
+
+#app_main_mini_mode #prev_btn {
+    -fx-pref-width: 21;
+    -fx-background-image: url("../images/prev_mini.png");
+}
+
+#app_main_mini_mode #prev_btn:hover {
+    -fx-background-position: -21 0;
+}
+
+#app_main_mini_mode #prev_btn:pressed {
+    -fx-background-position: -42 0;
+}
+
+#app_main_mini_mode #next_btn {
+    -fx-pref-width: 21;
+    -fx-background-image: url("../images/next_mini.png");
+}
+
+#app_main_mini_mode #next_btn:hover {
+    -fx-background-position: -21 0;
+}
+
+#app_main_mini_mode #next_btn:pressed {
+    -fx-background-position: -42 0;
+}
+
+#app_main_mini_mode #play_btn {
+    -fx-pref-width: 24;
+    -fx-pref-height: 24;
+    -fx-max-height: 24;
+    -fx-background-image: url("../images/play_mini.png");
+}
+
+#app_main_mini_mode #play_btn:hover {
+    -fx-background-position: -24 0;
+}
+
+#app_main_mini_mode #play_btn:pressed {
+    -fx-background-position: -48 0;
+}
+
+#app_main_mini_mode #pause_btn {
+    -fx-pref-width: 24;
+    -fx-pref-height: 24;
+    -fx-max-height: 24;
+    -fx-background-image: url("../images/pause_mini.png");
+    -fx-visibility: hidden;
+}
+
+#app_main_mini_mode #pause_btn:hover {
+    -fx-background-position: -24 0;
+}
+
+#app_main_mini_mode #pause_btn:pressed {
+    -fx-background-position: -48 0;
+}
+
+#app_main_mini_mode #right_actions {
+    -fx-alignment: center;
+    -fx-background-color: transparent;
+}
+
+#app_main_mini_mode #right_actions Region {
+    -fx-cursor: hand;
+    -fx-pref-height: 18;
+    -fx-max-height: 18;
+}
+
+#app_main_mini_mode #mini_btn {
+    -fx-pref-width: 18;
+    /*-fx-background-size: 108 20;*/
+    -fx-background-image: url("../images/minimize.png");
+}
+
+#app_main_mini_mode #mini_btn:hover {
+    -fx-background-position: -18 0;
+}
+
+#app_main_mini_mode #mini_btn:pressed {
+    -fx-background-position: -36 0;
+}
+
+#app_main_mini_mode #minimode_btn {
+    -fx-pref-width: 18;
+    /*-fx-background-size: 124 20;*/
+    -fx-background-image: url("../images/minimode.png");
+}
+
+#app_main_mini_mode #minimode_btn:hover {
+    -fx-background-position: -18 0;
+}
+
+#app_main_mini_mode #minimode_btn:pressed {
+    -fx-background-position: -36 0;
+}
+
+#app_main_mini_mode #close_btn {
+    -fx-pref-width: 18;
+    -fx-background-image: url("../images/close.png");
+}
+
+#app_main_mini_mode #close_btn:hover {
+    -fx-background-position: -18 0;
+}
+
+#app_main_mini_mode #close_btn:pressed {
+    -fx-background-position: -36 0;
+}
+
+#app_main_mini_mode #lyric_btn {
+    -fx-pref-width: 30;
+    -fx-pref-height: 19;
+    -fx-background-image: url("../images/lyric_mini.png");
+    -fx-cursor: hand;
+}
+
+#app_main_mini_mode #lyric_btn.active,
+#app_main_mini_mode #lyric_btn:hover {
+    -fx-pref-width: 32;
+    -fx-background-position: -31 0;
+}
+
+#app_main_mini_mode #lyric_btn:pressed {
+    -fx-pref-width: 32;
+    -fx-background-position: -62 0;
+}

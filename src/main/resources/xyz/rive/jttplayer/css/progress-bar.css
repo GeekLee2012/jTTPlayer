@@ -1,0 +1,24 @@
+.progress_bar_horizontal {
+    -fx-padding: 0 0 0 0;
+    /*-fx-pref-width: 153;*/
+    /*-fx-pref-height: 4;*/
+    -fx-cursor: hand;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+}
+
+.progress_bar_horizontal .progress {
+    /*-fx-pref-width: 0;*/
+    /*-fx-pref-height: 4;*/
+    -fx-cursor: hand;
+    /*-fx-background-image: url("../images/progress_fill.png");*/
+}
+
+.progress_bar_horizontal .thumb {
+    /*-fx-pref-width: 28;
+    -fx-pref-height: 28;*/
+    -fx-cursor: hand;
+    -fx-background-repeat: no-repeat;
+    /*-fx-background-image: url("../images/progress_thumb.png");*/
+    /*-fx-background-position: -7.3 0;*/
+}

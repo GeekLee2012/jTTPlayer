@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextArea?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:id="file_tag_edit_view"
+            fx:controller="xyz.rive.jttplayer.controller.FileTagEditController"
+            stylesheets="@css/file-tag-edit-view.css"
+            onMouseClicked="#hideMenus">
+    <top>
+        <AnchorPane fx:id="top" >
+            <Label styleClass="title"
+                   text="文件标签"
+                   AnchorPane.leftAnchor="7"
+                   AnchorPane.topAnchor="3"/>
+            <Region styleClass="close_btn"
+                    AnchorPane.rightAnchor="0"
+                    AnchorPane.topAnchor="0"
+                    onMouseClicked="#closeView"/>
+        </AnchorPane>
+    </top>
+    <center>
+        <VBox fx:id="center"
+              spacing="3">
+            <Label text="字段名：" />
+            <HBox maxWidth="Infinity">
+                <ComboBox fx:id="field_name"
+                          HBox.hgrow="ALWAYS"
+                          maxWidth="Infinity"/>
+            </HBox>
+            <Label text="字段值：" />
+            <TextArea fx:id="field_value"
+                      VBox.vgrow="ALWAYS"/>
+        </VBox>
+    </center>
+    <bottom>
+        <AnchorPane fx:id="bottom">
+            <HBox AnchorPane.leftAnchor="12"
+                  AnchorPane.topAnchor="3"
+                  spacing="3">
+                <Label fx:id="traditional_btn"
+                       styleClass="small_btn"
+                       onMouseClicked="#toggleTraditionalMenu">
+                    <graphic>
+                        <HBox>
+                            <Region styleClass="graphic"/>
+                            <Region styleClass="flag"/>
+                        </HBox>
+                    </graphic>
+                </Label>
+                <Label fx:id="character_btn"
+                       styleClass="small_btn">
+                    <graphic>
+                        <HBox>
+                            <Region styleClass="graphic"/>
+                            <Region styleClass="flag"/>
+                        </HBox>
+                    </graphic>
+                </Label>
+                <Label fx:id="capital_btn"
+                       styleClass="small_btn" >
+                    <graphic>
+                        <Region styleClass="graphic"/>
+                    </graphic>
+                </Label>
+            </HBox>
+            <HBox AnchorPane.rightAnchor="12"
+                  AnchorPane.topAnchor="3"
+                  styleClass="actions"
+                  spacing="10">
+                <HBox.margin>
+                    <Insets top="5" />
+                </HBox.margin>
+                <Label fx:id="apply_close"
+                       graphicTextGap="7"
+                       text="确定"
+                       onMouseClicked="#applyClose">
+                    <graphic>
+                        <Region styleClass="graphic"/>
+                    </graphic>
+                </Label>
+                <Label fx:id="cancel_close"
+                       text="取消"
+                       graphicTextGap="7"
+                       onMouseClicked="#closeView">
+                    <graphic>
+                        <Region styleClass="graphic"/>
+                    </graphic>
+                </Label>
+            </HBox>
+        </AnchorPane>
+    </bottom>
+</BorderPane>

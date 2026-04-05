@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import xyz.rive.jttplayer.control.TabsView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.CheckBox?>
+<?import xyz.rive.jttplayer.control.BorderTitleView?>
+<?import javafx.geometry.Insets?>
+<?import xyz.rive.jttplayer.control.ColorButton?>
+<?import xyz.rive.jttplayer.control.FontButton?>
+<?import xyz.rive.jttplayer.control.ConfigButton?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="xyz.rive.jttplayer.controller.PreferenceLyricOptionsController"
+      fx:id="lyric_options"
+      stylesheets="@css/preference-view-lyric-options.css">
+    <TabsView fx:id="lyric_mode_content">
+        <tabs>
+            <Label styleClass="active"
+                   text="窗口模式" />
+            <Label text="桌面模式" />
+        </tabs>
+        <contents>
+            <GridPane hgap="20" vgap="3">
+                <!-- Row -->
+                <HBox GridPane.rowIndex="0"
+                      GridPane.columnIndex="0">
+                    <Label text="滚动模式：" />
+                    <ComboBox fx:id="win_mode_scroll_mode"
+                              editable="false"/>
+                </HBox>
+                <HBox GridPane.rowIndex="0"
+                      GridPane.columnIndex="1">
+                    <Label text="对齐方式：" />
+                    <ComboBox fx:id="win_mode_alignment"
+                              editable="false"/>
+                </HBox>
+
+                <!-- Row -->
+                <HBox GridPane.rowIndex="1"
+                      GridPane.columnIndex="0">
+                    <Label text="淡入淡出：" />
+                    <ComboBox fx:id="win_mode_fade_in_fade_out"
+                              editable="false"/>
+                </HBox>
+                <HBox GridPane.rowIndex="1"
+                      GridPane.columnIndex="1">
+                    <Label text="竖直行距：" />
+                    <Spinner fx:id="win_mode_line_spacing"
+                             styleClass="spinner_m"
+                             initialValue="0"
+                             min="0"
+                             max="100"
+                             editable="true"/>
+                    <Label text="像素">
+                        <HBox.margin>
+                            <Insets left="3" />
+                        </HBox.margin>
+                    </Label>
+                </HBox>
+
+                <!-- Row -->
+                <HBox GridPane.rowIndex="2"
+                      GridPane.columnIndex="0">
+                    <CheckBox text="淡入淡出当前行的歌词"/>
+                </HBox>
+                <HBox GridPane.rowIndex="2"
+                      GridPane.columnIndex="1">
+                    <CheckBox text="卡拉OK方式显示当前行歌词"/>
+                </HBox>
+
+                <!-- Row -->
+                <HBox GridPane.rowIndex="3"
+                      GridPane.columnIndex="0">
+                    <CheckBox text="使用背景色来透明"/>
+                </HBox>
+                <HBox GridPane.rowIndex="3"
+                      GridPane.columnIndex="1">
+                    <CheckBox text="连皮肤也作为背景一起透明"/>
+                </HBox>
+
+                <!-- Row -->
+                <HBox GridPane.rowIndex="4"
+                      GridPane.columnIndex="0">
+                    <CheckBox text="自动调整窗口以适应歌词宽度"/>
+                </HBox>
+                <HBox GridPane.rowIndex="4"
+                      GridPane.columnIndex="1">
+                    <CheckBox text="仅调整垂直滚动模式"/>
+                </HBox>
+
+                <!-- Row -->
+                <HBox GridPane.rowIndex="5"
+                      GridPane.columnIndex="0"
+                      spacing="3">
+                    <Label text="颜色:"/>
+                    <ColorButton fx:id="win_mode_color_normal"
+                                 text="普通"/>
+                    <ColorButton fx:id="win_mode_color_hilight"
+                                 text="加亮"/>
+                    <ColorButton fx:id="win_mode_background"
+                                 text="背景"/>
+                </HBox>
+                <HBox GridPane.rowIndex="5"
+                      GridPane.columnIndex="1">
+                    <Label text="字体:"/>
+                    <FontButton fx:id="win_mode_font"
+                                text="普通">
+                        <HBox.margin>
+                            <Insets left="3" right="3"/>
+                        </HBox.margin>
+                    </FontButton>
+                    <!--
+                    <ConfigButton />
+                    -->
+                    <FontButton fx:id="win_mode_hilight_font"
+                                text="加亮">
+                    </FontButton>
+                </HBox>
+            </GridPane>
+
+            <GridPane hgap="10" vgap="3">
+                <!-- Row -->
+                <HBox GridPane.rowIndex="0"
+                      GridPane.columnIndex="0">
+                    <Label text="歌词行数：" />
+                    <ComboBox />
+                </HBox>
+                <HBox GridPane.rowIndex="0"
+                      GridPane.columnIndex="1">
+                    <Label text="对齐方式：" />
+                    <ComboBox />
+                </HBox>
+
+                <!-- Row -->
+                <HBox GridPane.rowIndex="1"
+                      GridPane.columnIndex="0">
+                    <CheckBox text="卡拉OK方式显示当前行歌词"/>
+                </HBox>
+                <HBox GridPane.rowIndex="1"
+                      GridPane.columnIndex="1">
+                    <CheckBox text="自动调整窗口以适应歌词宽度"/>
+                </HBox>
+
+                <!-- Row -->
+                <HBox GridPane.rowIndex="2"
+                      GridPane.columnIndex="0"
+                      spacing="2">
+                    <Label text="字体:" />
+                    <FontButton fx:id="desk_mode_font"/>
+                    <CheckBox>
+                        <HBox.margin>
+                            <Insets left="7" />
+                        </HBox.margin>
+                    </CheckBox>
+                    <ColorButton text="描边">
+                        <HBox.margin>
+                            <Insets left="-8" />
+                        </HBox.margin>
+                    </ColorButton>
+                </HBox>
+                <VBox GridPane.rowIndex="2"
+                      GridPane.columnIndex="1">
+                    <CheckBox fx:id="desk_mode_auto_unlock"
+                              text="关闭时自动解锁桌面歌词"/>
+                    <HBox spacing="10">
+                        <CheckBox fx:id="desk_mode_font_shadow"
+                                  text="阴影"/>
+                        <CheckBox text="平滑字体效果"/>
+                    </HBox>
+                </VBox>
+
+                <!-- Row -->
+                <HBox GridPane.rowIndex="3"
+                      GridPane.columnIndex="0"
+                      spacing="2">
+                    <Label text="颜色:"/>
+                    <ColorButton text="描边" />
+                    <ColorButton text="已播放" />
+                    <ColorButton text="未播放" />
+                </HBox>
+                <HBox GridPane.rowIndex="3"
+                      GridPane.columnIndex="1">
+                    <CheckBox />
+                    <ColorButton text="背景">
+                        <HBox.margin>
+                            <Insets left="-7" right="8"/>
+                        </HBox.margin>
+                    </ColorButton>
+                    <ConfigButton fx:id="preset_bg_btn"
+                                  text="预设方案" />
+                </HBox>
+
+                <!-- Row -->
+                <HBox GridPane.rowIndex="4"
+                      GridPane.columnIndex="0">
+                    <Label text="文字:" />
+                    <Label text="不透明" />
+                    <Label text="====" />
+                    <Label text="透明" />
+                </HBox>
+                <HBox GridPane.rowIndex="4"
+                      GridPane.columnIndex="1">
+                    <Label text="背景:" />
+                    <Label text="不透明" />
+                    <Label text="====" />
+                    <Label text="透明" />
+                </HBox>
+            </GridPane>
+        </contents>
+    </TabsView>
+
+    <BorderTitleView title="选项">
+        <GridPane hgap="20" vgap="3">
+            <!-- Row -->
+            <HBox GridPane.rowIndex="0"
+                  GridPane.columnIndex="0">
+                <CheckBox text="播放音频文件时自动加载歌词"/>
+            </HBox>
+            <HBox GridPane.rowIndex="0"
+                  GridPane.columnIndex="1">
+                <CheckBox text="加载时剪裁行首和行尾的空格"/>
+            </HBox>
+
+            <!-- Row -->
+            <HBox GridPane.rowIndex="1"
+                  GridPane.columnIndex="0">
+                <CheckBox text="自动嵌入歌词到音频文件"/>
+            </HBox>
+            <HBox GridPane.rowIndex="1"
+                  GridPane.columnIndex="1">
+                <CheckBox text="不从音频文件中加载内嵌歌词"/>
+            </HBox>
+
+            <!-- Row -->
+            <HBox GridPane.rowIndex="2"
+                  GridPane.columnSpan="2">
+                <CheckBox text="有歌词时自动显示歌词秀，否则自动隐藏"/>
+            </HBox>
+
+            <!-- Row -->
+            <HBox GridPane.rowIndex="3"
+                  GridPane.columnSpan="2">
+                <CheckBox text="左键拖动歌词来定位播放（提示:用方向键可以实现单句歌词跳跃）"/>
+            </HBox>
+
+            <!-- Row -->
+            <HBox GridPane.rowIndex="4"
+                  GridPane.columnIndex="0">
+                <CheckBox text="用行压缩方式保存以减少大小"/>
+            </HBox>
+            <HBox GridPane.rowIndex="4"
+                  GridPane.columnIndex="1">
+                <ComboBox>
+                    <HBox.margin>
+                        <Insets right="2" />
+                    </HBox.margin>
+                </ComboBox>
+                <Label text="保存修改过的歌词"/>
+            </HBox>
+        </GridPane>
+    </BorderTitleView>
+
+    <HBox spacing="3">
+        <Label text="歌词搜索顺序:" />
+        <Label text="歌曲内嵌歌词"/>
+        <Label text="->"/>
+        <Label styleClass="link"
+               text="歌词关联"/>
+        <Label text="->"/>
+        <Label styleClass="link"
+               text="本地搜索"
+               onMouseClicked="#goToLyricSearch" />
+        <Label text="->"/>
+        <Label styleClass="link"
+               text="在线搜索"
+               onMouseClicked="#goToLyricSearch" />
+    </HBox>
+</VBox>

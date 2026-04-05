@@ -1,0 +1,25 @@
+/*@font-face {
+    font-family: "PingFang SC";
+    src: url("../fonts/PingFangSC-Regular.ttf");
+}*/
+
+* {
+    -fx-background: transparent;
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+    /* macOS、Windows、Linux */
+    -fx-font-family: "PingFang SC", "System", "Microsoft YaHei", "Segoe UI", "Noto Sans CJK", "sans-serif";
+}
+
+.resizable,
+.h_resize {
+    -fx-cursor: h_resize;
+}
+
+.v_resize {
+    -fx-cursor: v_resize;
+}
+
+.se_resize {
+    -fx-cursor: se_resize;
+}

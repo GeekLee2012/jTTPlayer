@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ListView?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:id="playback_queue_selection_view"
+            fx:controller="xyz.rive.jttplayer.controller.PlaybackQueueSelectionController"
+            stylesheets="@css/playback-queue-selection-view.css">
+    <top>
+        <AnchorPane fx:id="top" >
+            <Label styleClass="title"
+                   text="选择播放列表"
+                   AnchorPane.leftAnchor="5"
+                   AnchorPane.topAnchor="3"/>
+            <Region styleClass="close_btn"
+                    AnchorPane.rightAnchor="0"
+                    AnchorPane.topAnchor="0"
+                    onMouseClicked="#closeView"/>
+        </AnchorPane>
+    </top>
+    <center>
+        <VBox fx:id="center"
+              maxHeight="Infinity"
+              spacing="6">
+            <Label text="选择目标播放列表：" />
+            <ListView fx:id="playback_queue_list"
+                      VBox.vgrow="ALWAYS"/>
+        </VBox>
+    </center>
+    <bottom>
+        <HBox fx:id="bottom"
+              alignment="TOP_CENTER">
+            <HBox styleClass="actions"
+                  spacing="17">
+                <HBox.margin>
+                    <Insets top="9" />
+                </HBox.margin>
+                <Label fx:id="create_playback_queue"
+                       text="新列表"
+                       styleClass="action"
+                       onMouseClicked="#createPlaybackQueue" />
+                <Label fx:id="apply_close"
+                       graphicTextGap="7"
+                       text="确定"
+                       onMouseClicked="#applyClose">
+                    <graphic>
+                        <Region styleClass="graphic"/>
+                    </graphic>
+                </Label>
+                <Label fx:id="cancel_close"
+                       text="取消"
+                       graphicTextGap="7"
+                       onMouseClicked="#closeView">
+                    <graphic>
+                        <Region styleClass="graphic"/>
+                    </graphic>
+                </Label>
+            </HBox>
+        </HBox>
+    </bottom>
+</BorderPane>

@@ -1,0 +1,17 @@
+@import url("preference-view.css");
+
+#preference_view #keys_options TextField {
+    -fx-pref-width: 140;
+}
+
+#preference_view #keys_options #key_list {
+
+}
+
+#preference_view #keys_options #setup_btn .graphic {
+    -fx-pref-width: 16;
+    -fx-min-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/apply2.png");
+    -fx-background-position: center center;
+}

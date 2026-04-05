@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.geometry.Insets?>
+<?import xyz.rive.jttplayer.control.BorderTitleView?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="xyz.rive.jttplayer.controller.PreferenceMediaLibraryOptionsController"
+      fx:id="media_library_options"
+      stylesheets="@css/preference-view-media-library-options.css"
+      maxHeight="Infinity">
+    <BorderTitleView title="选项"
+                     minHeight="128">
+        <CheckBox text="启用媒体库" />
+        <VBox.margin>
+            <Insets bottom="12" />
+        </VBox.margin>
+    </BorderTitleView>
+    <VBox VBox.vgrow="ALWAYS">
+        <CheckBox text="监视文件夹以更新媒体库或默认的播放列表(需要Windows 2000或更高)" />
+        <VBox spacing="3">
+            <VBox.margin>
+                <Insets left="18" />
+            </VBox.margin>
+            <Label text="监视下列的文件夹，如有新增、删除、重命名或移动的媒体文件，自动将变化反应到媒体库中。(选定表示同意同时监控其子文件夹)"
+                   wrapText="true"
+                   minHeight="50"/>
+            <HBox maxWidth="Infinity"
+                  spacing="6">
+                <ListView HBox.hgrow="ALWAYS" />
+                <VBox spacing="3"
+                      minWidth="24">
+                    <Region fx:id="add_btn"
+                            styleClass="action"/>
+                    <Region fx:id="remove_btn"
+                            styleClass="action"/>
+                </VBox>
+            </HBox>
+            <Label text="为了获得最佳性能，请避免监视网络中的共享文件夹、根文件夹。"/>
+        </VBox>
+    </VBox>
+</VBox>

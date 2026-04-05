@@ -1,0 +1,109 @@
+@import url("common.css");
+
+#search_computer_view {
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-border-width: 1;
+    -fx-border-color: #cecece;
+    /*-fx-effect: innershadow(three-pass-box, #000000, 3, 1, 0, 0);*/
+}
+
+/* Top */
+#search_computer_view #top {
+    -fx-pref-height: 30;
+    -fx-background-color: #ffffff;
+}
+
+#search_computer_view #top .title {
+    -fx-pref-height: 30;
+    -fx-text-fill: -pref-text-fill-1;
+    -fx-alignment: center-left;
+}
+
+#search_computer_view #top .close_btn {
+    -fx-pref-width: 41;
+    -fx-pref-height: 30;
+    -fx-cursor: hand;
+    -fx-background-image: url("../images/close4.png");
+    -fx-background-size: 10 10;
+    -fx-background-position: center center;
+}
+
+#search_computer_view #top .close_btn:hover {
+    -fx-background-color: #de172b;
+    -fx-background-image: url("../images/close5.png");
+}
+
+/* Center */
+#search_computer_view #center {
+    -fx-padding: 12;
+}
+
+#search_computer_view #center ListView {
+   -fx-border-color: #a0a0a0;
+}
+
+#search_computer_view #center #search_types {
+    -fx-max-height: 158;
+}
+
+#search_computer_view #center #search_types .list-cell:selected {
+    -fx-background-color: transparent;
+}
+
+#search_computer_view #center #search_types .list-cell:odd {
+    -fx-background-color: #f9f9f9;
+}
+
+
+#search_computer_view #center #min_seconds {
+    -fx-pref-width: 66;
+}
+
+#search_computer_view #center .right_actions {
+    -fx-pref-width: 118;
+    -fx-padding: 0 0 0 10;
+}
+
+
+#search_computer_view #center .right_actions Label.action {
+    -fx-padding: 1;
+    -fx-pref-width: 108;
+    -fx-alignment: center;
+}
+
+#search_computer_view #center .right_actions #stop_search,
+#search_computer_view #center .right_actions #finish_search {
+    -fx-border-width: 2;
+    -fx-padding: 0;
+    -fx-border-color: #3f87d6;
+}
+
+#search_computer_view #center .right_actions #finish_search .graphic {
+    -fx-pref-width: 16;
+    -fx-min-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/apply.png");
+    -fx-background-position: center center;
+}
+
+#search_computer_view #center .right_actions #add_selections .graphic {
+    -fx-pref-width: 16;
+    -fx-min-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/add.png");
+    -fx-background-position: center center;
+    -fx-translate-x: -2;
+    -fx-translate-y: 1;
+}
+
+#search_computer_view #center .splitter {
+    -fx-padding: 0;
+    -fx-pref-height: 1;
+    -fx-background-color: #c0c0c0;
+}
+
+#search_computer_view #center #search_result {
+
+}

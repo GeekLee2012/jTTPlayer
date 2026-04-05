@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.geometry.Insets?>
+<?import xyz.rive.jttplayer.control.BorderTitleView?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="xyz.rive.jttplayer.controller.PreferenceAboutController"
+      fx:id="about_view"
+      stylesheets="@css/preference-view-about.css"
+      maxHeight="Infinity">
+    <HBox spacing="20">
+        <padding>
+            <Insets top="10" />
+        </padding>
+        <Region styleClass="app_logo"/>
+        <VBox spacing="2">
+            <Region styleClass="app_title"/>
+            <HBox spacing="20">
+                <Label text="版本：7.1.0（Unicode）" />
+                <Label text="版权所有：2003-2014"/>
+            </HBox>
+        </VBox>
+    </HBox>
+    <BorderTitleView maxHeight="Infinity"
+                     VBox.vgrow="ALWAYS"
+                     title="简介">
+        <TextArea fx:id="about_text"
+                  editable="false"
+                  VBox.vgrow="ALWAYS"/>
+    </BorderTitleView>
+</VBox>

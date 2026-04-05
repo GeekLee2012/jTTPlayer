@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.HBox?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:id="alert_view"
+            fx:controller="xyz.rive.jttplayer.controller.AlertController"
+            stylesheets="@css/alert-view.css">
+    <top>
+        <AnchorPane fx:id="top" >
+            <Label styleClass="title"
+                   text="千千静听"
+                   AnchorPane.leftAnchor="7"
+                   AnchorPane.topAnchor="3"/>
+            <Region styleClass="close_btn"
+                    AnchorPane.rightAnchor="0"
+                    AnchorPane.topAnchor="0"
+                    onMouseClicked="#closeView"/>
+        </AnchorPane>
+    </top>
+    <center>
+        <Label fx:id="center"
+               graphicTextGap="12">
+            <graphic>
+                <Region styleClass="graphic"/>
+            </graphic>
+        </Label>
+    </center>
+    <bottom>
+        <AnchorPane fx:id="bottom">
+            <HBox styleClass="actions"
+                  spacing="7"
+                  AnchorPane.rightAnchor="16"
+                  AnchorPane.topAnchor="10">
+                <Label fx:id="apply_close"
+                       graphicTextGap="7"
+                       text="确定"
+                       onMouseClicked="#closeView">
+                    <graphic>
+                        <Region styleClass="graphic"/>
+                    </graphic>
+                </Label>
+            </HBox>
+        </AnchorPane>
+    </bottom>
+</BorderPane>

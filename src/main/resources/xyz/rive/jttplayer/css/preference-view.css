@@ -1,0 +1,177 @@
+@import url("common.css");
+
+#preference_view {
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-border-width: 1;
+    -fx-border-color: #cecece;
+    /*-fx-effect: innershadow(gaussian, #181818, 2, 0, 0, 0);*/
+    /*-fx-effect: innershadow(three-pass-box, #000000, 3, 1, 0, 0);*/
+}
+
+#preference_view HBox {
+    -fx-alignment: center-left;
+}
+
+#preference_view .long_text {
+    -fx-wrap-text: true;
+    -fx-min-height: 63;
+    -fx-max-height: Infinity;
+}
+
+/* Top */
+#preference_view #top {
+    -fx-pref-height: 30;
+    -fx-background-color: #ffffff;
+}
+
+#preference_view #top .title {
+    -fx-pref-height: 30;
+    -fx-text-fill: -pref-text-fill-1;
+    -fx-alignment: center-left;
+}
+
+#preference_view #top .close_btn {
+    -fx-pref-width: 41;
+    -fx-pref-height: 30;
+    -fx-cursor: hand;
+    -fx-background-image: url("../images/close4.png");
+    -fx-background-size: 10 10;
+    -fx-background-position: center center;
+}
+
+#preference_view #top .close_btn:hover {
+    -fx-background-color: #de172b;
+    -fx-background-image: url("../images/close5.png");
+}
+
+/* Left */
+#preference_view #left {
+     -fx-pref-width: 113;
+     -fx-padding: 9 6 0 12;
+     -fx-background-color: transparent;
+}
+
+#preference_view #left #navbar {
+    -fx-background-color: #ffffff;
+    -fx-pref-width: 106;
+    -fx-min-width: 106;
+    -fx-padding: 4 2 5 4;
+    -fx-border-color: #e4e4e4;
+}
+
+#preference_view #left #navbar Label {
+    -fx-pref-width: 106;
+    -fx-pref-height: 29;
+    -fx-padding: 0;
+    -fx-text-fill: -pref-text-fill-1;
+    -fx-font-size: 13;
+    -fx-cursor: hand;
+    -fx-border-width: 0 1 1 1;
+    -fx-border-color: transparent  transparent linear-gradient(to right, #ffffff, #c1c2fd, #ffffff) transparent;
+}
+
+#preference_view #left #navbar Label .flag {
+    -fx-pref-width: 16;
+    -fx-min-width: 16;
+    -fx-pref-height: 24;
+    -fx-translate-x: 2;
+    -fx-background-color: transparent;
+}
+
+#preference_view #left #navbar Label.active .flag {
+    -fx-background-image: url("../images/arrow_right2.png");
+    -fx-background-size: 7 12;
+    -fx-background-position: center center;
+}
+
+#preference_view #left #navbar Label.active {
+    -fx-background-color: #346cc3;
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #c1c2fd;
+}
+
+#preference_view #left #navbar Label.active:hover,
+#preference_view #left #navbar Label:hover {
+    -fx-background-color: #98b5e0;
+    -fx-border-color: #b0bcf1;
+    -fx-text-fill: #ffffff;
+}
+
+
+/* Center */
+#preference_view #center {
+    -fx-padding: 9 10 0 0;
+}
+
+#preference_view #center .top {
+    /*-fx-pref-height: 38;*/
+    -fx-padding: 3 3 0 3;
+    -fx-border-width: 1 1 0 1;
+    -fx-border-color: #e4e4e4;
+    -fx-background-color: #ffffff;
+}
+
+#preference_view #center .top #content_title {
+    -fx-background-color: linear-gradient(to right, #346cc3, #ffffff);
+    -fx-text-fill: #ffffff;
+    -fx-padding: 6;
+}
+
+#preference_view #center .top .splitter {
+    -fx-pref-height: 1;
+    -fx-background-color: #a1a1a1;
+}
+
+#preference_view #center > .content {
+    -fx-border-width: 0 1 0 1;
+    -fx-border-color: #e4e4e4;
+    -fx-background-color: #ffffff;
+    -fx-padding: 5 11 3 13;
+    -fx-spacing: 5;
+}
+
+#preference_view #center .bottom {
+    -fx-pref-height: 12;
+    -fx-min-height: 12;
+    -fx-border-width: 0 1 1 1;
+    -fx-border-color: #e4e4e4;
+    -fx-background-color: #ffffff;
+}
+
+/* Bottom */
+#preference_view #bottom {
+    -fx-pref-height: 43;
+    -fx-background-color: transparent;
+    /*-fx-font-size: 13;*/
+}
+
+#preference_view #bottom #apply_close {
+    -fx-border-color: #006acb;
+    -fx-border-width: 2;
+    -fx-padding: 0 10;
+}
+
+#preference_view #bottom #apply_close .graphic {
+    -fx-pref-width: 16;
+    -fx-min-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/apply.png");
+    -fx-background-position: center center;
+}
+
+#preference_view #bottom #apply_close:hover {
+    -fx-padding: 1 11;
+    -fx-border-width: 1;
+    -fx-border-color: #3f87d6;
+}
+
+#preference_view #general_options .git_repo {
+    -fx-pref-width: 15;
+    -fx-pref-height: 15;
+    -fx-background-image: url("../images/github.png");
+    -fx-background-size: 15 15;
+    -fx-background-position: center center;
+    -fx-cursor: hand;
+}

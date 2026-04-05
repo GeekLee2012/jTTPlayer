@@ -1,0 +1,18 @@
+@import url("common.css");
+
+#lyric_mini_mode {
+    -fx-background-image: url("$BKGND");
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: $BKGND_SIZE;
+}
+
+#lyric_mini_mode #lyric_content {
+    -fx-background-color: $DATA_BKGND;
+    -fx-padding: 1 8;
+}
+
+#lyric_mini_mode #lyric_content #lyric_line {
+    -fx-pref-height: $DATA_HEIGHT;
+    -fx-text-fill: $HILIGHT_COLOR;
+}

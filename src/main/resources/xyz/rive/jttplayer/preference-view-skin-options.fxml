@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextField?>
+<?import xyz.rive.jttplayer.control.FileBrowseButton?>
+<?import javafx.scene.layout.StackPane?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="xyz.rive.jttplayer.controller.PreferenceSkinOptionsController"
+      fx:id="skin_options"
+      stylesheets="@css/preference-view-skin-options.css">
+    <HBox maxWidth="Infinity">
+        <Label text="皮肤根目录："/>
+        <TextField fx:id="skin_root"
+                   HBox.hgrow="ALWAYS">
+            <HBox.margin>
+                <Insets left="6" right="2"/>
+            </HBox.margin>
+        </TextField>
+        <FileBrowseButton onMouseClicked="#selectSkinRoot"/>
+    </HBox>
+    <HBox>
+        <VBox maxHeight="Infinity"
+              spacing="3">
+            <HBox.margin>
+                <Insets top="5" bottom="3"/>
+            </HBox.margin>
+            <Label text="请选择程序皮肤："/>
+            <ListView fx:id="skin_list"
+                      prefWidth="143"
+                      VBox.vgrow="ALWAYS"/>
+            <HBox spacing="4"
+                  minHeight="30">
+                <VBox.margin>
+                    <Insets top="3" />
+                </VBox.margin>
+                <Label fx:id="apply_btn"
+                       styleClass="action"
+                       text="应用"
+                       graphicTextGap="2"
+                       onMouseClicked="#applySKin">
+                    <graphic>
+                        <Region styleClass="graphic" />
+                    </graphic>
+                </Label>
+                <Label fx:id="remove_btn"
+                       styleClass="action"
+                       text="删除"
+                       graphicTextGap="2"
+                       onMouseClicked="#removeSkin">
+                    <graphic>
+                        <Region styleClass="graphic" />
+                    </graphic>
+                </Label>
+                <Label fx:id="refresh_btn"
+                       styleClass="action"
+                       text="刷新"
+                       graphicTextGap="2"
+                       onMouseClicked="#refreshSkins">
+                    <graphic>
+                        <Region styleClass="graphic" />
+                    </graphic>
+                </Label>
+            </HBox>
+        </VBox>
+        <VBox maxHeight="Infinity"
+              HBox.hgrow="ALWAYS"
+              spacing="3">
+            <HBox.margin>
+                <Insets left="8" top="5" bottom="3"/>
+            </HBox.margin>
+            <AnchorPane>
+                <Label AnchorPane.leftAnchor="0"
+                       text="皮肤预览："/>
+                <Label fx:id="skin_name"
+                       AnchorPane.rightAnchor="0"/>
+            </AnchorPane>
+            <StackPane fx:id="skin_preview"
+                  maxWidth="Infinity"
+                  VBox.vgrow="ALWAYS" />
+            <HBox>
+                <Label text="作  者："/>
+                <Label text="TTPlayer"/>
+            </HBox>
+            <HBox>
+                <Label text="主  页："/>
+                <Label styleClass="link"
+                       text="http://www.ttplayer.com"/>
+            </HBox>
+            <HBox>
+                <Label text="邮  箱："/>
+                <Label styleClass="link"
+                       text="mail@ttplayer.com"/>
+            </HBox>
+            <Label styleClass="link"
+                   text="下载更多皮肤"/>
+        </VBox>
+    </HBox>
+</VBox>

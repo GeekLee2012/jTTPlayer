@@ -1,0 +1,231 @@
+@import url("common.css");
+
+#lyric_desktop_view {
+    -fx-background: transparent;
+}
+
+#lyric_desktop_view #header {
+    -fx-background: transparent;
+    -fx-pref-height: $DESKLRC_BAR_HEIGHT;
+    -fx-min-height: $DESKLRC_BAR_HEIGHT;
+    -fx-max-height: $DESKLRC_BAR_HEIGHT;
+}
+
+#lyric_desktop_view #toolbar {
+    -fx-pref-width: $DESKLRC_BAR_WIDTH;
+    -fx-pref-height: $DESKLRC_BAR_HEIGHT;
+    -fx-max-width:  $DESKLRC_BAR_WIDTH;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("$BKGND");
+}
+
+#lyric_desktop_view #toolbar Region {
+    -fx-cursor: hand;
+}
+
+#lyric_desktop_view #toolbar #app_logo {
+    -fx-pref-width: $ICON_WIDTH;
+    -fx-background-size: $ICON_WIDTH $ICON_HEIGHT;
+    -fx-pref-height: $ICON_HEIGHT;
+    -fx-background-image: url("$ICON_IMG");
+    -fx-background-position: center center;
+}
+
+#lyric_desktop_view #toolbar #prev_btn {
+    -fx-pref-width: $PREV_WIDTH;
+    -fx-pref-height: $PREV_HEIGHT;
+    -fx-background-image: url("$PREV_IMG");
+}
+
+#lyric_desktop_view #toolbar #prev_btn:hover {
+    -fx-background-position: $PREV_POS_1;
+}
+
+#lyric_desktop_view #toolbar #prev_btn:pressed {
+    -fx-background-position: $PREV_POS_2;
+}
+
+#lyric_desktop_view #toolbar #next_btn {
+    -fx-pref-width: $NEXT_WIDTH;
+    -fx-pref-height: $NEXT_HEIGHT;
+    -fx-background-image: url("$NEXT_IMG");
+}
+
+#lyric_desktop_view #toolbar #next_btn:hover {
+    -fx-background-position: $NEXT_POS_1;
+}
+
+#lyric_desktop_view #toolbar #next_btn:pressed {
+    -fx-background-position: $NEXT_POS_2;
+}
+
+#lyric_desktop_view #toolbar #play_btn {
+    -fx-pref-width: $PLAY_WIDTH;
+    -fx-pref-height: $PLAY_HEIGHT;
+    -fx-background-image: url("$PLAY_IMG");
+}
+
+#lyric_desktop_view #toolbar #play_btn:hover {
+    -fx-background-position: $PLAY_POS_1;
+}
+
+#lyric_desktop_view #toolbar #play_btn:pressed {
+    -fx-background-position: $PLAY_POS_2;
+}
+
+#lyric_desktop_view #toolbar #pause_btn {
+    -fx-pref-width: $PAUSE_WIDTH;
+    -fx-pref-height: $PAUSE_HEIGHT;
+    -fx-background-image: url("$PAUSE_IMG");
+    -fx-visibility: hidden;
+}
+
+#lyric_desktop_view #toolbar #pause_btn:hover {
+    -fx-background-position: $PAUSE_POS_1;
+}
+
+#lyric_desktop_view #toolbar #pause_btn:pressed {
+    -fx-background-position: $PAUSE_POS_2;
+}
+
+#lyric_desktop_view #toolbar #list_btn {
+    -fx-pref-width: $LIST_WIDTH;
+    -fx-pref-height: $LIST_HEIGHT;
+    -fx-background-image: url("$LIST_IMG");
+}
+
+#lyric_desktop_view #toolbar #list_btn:hover {
+    -fx-background-position: $LIST_POS_1;
+}
+
+#lyric_desktop_view #toolbar #list_btn:pressed {
+    -fx-background-position: $LIST_POS_2;
+}
+
+#lyric_desktop_view #toolbar #settings_btn {
+    -fx-pref-width: $SETTINGS_WIDTH;
+    -fx-pref-height: $SETTINGS_HEIGHT;
+    -fx-background-image: url("$SETTINGS_IMG");
+}
+
+#lyric_desktop_view #toolbar #settings_btn:hover {
+    -fx-background-position: $SETTINGS_POS_1;
+}
+
+#lyric_desktop_view #toolbar #settings_btn:pressed {
+    -fx-background-position: $SETTINGS_POS_2;
+}
+
+#lyric_desktop_view #toolbar #kalaok_btn {
+    -fx-pref-width: $KALAOK_WIDTH;
+    -fx-pref-height: $KALAOK_HEIGHT;
+    -fx-background-image: url("$KALAOK_IMG");
+}
+
+#lyric_desktop_view #toolbar #kalaok_btn:hover {
+    -fx-background-position: $KALAOK_POS_1;
+}
+
+#lyric_desktop_view #toolbar #kalaok_btn:pressed {
+    -fx-background-position: $KALAOK_POS_2;
+}
+
+#lyric_desktop_view #toolbar #lines_btn {
+    -fx-pref-width: $LINES_WIDTH;
+    -fx-pref-height: $LINES_HEIGHT;
+    -fx-background-image: url("$LINES_IMG");
+}
+
+#lyric_desktop_view #toolbar #lines_btn:hover {
+    -fx-background-position: $LINES_POS_1;
+}
+
+#lyric_desktop_view #toolbar #lines_btn:pressed {
+    -fx-background-position: $LINES_POS_2;
+}
+
+#lyric_desktop_view #toolbar #lock_btn {
+    -fx-pref-width: $LOCK_WIDTH;
+    -fx-pref-height: $LOCK_HEIGHT;
+    -fx-background-image: url("$LOCK_IMG");
+}
+
+#lyric_desktop_view #toolbar #lock_btn:hover {
+    -fx-background-position: $LOCK_POS_1;
+}
+
+#lyric_desktop_view #toolbar #lock_btn:pressed {
+    -fx-background-position: $LOCK_POS_2;
+}
+
+#lyric_desktop_view #toolbar #ontop_btn {
+    -fx-pref-width: $ONTOP_WIDTH;
+    -fx-pref-height: $ONTOP_HEIGHT;
+    -fx-background-image: url("$ONTOP_IMG");
+}
+
+#lyric_desktop_view #toolbar #ontop_btn:hover {
+    -fx-background-position: $ONTOP_POS_1;
+}
+
+#lyric_desktop_view #toolbar #ontop_btn.active,
+#lyric_desktop_view #toolbar #ontop_btn:pressed {
+    -fx-background-position: $ONTOP_POS_2;
+}
+
+#lyric_desktop_view #toolbar #return_btn {
+    -fx-pref-width: $RETURN_WIDTH;
+    -fx-pref-height: $RETURN_HEIGHT;
+    -fx-background-image: url("$RETURN_IMG");
+}
+
+#lyric_desktop_view #toolbar #return_btn:hover {
+    -fx-background-position: $RETURN_POS_1;
+}
+
+#lyric_desktop_view #toolbar #return_btn:pressed {
+    -fx-background-position: $RETURN_POS_2;
+}
+
+#lyric_desktop_view #toolbar #close_btn {
+    -fx-pref-width: $CLOSE_WIDTH;
+    -fx-pref-height: $CLOSE_HEIGHT;
+    -fx-background-image: url("$CLOSE_IMG");
+}
+
+#lyric_desktop_view #toolbar #close_btn:hover {
+    -fx-background-position: $CLOSE_POS_1;
+}
+
+#lyric_desktop_view #toolbar #close_btn:pressed {
+    -fx-background-position: $CLOSE_POS_2;
+}
+
+#lyric_desktop_view #lyric_content {
+    -fx-padding: 3 18;
+    -fx-background-color: #ffffff56;
+}
+
+#lyric_desktop_view #lyric_content.transparent {
+    -fx-background-color: #ffffff00;
+}
+
+#lyric_desktop_view #lyric_content Label {
+    -fx-padding: 0;
+    -fx-text-fill: linear-gradient(#1a91fc, #2bf8fc, #1a91fc);
+    -fx-effect: dropshadow(gaussian, #00000080, 3, 0, 0, 0);
+}
+
+#lyric_desktop_view #lyric_content Label.qqjtwy {
+    -fx-text-fill: linear-gradient(#1a91fc, #2bf8fc, #1a91fc);
+}
+
+#lyric_desktop_view #lyric_content Label.sxgs {
+    -fx-text-fill: linear-gradient(#237d4e, #78ec2d, #237d4e);
+}
+
+#lyric_desktop_view #lyric_content Label.tzyy {
+    /*#c27ff7 #c180f2*/
+    -fx-text-fill: linear-gradient(#4c3298, #c180f2, #4c3298);
+}
+

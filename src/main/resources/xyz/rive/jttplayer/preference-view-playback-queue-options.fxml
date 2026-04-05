@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import xyz.rive.jttplayer.control.BorderTitleView?>
+<?import xyz.rive.jttplayer.control.ColorButton?>
+<?import javafx.geometry.Insets?>
+<?import xyz.rive.jttplayer.control.FontButton?>
+<?import xyz.rive.jttplayer.control.ConfigButton?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="xyz.rive.jttplayer.controller.PreferencePlaybackQueueOptionsController"
+      fx:id="playback_queue_options"
+      stylesheets="@css/preference-view-playback-queue-options.css">
+    <BorderTitleView title="选项" >
+        <GridPane hgap="20" vgap="3">
+            <!-- Row -->
+            <CheckBox fx:id="allow_dnd"
+                      text="允许在播放列表上进行拖放操作"
+                      GridPane.rowIndex="0"
+                      GridPane.columnIndex="0"/>
+            <CheckBox fx:id="ban_disk_delete"
+                      text="禁用物理文件删除功能"
+                      GridPane.rowIndex="0"
+                      GridPane.columnIndex="1"/>
+            <!-- Row -->
+            <CheckBox text="使用相对路径保存歌曲的文件名"
+                      GridPane.rowIndex="1"
+                      GridPane.columnIndex="0"/>
+            <CheckBox text="加载列表时忽略不存在的文件"
+                      GridPane.rowIndex="1"
+                      GridPane.columnIndex="1"/>
+            <!-- Row -->
+            <CheckBox fx:id="show_track_tip"
+                      text="在每个曲目时提示文件信息"
+                      GridPane.rowIndex="2"
+                      GridPane.columnIndex="0"/>
+            <HBox GridPane.rowIndex="2"
+                  GridPane.columnIndex="1">
+                <Label text="当"/>
+                <ComboBox>
+                    <HBox.margin>
+                        <Insets left="2" right="2" />
+                    </HBox.margin>
+                </ComboBox>
+                <Label text="时读取文件信息" />
+            </HBox>
+            <!-- Row -->
+            <CheckBox text="缓存已读取的文件信息到播放列表中，避免以后加载列表时重新读取 (这样会增加列表文件的大小和内存的使用)"
+                      wrapText="true"
+                      GridPane.rowIndex="3"
+                      GridPane.columnSpan="2"/>
+        </GridPane>
+    </BorderTitleView>
+
+    <BorderTitleView title="显示">
+        <HBox spacing="20">
+            <HBox>
+                <Label text="颜色："/>
+                <VBox spacing="3">
+                    <HBox spacing="2">
+                        <ColorButton text="标题"/>
+                        <ColorButton text="加亮"/>
+                        <ColorButton text="序号"/>
+                        <ColorButton text="长度"/>
+                    </HBox>
+                    <HBox spacing="2">
+                        <ColorButton text="选择"/>
+                        <ColorButton text="背景"/>
+                        <ColorButton text="背景2"/>
+                    </HBox>
+                </VBox>
+            </HBox>
+            <HBox>
+                <Label text="字体：" />
+                <VBox spacing="3">
+                    <FontButton fx:id="font_btn" text="选   择" />
+                    <ConfigButton />
+                </VBox>
+            </HBox>
+        </HBox>
+    </BorderTitleView>
+
+    <BorderTitleView title="标题格式">
+        <CheckBox fx:id="show_seq_no"
+                  text="在歌曲标题前显示序号"/>
+        <HBox spacing="7">
+            <HBox spacing="2">
+                <CheckBox fx:id="use_custom_title_format"
+                          text="有标签时的格式:"/>
+                <TextField fx:id="custom_title_format"/>
+            </HBox>
+            <HBox spacing="2">
+                <CheckBox fx:id="use_default_title_format"
+                          text="默认格式:"/>
+                <TextField fx:id="default_title_format"/>
+            </HBox>
+        </HBox>
+        <Label fx:id="tag_memo"/>
+    </BorderTitleView>
+</VBox>

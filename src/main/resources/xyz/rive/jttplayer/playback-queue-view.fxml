@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:id="playback_queue_view"
+            fx:controller="xyz.rive.jttplayer.controller.PlaybackQueueController"
+            onMouseClicked="#showNavigationContextMenu">
+    <Region fx:id="view_bg"
+            AnchorPane.topAnchor="0"
+            AnchorPane.bottomAnchor="0"
+            AnchorPane.leftAnchor="0"
+            AnchorPane.rightAnchor="0" />
+    <Region fx:id="view_title"/>
+    <Region fx:id="top"
+            AnchorPane.topAnchor="0"
+            AnchorPane.leftAnchor="0"
+            AnchorPane.rightAnchor="0" />
+    <Region fx:id="close_btn"
+            AnchorPane.rightAnchor="10"
+            AnchorPane.topAnchor="6"
+            onMouseClicked="#closeView" />
+
+    <AnchorPane fx:id="playlist_box"
+                AnchorPane.leftAnchor="6"
+                AnchorPane.topAnchor="32" >
+        <ListView fx:id="name_list"
+                  AnchorPane.topAnchor="0"
+                  AnchorPane.leftAnchor="0"
+                  AnchorPane.bottomAnchor="1"
+                  onMouseClicked="#hideAllMenus">
+        </ListView>
+        <VBox fx:id="splitter"
+              AnchorPane.topAnchor="0"
+              AnchorPane.leftAnchor="70"
+              AnchorPane.bottomAnchor="1">
+            <Region fx:id="collapse_btn"
+                    onMouseClicked="#toggleCollapse"/>
+        </VBox>
+        <ListView fx:id="data_list"
+                  AnchorPane.topAnchor="0"
+                  AnchorPane.leftAnchor="71"
+                  AnchorPane.rightAnchor="0"
+                  AnchorPane.bottomAnchor="1"
+                  onMouseClicked="#showNavigationContextMenu" />
+    </AnchorPane>
+    <HBox fx:id="toolbar"
+          AnchorPane.leftAnchor="6"
+          AnchorPane.bottomAnchor="8" >
+        <HBox styleClass="item_1">
+            <Region />
+        </HBox>
+        <HBox styleClass="item_2">
+            <Region />
+        </HBox>
+        <HBox styleClass="item_3">
+            <Region />
+        </HBox>
+        <HBox styleClass="item_4">
+            <Region />
+        </HBox>
+        <HBox styleClass="item_5">
+            <Region />
+        </HBox>
+        <HBox styleClass="item_6">
+            <Region />
+        </HBox>
+        <HBox styleClass="item_7">
+            <Region />
+        </HBox>
+    </HBox>
+</AnchorPane>

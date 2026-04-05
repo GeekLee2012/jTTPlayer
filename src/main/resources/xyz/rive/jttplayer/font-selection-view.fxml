@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.geometry.Insets?>
+<?import xyz.rive.jttplayer.control.BorderTitleView?>
+<?import javafx.scene.control.ListView?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:id="font_selection_view"
+            fx:controller="xyz.rive.jttplayer.controller.FontSelectionController"
+            stylesheets="@css/font-selection-view.css">
+    <top>
+        <AnchorPane fx:id="top" >
+            <Label styleClass="title"
+                   text="字体"
+                   AnchorPane.leftAnchor="7"
+                   AnchorPane.topAnchor="3"/>
+            <Region styleClass="close_btn"
+                    AnchorPane.rightAnchor="0"
+                    AnchorPane.topAnchor="0"
+                    onMouseClicked="#closeView"/>
+        </AnchorPane>
+    </top>
+    <center>
+        <HBox fx:id="center"
+              spacing="10">
+            <VBox spacing="1">
+                <Label text="字体(F):"/>
+                <TextField fx:id="font_family" />
+                <ListView fx:id="font_family_list" />
+            </VBox>
+
+            <VBox spacing="10"
+                  maxWidth="236">
+                <HBox spacing="10">
+                    <VBox spacing="1">
+                        <Label text="字形(Y):"/>
+                        <TextField fx:id="font_weight"/>
+                        <ListView fx:id="font_weight_list" />
+                    </VBox>
+
+                    <VBox spacing="1">
+                        <Label text="大小(S):"/>
+                        <TextField fx:id="font_size"/>
+                        <ListView fx:id="font_size_list" />
+                    </VBox>
+                </HBox>
+                <BorderTitleView title="示例">
+                    <HBox maxWidth="Infinity">
+                        <VBox maxWidth="Infinity"
+                              HBox.hgrow="ALWAYS"
+                              styleClass="sample">
+                            <Label fx:id="sample_zh"
+                                   text="千千静听-静听精彩"/>
+                            <Label fx:id="sample_en"
+                                   text="AaBbCcXxYyZz"/>
+                            <Label fx:id="sample_num"
+                                   text="01234567890"/>
+                        </VBox>
+                    </HBox>
+                </BorderTitleView>
+            </VBox>
+
+            <VBox styleClass="actions"
+                  spacing="8">
+                <HBox.margin>
+                    <Insets top="20" />
+                </HBox.margin>
+                <Label fx:id="apply_close"
+                       graphicTextGap="10"
+                       text="确定"
+                       onMouseClicked="#applyClose">
+                    <graphic>
+                        <Region styleClass="graphic"/>
+                    </graphic>
+                </Label>
+                <Label fx:id="cancel_close"
+                       graphicTextGap="10"
+                       text="取消"
+                       onMouseClicked="#closeView">
+                    <graphic>
+                        <Region styleClass="graphic"/>
+                    </graphic>
+                </Label>
+            </VBox>
+        </HBox>
+    </center>
+    <bottom>
+
+    </bottom>
+</BorderPane>

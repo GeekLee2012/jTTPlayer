@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import xyz.rive.jttplayer.control.BorderTitleView?>
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:id="play_url_view"
+            fx:controller="xyz.rive.jttplayer.controller.PlayUrlController"
+            stylesheets="@css/play-url-view.css">
+    <top>
+        <AnchorPane fx:id="top" >
+            <Label styleClass="title"
+                   text="添加URL"
+                   AnchorPane.leftAnchor="7"
+                   AnchorPane.topAnchor="3"/>
+            <Region styleClass="close_btn"
+                    AnchorPane.rightAnchor="0"
+                    AnchorPane.topAnchor="0"
+                    onMouseClicked="#closeView"/>
+        </AnchorPane>
+    </top>
+    <center>
+        <VBox fx:id="center"
+              maxHeight="Infinity"
+              spacing="6">
+            <!--
+            <Label text="请输入一个网络URL添加到当前播放列表：" />
+            -->
+            <Label text="网络URL：" />
+            <TextArea fx:id="url_text"
+                      VBox.vgrow="ALWAYS">
+                <VBox.margin>
+                    <Insets bottom="5" />
+                </VBox.margin>
+            </TextArea>
+            <BorderTitleView title="可选">
+                <Label text="标题：" />
+                <TextField fx:id="title_text"/>
+                <Label text="封面URL：" />
+                <TextArea fx:id="cover_url_text"
+                          VBox.vgrow="ALWAYS"/>
+            </BorderTitleView>
+        </VBox>
+    </center>
+    <bottom>
+        <AnchorPane fx:id="bottom">
+            <HBox styleClass="actions"
+                  spacing="10"
+                  AnchorPane.rightAnchor="12"
+                  AnchorPane.topAnchor="6">
+                <Label fx:id="apply_close"
+                       graphicTextGap="7"
+                       text="确定"
+                       onMouseClicked="#playUrl">
+                    <graphic>
+                        <Region styleClass="graphic"/>
+                    </graphic>
+                </Label>
+                <Label fx:id="cancel_close"
+                       text="取消"
+                       graphicTextGap="7"
+                       onMouseClicked="#closeView">
+                    <graphic>
+                        <Region styleClass="graphic"/>
+                    </graphic>
+                </Label>
+                <Label fx:id="browse_btn"
+                       text="浏览"
+                       graphicTextGap="7"
+                       onMouseClicked="#openFile">
+                    <graphic>
+                        <Region styleClass="graphic"/>
+                    </graphic>
+                </Label>
+            </HBox>
+        </AnchorPane>
+    </bottom>
+</BorderPane>

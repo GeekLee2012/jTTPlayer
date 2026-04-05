@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:id="lyric_mini_mode"
+            fx:controller="xyz.rive.jttplayer.controller.LyricMiniModeController"
+            onMouseClicked="#hideAllMenus">
+    <VBox fx:id="lyric_content"
+          styleClass="dnm_trigger"
+          alignment="CENTER_LEFT"
+          AnchorPane.topAnchor="2"
+          AnchorPane.leftAnchor="2"
+          AnchorPane.bottomAnchor="2"
+          AnchorPane.rightAnchor="2">
+        <Label fx:id="lyric_line"
+               text="千千静听 7.1.0" />
+    </VBox>
+</AnchorPane>

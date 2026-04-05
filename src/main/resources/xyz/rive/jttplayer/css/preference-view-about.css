@@ -1,0 +1,36 @@
+@import url("preference-view.css");
+
+#preference_view #about_view {
+    -fx-background-color: #f0f0f0;
+}
+
+#preference_view #about_view .app_logo {
+    -fx-background-image: url("../images/TTPlayer.png");
+    -fx-background-position: top center;
+    -fx-background-size: 48 48;
+    -fx-pref-width: 48;
+    -fx-pref-height: 48;
+    -fx-translate-x: 3;
+}
+
+#preference_view #about_view .app_title {
+    -fx-background-image: url("../images/ttplayer_title2.png");
+    /*-fx-background-position: center center;*/
+    /*-fx-background-size: 168 54;*/
+    -fx-background-size: 93 30;
+    -fx-pref-width: 93;
+    -fx-pref-height: 30;
+    -fx-translate-x: -3;
+}
+
+
+#preference_view #about_view #about_text,
+#preference_view #about_view #about_text .scroll-pane,
+#preference_view #about_view #about_text .content {
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+}
+
+#preference_view #about_view #about_text .content {
+    -fx-padding: -2 0 2 2;
+}

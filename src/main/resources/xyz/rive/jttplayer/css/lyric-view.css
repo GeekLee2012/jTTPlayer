@@ -1,0 +1,167 @@
+@import url("common.css");
+
+* {
+    -fx-background: transparent;
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+}
+
+#lyric_view {
+    /*-fx-border-image-source: url("../images/lyric_skin.bmp");
+    -fx-border-image-repeat: no-repeat;
+    -fx-border-image-width: 34 1 1 67;
+    -fx-border-image-slice: 34 1 1 67 fill;*/
+    /*-fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-size: 1;
+    -fx-effect: innershadow(three-pass-box, #a0a0a0, 3, 1, 0, 0);*/
+}
+
+#lyric_view #view_bg {
+    -fx-border-image-repeat: no-repeat;
+    /*-fx-border-image-source: url("../images/lyric_skin.bmp");
+    -fx-border-image-repeat: no-repeat;
+    -fx-border-image-width: 34 3 3 67;
+    -fx-border-image-slice: 34 3 3 67 fill;*/
+}
+
+/****** Top ******/
+#lyric_view #top {
+    -fx-pref-width: 100%;
+    /*-fx-pref-height: 34;*/
+    -fx-background: transparent;
+}
+
+/*
+#lyric_view #top_right_actions {
+    -fx-pref-width: 65;
+    -fx-pref-height: 18;
+}
+
+#lyric_view #top_right_actions Region {
+    -fx-cursor: hand;
+}
+
+#lyric_view #desklrc_btn {
+    -fx-pref-width: 18;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("../images/desklrc.png");
+}
+
+#lyric_view #desklrc_btn:hover {
+    -fx-background-position: -18 0;
+}
+
+#lyric_view #desklrc_btn:pressed {
+    -fx-background-position: -36 0;
+}
+
+
+#lyric_view #ontop_btn {
+    -fx-pref-width: 18;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("../images/ontop.png");
+}
+
+#lyric_view #ontop_btn:hover {
+    -fx-background-position: -18 0;
+}
+
+#lyric_view #ontop_btn.active,
+#lyric_view #ontop_btn:pressed {
+    -fx-background-position: -36 0;
+}
+
+#lyric_view #close_btn {
+    -fx-pref-width: 18;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("../images/close.png");
+}
+
+#lyric_view #close_btn:hover {
+    -fx-background-position: -18 0;
+}
+
+#lyric_view #close_btn:pressed {
+    -fx-background-position: -36 0;
+}
+*/
+
+#lyric_view #desklrc_btn,
+#lyric_view #ontop_btn,
+#lyric_view #close_btn {
+    -fx-cursor: hand;
+}
+
+/****** Center ******/
+/*
+#lyric_view #lyric_pane {
+    -fx-padding: 0 -10 0 0;
+    -fx-translate-x: 3;
+}
+
+#lyric_view #lyric_content {
+    -fx-padding: 3;
+}
+*/
+
+#lyric_view #lyric_content .line {
+    -fx-wrap-text: true;
+}
+
+#lyric_view #lyric_content .line Label {
+    -fx-text-fill: #5277a8;
+    -fx-font-size: 14;
+    -fx-wrap-text: true;
+    -fx-font-weight: normal;
+}
+
+#lyric_view #lyric_content .line.active Label {
+    -fx-text-fill: #11243c;
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+}
+
+#lyric_view #lyric_content .line.locator_current Label {
+    -fx-text-fill: #11243c !important;
+}
+
+#lyric_view #scroll_locator {
+    -fx-border-width: 0 2;
+    -fx-border-color: #657583;
+    -fx-pref-height: 13;
+    -fx-background-color: transparent;
+}
+
+#lyric_view #scroll_locator Region {
+    -fx-pref-height: 1;
+    -fx-max-height: 1;
+    -fx-background-color: #98a3ad;
+}
+
+#lyric_view #scroll_locator_time {
+    -fx-text-fill: #98a3ad;
+    -fx-font-size: 12;
+}
+
+
+#lyric_mini_mode {
+    -fx-background-radius: 12;
+    -fx-background-image: url("../images/mini-player.bmp");
+    -fx-background-position: center center;
+    -fx-border-radius: 12;
+    -fx-border-size: 1;
+    -fx-opacity: 1;
+    /*
+    -fx-effect: innershadow(three-pass-box, #a0a0a0, 3, 1, 0, 0);
+    */
+}
+
+#lyric_mini_mode #lyric_content {
+    -fx-background-color: #e6f2ff;
+    -fx-padding: 1 8;
+}
+
+#lyric_mini_mode #lyric_content #lyric_line {
+    -fx-text-fill: #5277a8;
+}

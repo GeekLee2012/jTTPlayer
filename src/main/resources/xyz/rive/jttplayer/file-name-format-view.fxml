@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextArea?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:id="file_name_format_view"
+            fx:controller="xyz.rive.jttplayer.controller.FileNameFormatController"
+            stylesheets="@css/file-name-format-view.css">
+    <top>
+        <AnchorPane fx:id="top" >
+            <Label styleClass="title"
+                   text="文件名格式"
+                   AnchorPane.leftAnchor="7"
+                   AnchorPane.topAnchor="3"/>
+            <Region styleClass="close_btn"
+                    AnchorPane.rightAnchor="0"
+                    AnchorPane.topAnchor="0"
+                    onMouseClicked="#closeView"/>
+        </AnchorPane>
+    </top>
+    <center>
+        <VBox fx:id="center"
+              spacing="6">
+            <TextArea fx:id="filename" editable="false">
+                <VBox.margin>
+                    <Insets bottom="5" />
+                </VBox.margin>
+            </TextArea>
+            <Label text="请选择歌曲文件名的样式：" />
+            <ComboBox fx:id="format_style" />
+            <GridPane hgap="80" vgap="-3">
+                <!-- Row -->
+                <Label GridPane.rowIndex="0"
+                       GridPane.columnIndex="0"
+                       text="\%(Artist): 艺术家" />
+                <Label GridPane.rowIndex="0"
+                       GridPane.columnIndex="1"
+                       text="\%(Title): 歌曲标题" />
+
+                <!-- Row -->
+                <Label GridPane.rowIndex="1"
+                       GridPane.columnIndex="0"
+                       text="\%(Album): 专辑标题" />
+                <Label GridPane.rowIndex="1"
+                       GridPane.columnIndex="1"
+                       text="\%(Tracknumber): 音轨号" />
+
+                <!-- Row -->
+                <Label GridPane.rowIndex="2"
+                       GridPane.columnIndex="0"
+                       text="\%(Genre): 流派" />
+                <Label GridPane.rowIndex="2"
+                       GridPane.columnIndex="1"
+                       text="\%(Date): 年代" />
+            </GridPane>
+        </VBox>
+    </center>
+    <bottom>
+        <HBox fx:id="bottom"
+              alignment="TOP_CENTER">
+            <HBox styleClass="actions"
+                  spacing="10">
+                <HBox.margin>
+                    <Insets top="5" />
+                </HBox.margin>
+                <Label fx:id="apply_close"
+                       graphicTextGap="7"
+                       text="确定"
+                       onMouseClicked="#applyClose">
+                    <graphic>
+                        <Region styleClass="graphic"/>
+                    </graphic>
+                </Label>
+                <Label fx:id="cancel_close"
+                       text="取消"
+                       graphicTextGap="7"
+                       onMouseClicked="#closeView">
+                    <graphic>
+                        <Region styleClass="graphic"/>
+                    </graphic>
+                </Label>
+            </HBox>
+        </HBox>
+    </bottom>
+</BorderPane>

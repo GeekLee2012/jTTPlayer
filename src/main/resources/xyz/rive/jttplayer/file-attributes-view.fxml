@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.geometry.Insets?>
+<?import xyz.rive.jttplayer.control.TabsView?>
+<?import javafx.scene.image.ImageView?>
+<?import xyz.rive.jttplayer.control.BorderTitleView?>
+<?import xyz.rive.jttplayer.control.SimpleTableView?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="xyz.rive.jttplayer.controller.FileAttributesController"
+            fx:id="file_attributes_view"
+            stylesheets="@css/file-attributes-view.css"
+            onMouseClicked="#hideMenus">
+    <top>
+        <AnchorPane fx:id="top">
+            <Label fx:id="title"
+                   text="文件属性(正在播放)"
+                   AnchorPane.leftAnchor="7"
+                   AnchorPane.topAnchor="0" />
+            <Region styleClass="close_btn"
+                    AnchorPane.rightAnchor="0"
+                    AnchorPane.topAnchor="0"
+                    onMouseClicked="#closeView"/>
+        </AnchorPane>
+    </top>
+    <center>
+        <TabsView fx:id="center">
+            <tabs>
+                <Label styleClass="active" text="属性"/>
+                <Label text="专辑封面"/>
+            </tabs>
+            <contents>
+                <VBox spacing="6">
+                    <HBox spacing="9">
+                        <HBox>
+                            <Label text="文件名："/>
+                            <TextField fx:id="filename"
+                                       editable="false"/>
+                            <Label fx:id="guess_tags_btn"
+                                   styleClass="action"
+                                   text="从文件名猜测标签"
+                                   onMouseClicked="#showFileNameFormatView">
+                                <HBox.margin>
+                                    <Insets left="7" />
+                                </HBox.margin>
+                            </Label>
+                        </HBox>
+                        <HBox>
+                            <Label text="歌曲来源："/>
+                            <TextField fx:id="file_source"
+                                       editable="false"/>
+                        </HBox>
+                    </HBox>
+                    <HBox maxWidth="Infinity"
+                          spacing="9">
+                        <BorderTitleView title="标签"
+                                         HBox.hgrow="ALWAYS"
+                                         spacing="6">
+                            <HBox styleClass="non_advance"
+                                  maxWidth="Infinity"
+                                  alignment="CENTER_LEFT">
+                                <Label text="标   题："/>
+                                <TextField fx:id="file_title"
+                                           HBox.hgrow="ALWAYS"/>
+                            </HBox>
+                            <HBox styleClass="non_advance"
+                                  maxWidth="Infinity">
+                                <Label text="艺术家："/>
+                                <TextField fx:id="artist"
+                                           HBox.hgrow="ALWAYS"/>
+                                <Label styleClass="link"
+                                       text="歌手详情">
+                                    <HBox.margin>
+                                        <Insets left="6" />
+                                    </HBox.margin>
+                                </Label>
+                            </HBox>
+                            <HBox styleClass="non_advance"
+                                  maxWidth="Infinity">
+                                <HBox maxWidth="Infinity"
+                                      HBox.hgrow="ALWAYS">
+                                    <Label text="专   辑："/>
+                                    <TextField fx:id="album"
+                                               HBox.hgrow="ALWAYS"/>
+                                </HBox>
+                                <HBox>
+                                    <HBox.margin>
+                                        <Insets left="6" />
+                                    </HBox.margin>
+                                    <Label text="音轨："/>
+                                    <TextField fx:id="track_number"/>
+                                </HBox>
+                            </HBox>
+                            <HBox styleClass="non_advance"
+                                  maxWidth="Infinity">
+                                <HBox maxWidth="Infinity"
+                                      HBox.hgrow="ALWAYS">
+                                    <Label text="流   派："/>
+                                    <ComboBox fx:id="genre"
+                                              styleClass="normal"
+                                              editable="true"/>
+                                </HBox>
+                                <HBox>
+                                    <HBox.margin>
+                                        <Insets left="6" />
+                                    </HBox.margin>
+                                    <Label text="年代："/>
+                                    <TextField fx:id="publish_date"/>
+                                </HBox>
+                            </HBox>
+                            <HBox styleClass="non_advance">
+                                <Label text="备   注："/>
+                                <TextArea fx:id="comment" />
+                            </HBox>
+
+                            <!-- Advance Mode -->
+                            <SimpleTableView fx:id="advance_mode_table"
+                                             managed="false"
+                                             visible="false">
+                                <header>
+                                    <Label text="属性"
+                                           minWidth="112"/>
+                                    <Label text="值"
+                                           styleClass="value_field"
+                                           HBox.hgrow="ALWAYS"
+                                           maxWidth="Infinity"/>
+                                </header>
+                            </SimpleTableView>
+
+                            <!-- Actions -->
+                            <HBox>
+                                <VBox.margin>
+                                    <Insets top="2" bottom="3"/>
+                                </VBox.margin>
+                                <Label fx:id="advance_btn"
+                                       styleClass="small_btn"
+                                       text="高级"
+                                       onMouseClicked="#toggleAdvanceMode">
+                                    <graphic>
+                                        <Region styleClass="graphic"/>
+                                    </graphic>
+                                </Label>
+                                <Region styleClass="separator">
+                                    <HBox.margin>
+                                        <Insets left="3" right="5"/>
+                                    </HBox.margin>
+                                </Region>
+                                <HBox spacing="3">
+                                    <Label fx:id="traditional_btn"
+                                           styleClass="small_btn"
+                                           onMouseClicked="#toggleTraditionalMenu">
+                                        <graphic>
+                                            <HBox>
+                                                <Region styleClass="graphic"/>
+                                                <Region styleClass="flag"/>
+                                            </HBox>
+                                        </graphic>
+                                    </Label>
+                                    <Label fx:id="character_btn"
+                                           disable="true"
+                                           styleClass="small_btn">
+                                        <graphic>
+                                            <HBox>
+                                                <Region styleClass="graphic"/>
+                                                <Region styleClass="flag"/>
+                                            </HBox>
+                                        </graphic>
+                                    </Label>
+                                    <Label fx:id="capital_btn"
+                                           disable="true"
+                                           styleClass="small_btn" >
+                                        <graphic>
+                                            <Region styleClass="graphic"/>
+                                        </graphic>
+                                    </Label>
+                                </HBox>
+                                <Region styleClass="separator">
+                                    <HBox.margin>
+                                        <Insets left="3" right="5"/>
+                                    </HBox.margin>
+                                </Region>
+                                <HBox spacing="3">
+                                    <Label fx:id="add_btn"
+                                           styleClass="small_btn"
+                                           managed="false"
+                                           visible="false"
+                                           onMouseClicked="#addTagMetadata">
+                                        <graphic>
+                                            <Region styleClass="graphic"/>
+                                        </graphic>
+                                    </Label>
+                                    <Label fx:id="remove_btn"
+                                           styleClass="small_btn"
+                                           managed="false"
+                                           visible="false"
+                                           onMouseClicked="#removeTagMetadata">
+                                        <graphic>
+                                            <Region styleClass="graphic"/>
+                                        </graphic>
+                                    </Label>
+                                    <Label fx:id="edit_btn"
+                                           styleClass="small_btn"
+                                           managed="false"
+                                           visible="false"
+                                           onMouseClicked="#editTagMetadata">
+                                        <graphic>
+                                            <Region styleClass="graphic"/>
+                                        </graphic>
+                                    </Label>
+                                    <Label fx:id="reset_btn"
+                                           disable="true"
+                                           styleClass="small_btn">
+                                        <graphic>
+                                            <Region styleClass="graphic"/>
+                                        </graphic>
+                                    </Label>
+                                </HBox>
+                                <Region styleClass="separator">
+                                    <HBox.margin>
+                                        <Insets left="3" right="5"/>
+                                    </HBox.margin>
+                                </Region>
+                                <Label fx:id="recovery_btn"
+                                       disable="true"
+                                       styleClass="small_btn">
+                                    <graphic>
+                                        <Region styleClass="graphic"/>
+                                    </graphic>
+                                </Label>
+                            </HBox>
+                        </BorderTitleView>
+
+                        <!-- Format -->
+                        <BorderTitleView fx:id="format_attributes"
+                                         title="格式"
+                                         spacing="6">
+                            <HBox>
+                                <Label text="编码："/>
+                                <TextField fx:id="encoding_type"
+                                           editable="false"/>
+                            </HBox>
+                            <HBox>
+                                <Label text="声道："/>
+                                <TextField fx:id="channels"
+                                           editable="false"/>
+                            </HBox>
+                            <HBox>
+                                <Label text="频率："/>
+                                <TextField fx:id="sample_rate"
+                                           editable="false"/>
+                            </HBox>
+                            <HBox>
+                                <Label text="比特："/>
+                                <TextField fx:id="bits"
+                                           editable="false"/>
+                            </HBox>
+                            <HBox>
+                                <Label text="码率："/>
+                                <TextField fx:id="bit_rate"
+                                           editable="false"/>
+                            </HBox>
+                            <HBox>
+                                <Label text="长度："/>
+                                <TextField fx:id="track_length"
+                                           editable="false"/>
+                            </HBox>
+                            <HBox>
+                                <Label text="增益："/>
+                                <TextField fx:id="track_gain"
+                                           editable="false"/>
+                            </HBox>
+                        </BorderTitleView>
+                    </HBox>
+                    <BorderTitleView title="MP3标签"
+                                     spacing="6">
+                        <HBox spacing="12">
+                            <HBox>
+                                <Label text="读取类型优先级："/>
+                                <ComboBox styleClass="combo_w"/>
+                            </HBox>
+                            <HBox>
+                                <Label text="写入类型："/>
+                                <ComboBox styleClass="combo_m"
+                                          value="ID3 v2.4"/>
+                            </HBox>
+                        </HBox>
+
+                        <HBox spacing="12">
+                            <HBox>
+                                <Label text="ID3v2编码类型： "/>
+                                <ComboBox styleClass="combo_w" value="UTF-8"/>
+                            </HBox>
+                            <CheckBox disable="true"
+                                      text="ID3v2写入时使用填充数据" />
+                        </HBox>
+                    </BorderTitleView>
+                </VBox>
+
+                <!-- Album Cover -->
+                <HBox VBox.vgrow="ALWAYS"
+                      maxWidth="Infinity">
+                    <VBox alignment="CENTER"
+                          HBox.hgrow="ALWAYS"
+                          fx:id="file_cover_box">
+                        <ImageView fx:id="file_cover"
+                                   fitWidth="300"
+                                   fitHeight="300"
+                                   preserveRatio="true"
+                                   managed="false"
+                                   visible="false"/>
+                        <Label fx:id="none_cover"
+                               text="暂不支持该媒体封面的显示" />
+                    </VBox>
+                    <AnchorPane styleClass="album_right_actions">
+                        <VBox AnchorPane.rightAnchor="0"
+                              AnchorPane.topAnchor="20"
+                              spacing="15">
+                            <Label fx:id="image_source"
+                                   text="封面来源：未知"/>
+                            <!--
+                            <Label styleClass="action"
+                                   text="浏览"
+                                   onMouseClicked="#browseImageFile"/>
+                            -->
+                            <Label styleClass="action"
+                                   text="导入"
+                                   onMouseClicked="#importImage"/>
+                            <Label styleClass="action"
+                                   text="删除"
+                                   onMouseClicked="#removeImage" />
+                            <Label styleClass="action"
+                                   text="导出"
+                                   onMouseClicked="#exportImage">
+                                <VBox.margin>
+                                    <Insets top="15" />
+                                </VBox.margin>
+                            </Label>
+                            <Label styleClass="action"
+                                   text="嵌入"
+                                   onMouseClicked="#embedImage" />
+                        </VBox>
+                        <Label styleClass="link"
+                               text="专辑详情"
+                               AnchorPane.rightAnchor="0"
+                               AnchorPane.bottomAnchor="20"/>
+                    </AnchorPane>
+                </HBox>
+            </contents>
+        </TabsView>
+    </center>
+    <bottom>
+        <AnchorPane fx:id="bottom">
+            <HBox spacing="10"
+                  AnchorPane.leftAnchor="9"
+                  AnchorPane.bottomAnchor="9">
+                <Label fx:id="previous_track"
+                       styleClass="action"
+                       text="上一首"
+                       graphicTextGap="7"
+                       onMouseClicked="#showPrevious">
+                    <graphic>
+                        <Region styleClass="graphic"/>
+                    </graphic>
+                </Label>
+                <Label fx:id="next_track"
+                       styleClass="action"
+                       text="下一首"
+                       graphicTextGap="7"
+                       onMouseClicked="#showNext">
+                    <graphic>
+                        <Region styleClass="graphic"/>
+                    </graphic>
+                </Label>
+            </HBox>
+            <HBox spacing="10"
+                  AnchorPane.rightAnchor="9"
+                  AnchorPane.bottomAnchor="9">
+                <Label styleClass="action"
+                       text="重新读取文件"
+                       onMouseClicked="#readMetadataFromFile"/>
+                <Label styleClass="action"
+                       text="保存到文件"
+                       onMouseClicked="#saveToFile"/>
+                <Label fx:id="cancel_close"
+                       styleClass="action"
+                       text="关闭"
+                       graphicTextGap="9"
+                       onMouseClicked="#closeView">
+                    <graphic>
+                        <Region styleClass="graphic"/>
+                    </graphic>
+                </Label>
+            </HBox>
+        </AnchorPane>
+    </bottom>
+</BorderPane>

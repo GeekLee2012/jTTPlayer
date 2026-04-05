@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.AnchorPane?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:id="lyric_desktop_view"
+      maxHeight="Infinity"
+      onMouseClicked="#hideAllMenus"
+      fx:controller="xyz.rive.jttplayer.controller.LyricDesktopController"
+      onMouseExited="#hideToolbarOnMouseExited">
+    <HBox fx:id="header"
+          alignment="CENTER">
+        <AnchorPane fx:id="toolbar"
+              onMouseClicked="#toggleLyricDesktopContextMenu"
+              styleClass="dnm_trigger"
+              onMouseEntered="#showToolbar">
+            <Region fx:id="app_logo"
+                    styleClass="dnm_trigger"
+                    onMouseClicked="#toggleAppMenu"/>
+            <Region fx:id="prev_btn"
+                    onMouseClicked="#playPrevious" />
+            <Region fx:id="play_btn"
+                    onMouseClicked="#togglePlay"/>
+            <Region fx:id="pause_btn"
+                    managed="false"
+                    visible="false"
+                    onMouseClicked="#togglePlay"/>
+            <Region fx:id="next_btn"
+                    onMouseClicked="#playNext" />
+            <Region fx:id="list_btn"/>
+            <Region fx:id="settings_btn"
+                    onMouseClicked="#toggleTextSettings" />
+            <Region fx:id="kalaok_btn"/>
+            <Region fx:id="lines_btn"/>
+            <Region fx:id="lock_btn"
+                    onMouseClicked="#lockLyric"/>
+            <Region fx:id="ontop_btn"
+                    onMouseClicked="#toggleOnTop"/>
+            <Region fx:id="return_btn"
+                    onMouseClicked="#normalize" />
+            <Region fx:id="close_btn"
+                    onMouseClicked="#closeLyric"/>
+        </AnchorPane>
+    </HBox>
+    <VBox fx:id="lyric_content"
+          styleClass="dnm_trigger"
+          maxHeight="Infinity"
+          VBox.vgrow="ALWAYS"
+          alignment="CENTER"
+          onMouseEntered="#showToolbar">
+        <Label fx:id="line1"
+               maxHeight="Infinity"
+               VBox.vgrow="ALWAYS"
+               text="千千静听 尽听精彩"/>
+        <Label fx:id="extra1"
+               maxHeight="Infinity"
+               VBox.vgrow="ALWAYS"
+               managed="false"
+               visible="false" />
+        <Label fx:id="line2"
+               maxHeight="Infinity"
+               VBox.vgrow="ALWAYS"
+               managed="false"
+               visible="false"/>
+        <Label fx:id="extra2"
+               maxHeight="Infinity"
+               VBox.vgrow="ALWAYS"
+               managed="false"
+               visible="false"/>
+    </VBox>
+</VBox>

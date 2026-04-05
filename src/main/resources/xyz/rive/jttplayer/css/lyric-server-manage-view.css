@@ -1,0 +1,102 @@
+@import url("common.css");
+
+#lyric_server_manage_view {
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-border-width: 1;
+    -fx-border-color: #cecece;
+    /*-fx-effect: innershadow(three-pass-box, #000000, 3, 1, 0, 0);*/
+}
+
+/* Top */
+#lyric_server_manage_view #top {
+    -fx-pref-height: 26;
+    -fx-background-color: #ffffff;
+}
+
+#lyric_server_manage_view #top .title {
+    -fx-text-fill: #777777;
+}
+
+#lyric_server_manage_view #top .close_btn {
+    -fx-pref-width: 36;
+    -fx-pref-height: 26;
+    -fx-cursor: hand;
+    -fx-background-image: url("../images/close4.png");
+    -fx-background-size: 10 10;
+    -fx-background-position: center center;
+}
+
+#lyric_server_manage_view #top .close_btn:hover {
+    -fx-background-color: #de172b;
+    -fx-background-image: url("../images/close5.png");
+}
+
+/* Center */
+#lyric_server_manage_view #center {
+    -fx-padding: 10 12 1 12;
+}
+
+#lyric_server_manage_view #center ListView {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #a1a1a1;
+}
+
+#lyric_server_manage_view #center ListView .list-cell {
+    -fx-padding: 3 5;
+}
+
+#lyric_server_manage_view #center ListView .list-cell:selected {
+    -fx-background-color: #137ad4;
+}
+
+#lyric_server_manage_view #center ListView .list-cell:selected Label {
+    -fx-text-fill: #ffffff;
+}
+
+/* Bottom */
+#lyric_server_manage_view #bottom {
+    -fx-pref-height: 47;
+    -fx-background-color: transparent;
+}
+
+#lyric_server_manage_view #bottom .actions Label {
+    /*-fx-pref-width: 68;
+    -fx-padding: 0 6;*/
+    -fx-alignment: center;
+}
+
+#lyric_server_manage_view #bottom .actions #add_btn .graphic {
+    -fx-pref-width: 16;
+    -fx-min-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/add.png");
+    -fx-background-position: center center;
+}
+
+#lyric_server_manage_view #bottom .actions #update_btn .graphic {
+    -fx-pref-width: 16;
+    -fx-min-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/write_text.png");
+    -fx-background-position: center center;
+}
+
+#lyric_server_manage_view #bottom .actions #remove_btn .graphic {
+    -fx-pref-width: 16;
+    -fx-min-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/remove.png");
+    -fx-background-position: center center;
+}
+
+#lyric_server_manage_view #bottom .actions #cancel_btn .graphic {
+    -fx-pref-width: 16;
+    -fx-min-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/cancel.png");
+    -fx-background-position: center center;
+}
+
+

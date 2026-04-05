@@ -1,0 +1,29 @@
+/* Slider Vertical */
+.slider_vertical {
+    -fx-background-color: transparent;
+    -fx-background-radius: 6;
+}
+
+.slider_vertical .progress {
+    -fx-pref-width: $PROGRESS_WIDTH;
+    -fx-background-image: url("$PROGRESS_IMG");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: bottom center;
+    -fx-cursor: hand;
+}
+
+.slider_vertical .thumb {
+    -fx-pref-width: $THUMB_WIDTH;
+    -fx-pref-height: $THUMB_HEIGHT;
+    -fx-background-image: url("$THUMB_IMG");
+    -fx-background-repeat: no-repeat;
+    -fx-cursor: hand;
+}
+
+.slider_vertical .thumb:hover {
+    -fx-background-position: $THUMB_POS_1;
+}
+
+.slider_vertical .thumb:pressed {
+    -fx-background-position: $THUMB_POS_2;
+}

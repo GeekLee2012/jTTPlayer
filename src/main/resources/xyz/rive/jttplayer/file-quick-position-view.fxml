@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ComboBox?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:id="file_quick_position_view"
+            fx:controller="xyz.rive.jttplayer.controller.FileQuickPositionController"
+            stylesheets="@css/file-quick-position-view.css">
+    <top>
+        <AnchorPane fx:id="top" >
+            <Label styleClass="title"
+                   text="快速定位文件"
+                   AnchorPane.leftAnchor="7"
+                   AnchorPane.topAnchor="3"/>
+            <Region styleClass="close_btn"
+                    AnchorPane.rightAnchor="0"
+                    AnchorPane.topAnchor="0"
+                    onMouseClicked="#closeView"/>
+        </AnchorPane>
+    </top>
+    <center>
+        <VBox fx:id="center"
+              spacing="6">
+            <HBox maxWidth="Infinity"
+                  spacing="12">
+                <ComboBox fx:id="keyword"
+                          maxWidth="Infinity"
+                          HBox.hgrow="ALWAYS"
+                          editable="true"/>
+                <Label fx:id="markup_all"
+                       text="标记全部"
+                       styleClass="action"
+                       onMouseClicked="#markupAll"/>
+            </HBox>
+            <!--
+            <Label text="提示: 在播放列表中输入汉字拼音的首字母即可快速定位"/>
+            -->
+            <Label text="提示: 输入汉字拼音的首字母即可快速定位"/>
+        </VBox>
+    </center>
+</BorderPane>

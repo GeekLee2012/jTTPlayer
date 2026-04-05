@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import xyz.rive.jttplayer.control.AnimatedTrackMetadata?>
+<?import javafx.scene.layout.Region?>
+<?import xyz.rive.jttplayer.control.ProgressBarHorizontal?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.canvas.Canvas?>
+<?import xyz.rive.jttplayer.control.ProgressBarVertical?>
+<?import xyz.rive.jttplayer.control.PlayTime?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:id="app_main_mini_mode"
+            fx:controller="xyz.rive.jttplayer.controller.MainMiniModeController"
+            onMouseClicked="#toggleAppMainMenu">
+
+    <Region fx:id="app_logo"
+            styleClass="dnm_trigger" />
+    <AnimatedTrackMetadata fx:id="info"
+                           styleClass="dnm_trigger" />
+
+    <ProgressBarHorizontal fx:id="play_progress" />
+    <HBox fx:id="visual_box"
+          alignment="CENTER">
+        <ImageView fx:id="track_cover"
+                   onMouseClicked="#switchVisualEffect"/>
+        <Canvas fx:id="spectrum_canvas"
+                managed="false"
+                visible="false"
+                onMouseClicked="#switchVisualEffect" />
+    </HBox>
+    <PlayTime fx:id="play_time" />
+
+    <Region fx:id="mute"
+            onMouseClicked="#toggleMute" />
+    <ProgressBarHorizontal fx:id="volume_fill"/>
+    <ProgressBarVertical fx:id="volume_fill_v"
+                         managed="false"
+                         visible="false" />
+
+    <Region fx:id="stop_btn"
+            onMouseClicked="#stopPlay"
+            managed="false"
+            visible="false" />
+    <Region fx:id="open_btn"
+            onMouseClicked="#openFiles"
+            managed="false"
+            visible="false" />
+
+    <Region fx:id="prev_btn"
+            onMouseClicked="#playPrevious"/>
+    <Region fx:id="play_btn"
+            onMouseClicked="#togglePlay" />
+    <Region fx:id="pause_btn"
+            onMouseClicked="#togglePlay"
+            visible="false"
+            managed="false" />
+    <Region fx:id="next_btn"
+            onMouseClicked="#playNext" />
+    <Region fx:id="mini_btn"
+            onMouseClicked="#minimized" />
+
+    <Region fx:id="lyric_btn"
+            onMouseClicked="#toggleLyric" />
+    <Region fx:id="minimode_btn"
+            onMouseClicked="#toggleMiniMode" />
+    <Region fx:id="close_btn"
+            onMouseClicked="#closeView" />
+
+</AnchorPane>

@@ -1,0 +1,375 @@
+@import url("common.css");
+
+#app_main {
+    -fx-background-image: url("$BKGND");
+    -fx-background-position: center center;
+}
+
+#app_main #top {
+    -fx-pref-width: 100%;
+    -fx-pref-height: $TOP_HEIGHT;
+    -fx-background: transparent;
+}
+
+#app_logo {
+    -fx-background-image: url("$ICON_IMG");
+    -fx-background-position: center center;
+    -fx-background-size: $ICON_WIDTH $ICON_HEIGHT;
+    -fx-pref-width: $ICON_WIDTH;
+    -fx-pref-height: $ICON_HEIGHT;
+    -fx-padding: 0 2;
+}
+
+/* Top Action */
+#app_main #stereo {
+    -fx-text-fill: $STEREO_TEXT_COLOR;
+    -fx-font-size: $STEREO_FONT_SIZE;
+}
+
+#app_main #status {
+    -fx-text-fill: $STATUS_TEXT_COLOR;
+    -fx-font-size: $STATUS_FONT_SIZE;
+}
+
+#app_main #open_btn {
+    -fx-pref-width: $OPEN_WIDTH;
+    -fx-pref-height: $OPEN_HEIGHT;
+    -fx-background-image: url("$OPEN_IMG");
+}
+
+#app_main #open_btn:hover {
+    -fx-background-position: $OPEN_POS_1;
+}
+
+#app_main #open_btn:pressed {
+    -fx-background-position: $OPEN_POS_2;
+}
+
+#app_main #set_btn {
+    -fx-pref-width: $SET_WIDTH;
+    -fx-pref-height: $SET_HEIGHT;
+    -fx-background-image: url("$SET_IMG");
+}
+
+#app_main #set_btn:hover {
+    -fx-background-position: $SET_POS_1;
+}
+
+#app_main #set_btn:pressed {
+    -fx-background-position: $SET_POS_2;
+}
+
+#app_main #mini_btn {
+    -fx-pref-width: $MINI_WIDTH;
+    -fx-pref-height: $MINI_HEIGHT;
+    -fx-background-image: url("$MINI_IMG");
+}
+
+#app_main #mini_btn:hover {
+    -fx-background-position: $MINI_POS_1;
+}
+
+#app_main #mini_btn:pressed {
+    -fx-background-position: $MINI_POS_2;
+}
+
+#app_main #minimode_btn {
+    -fx-pref-width: $MINIMODE_WIDTH;
+    -fx-pref-height: $MINIMODE_HEIGHT;
+    -fx-background-image: url("$MINIMODE_IMG");
+}
+
+#app_main #minimode_btn:hover {
+    -fx-background-position: $MINIMODE_POS_1;
+}
+
+#app_main #minimode_btn:pressed {
+    -fx-background-position: $MINIMODE_POS_2;
+}
+
+#app_main #close_btn {
+    -fx-pref-width: $CLOSE_WIDTH;
+    -fx-pref-height: $CLOSE_HEIGHT;
+    -fx-background-image: url("$CLOSE_IMG");
+}
+
+#app_main #close_btn:hover {
+    -fx-background-position: $CLOSE_POS_1;
+}
+
+#app_main #close_btn:pressed {
+    -fx-background-position: $CLOSE_POS_2;
+}
+
+/* Visual */
+#app_main #visual_box {
+    -fx-pref-width: $VISUAL_WIDTH;
+    -fx-pref-height: $VISUAL_HEIGHT;
+    -fx-background-color: transparent;
+    -fx-background-radius: 2;
+    -fx-opacity: 1;
+}
+
+#app_main #visual_box #track_cover {
+    -fx-pref-width: $TRACK_COVER_WIDTH;
+    -fx-pref-height: $TRACK_COVER_HEIGHT;
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+}
+
+#app_main #visual_box #track_cover,
+#app_main #visual_box #spectrum_canvas {
+    -fx-cursor: hand;
+}
+
+/* Volume */
+#app_main #mute {
+    -fx-pref-width: $MUTE_WIDTH;
+    -fx-pref-height: $MUTE_HEIGHT;
+    -fx-cursor: hand;
+    -fx-background-image: url("$MUTE_IMG");
+}
+
+#app_main #mute:hover {
+    -fx-background-position: $MUTE_POS_1;
+}
+
+#app_main #mute.active,
+#app_main #mute:pressed {
+    -fx-background-position: $MUTE_POS_2;
+}
+
+/* Extra Action */
+#app_main #playback_queue_btn {
+    -fx-pref-width: $PLAYLIST_WIDTH;
+    -fx-pref-height: $PLAYLIST_HEIGHT;
+    -fx-background-image: url("$PLAYLIST_IMG");
+}
+
+#app_main #playback_queue_btn.active,
+#app_main #playback_queue_btn:hover {
+    -fx-background-position: $PLAYLIST_POS_1;
+}
+
+#app_main #playback_queue_btn:pressed {
+    -fx-background-position: $PLAYLIST_POS_2;
+}
+
+#app_main #equalizer_btn {
+    -fx-pref-width: $EQ_WIDTH;
+    -fx-pref-height: $EQ_HEIGHT;
+    -fx-background-image: url("$EQ_IMG");
+}
+
+#app_main #equalizer_btn.active,
+#app_main #equalizer_btn:hover {
+    -fx-background-position: $EQ_POS_1;
+}
+
+#app_main #equalizer_btn:pressed {
+    -fx-background-position: $EQ_POS_2;
+}
+
+#app_main #lyric_btn {
+    -fx-pref-width: $LYRIC_WIDTH;
+    -fx-pref-height: $LYRIC_HEIGHT;
+    -fx-background-image: url("$LYRIC_IMG");
+}
+
+#app_main #lyric_btn.active,
+#app_main #lyric_btn:hover {
+    -fx-background-position: $LYRIC_POS_1;
+}
+
+#app_main #lyric_btn:pressed {
+    -fx-background-position: $LYRIC_POS_2;
+}
+
+#app_main #browser_btn {
+    -fx-pref-width: $BROWSER_WIDTH;
+    -fx-pref-height: $BROWSER_HEIGHT;
+    -fx-background-image: url("$BROWSER_IMG");
+}
+
+#app_main #browser_btn.active,
+#app_main #browser_btn:hover {
+    -fx-background-position: $BROWSER_POS_1;
+}
+
+#app_main #browser_btn:pressed {
+    -fx-background-position: $BROWSER_POS_2;
+}
+
+/* Control */
+#app_main #stop_btn {
+    -fx-pref-width: $STOP_WIDTH;
+    -fx-pref-height: $STOP_HEIGHT;
+    -fx-background-image: url("$STOP_IMG");
+}
+
+#app_main #stop_btn:disabled {
+    -fx-background-position: $STOP_POS_00;
+}
+
+#app_main #stop_btn:hover {
+    -fx-background-position: $STOP_POS_1;
+}
+
+#app_main #stop_btn:pressed {
+    -fx-background-position: $STOP_POS_2;
+}
+
+#app_main #prev_btn {
+    -fx-pref-width: $PREV_WIDTH;
+    -fx-pref-height: $PREV_HEIGHT;
+    -fx-background-image: url("$PREV_IMG");
+}
+
+#app_main #prev_btn:hover {
+    -fx-background-position: $PREV_POS_1;
+}
+
+#app_main #prev_btn:pressed {
+    -fx-background-position: $PREV_POS_2;
+}
+
+#app_main #next_btn {
+    -fx-pref-width: $NEXT_WIDTH;
+    -fx-pref-height: $NEXT_HEIGHT;
+    -fx-background-image: url("$NEXT_IMG");
+}
+
+#app_main #next_btn:hover {
+    -fx-background-position: $NEXT_POS_1;
+}
+
+#app_main #next_btn:pressed {
+    -fx-background-position: $NEXT_POS_2;
+}
+
+#app_main #play_btn {
+    -fx-pref-width: $PLAY_WIDTH;
+    -fx-pref-height: $PLAY_HEIGHT;
+    -fx-background-image: url("$PLAY_IMG");
+}
+
+#app_main #play_btn:hover {
+    -fx-background-position: $PLAY_POS_1;
+}
+
+#app_main #play_btn:pressed {
+    -fx-background-position: $PLAY_POS_2;
+}
+
+#app_main #pause_btn {
+    -fx-pref-width: $PAUSE_WIDTH;
+    -fx-pref-height: $PAUSE_HEIGHT;
+    -fx-background-image: url("$PAUSE_IMG");
+    -fx-visibility: hidden;
+}
+
+#app_main #pause_btn:hover {
+    -fx-background-position: $PAUSE_POS_1;
+}
+
+#app_main #pause_btn:pressed {
+    -fx-background-position: $PAUSE_POS_2;
+}
+
+/* Mode */
+#app_main #mode_single_btn {
+    -fx-pref-width: $MODE_SINGLE_WIDTH;
+    -fx-pref-height: $MODE_SINGLE_HEIGHT;
+    -fx-background-image: url("$MODE_SINGLE_IMG");
+}
+
+#app_main #mode_single_btn:hover {
+    -fx-background-position: $MODE_SINGLE_POS_1;
+}
+
+#app_main #mode_single_btn:pressed {
+    -fx-background-position: $MODE_SINGLE_POS_2;
+}
+
+#app_main #mode_loop_btn {
+    -fx-pref-width: $MODE_LOOP_WIDTH;
+    -fx-pref-height: $MODE_LOOP_HEIGHT;
+    -fx-background-image: url("$MODE_LOOP_IMG");
+}
+
+#app_main #mode_loop_btn:hover {
+    -fx-background-position: $MODE_LOOP_POS_1;
+}
+
+#app_main #mode_loop_btn:pressed {
+    -fx-background-position: $MODE_LOOP_POS_2;
+}
+
+#app_main #mode_slider_btn {
+    -fx-pref-width: $MODE_SLIDER_WIDTH;
+    -fx-pref-height: $MODE_SLIDER_HEIGHT;
+    -fx-background-image: url("$MODE_SLIDER_IMG");
+}
+
+#app_main #mode_slider_btn:hover {
+    -fx-background-position: $MODE_SLIDER_POS_1;
+}
+
+#app_main #mode_slider_btn:pressed {
+    -fx-background-position: $MODE_SLIDER_POS_2;
+}
+
+#app_main #mode_circle_btn {
+    -fx-pref-width: $MODE_CIRCLE_WIDTH;
+    -fx-pref-height: $MODE_CIRCLE_HEIGHT;
+    -fx-background-image: url("$MODE_CIRCLE_IMG");
+}
+
+#app_main #mode_circle_btn:hover {
+    -fx-background-position: $MODE_CIRCLE_POS_1;
+}
+
+#app_main #mode_circle_btn:pressed {
+    -fx-background-position: $MODE_CIRCLE_POS_2;
+}
+
+#app_main #mode_random_btn {
+    -fx-pref-width: $MODE_RANDOM_WIDTH;
+    -fx-pref-height: $MODE_RANDOM_HEIGHT;
+    -fx-background-image: url("$MODE_RANDOM_IMG");
+}
+
+#app_main #mode_random_btn:hover {
+    -fx-background-position: $MODE_RANDOM_POS_1;
+}
+
+#app_main #mode_random_btn:pressed {
+    -fx-background-position: $MODE_RANDOM_POS_2;
+}
+
+/* Cursor */
+#app_main #app_logo,
+#app_main #info,
+#app_main #play_time,
+#app_main #set_btn,
+#app_main #mini_btn,
+#app_main #minimode_btn,
+#app_main #close_btn,
+#app_main #open_btn,
+#app_main #stop_btn,
+#app_main #prev_btn,
+#app_main #play_btn,
+#app_main #pause_btn,
+#app_main #next_btn,
+#app_main #mode_single_btn,
+#app_main #mode_loop_btn,
+#app_main #mode_slider_btn,
+#app_main #mode_circle_btn,
+#app_main #mode_random_btn,
+#app_main #volume_status,
+#app_main #playback_queue_btn,
+#app_main #equalizer_btn,
+#app_main #lyric_btn,
+#app_main #browser_btn {
+    -fx-cursor: hand;
+}

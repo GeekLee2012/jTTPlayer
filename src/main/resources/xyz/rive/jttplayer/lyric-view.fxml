@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.control.Label?>
+<?import javafx.geometry.Insets?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:id="lyric_view"
+            fx:controller="xyz.rive.jttplayer.controller.LyricController"
+            onMouseClicked="#showLyricMenu">
+    <Region fx:id="view_bg"
+            AnchorPane.topAnchor="0"
+            AnchorPane.bottomAnchor="0"
+            AnchorPane.leftAnchor="0"
+            AnchorPane.rightAnchor="0" />
+    <Region fx:id="lyric_content_bg" />
+    <Region fx:id="view_title" />
+    <Region fx:id="top"
+            AnchorPane.topAnchor="0"
+            AnchorPane.leftAnchor="0"
+            AnchorPane.rightAnchor="0" />
+
+    <Region fx:id="desklrc_btn"
+            managed="false"
+            visible="false"
+            onMouseClicked="#showDesktopLyric"/>
+    <Region fx:id="ontop_btn"
+            AnchorPane.rightAnchor="38"
+            AnchorPane.topAnchor="6"
+            onMouseClicked="#toggleLyricOntop"/>
+    <Region fx:id="close_btn"
+            AnchorPane.rightAnchor="10"
+            AnchorPane.topAnchor="6"
+            onMouseClicked="#closeView" />
+
+    <ScrollPane fx:id="lyric_pane"
+                AnchorPane.leftAnchor="15"
+                AnchorPane.topAnchor="32"
+                fitToWidth="true" >
+        <VBox fx:id="lyric_content"
+              maxWidth="Infinity">
+            <VBox styleClass="line"
+                  maxWidth="Infinity">
+                <Label text="千千静听 v7.1.0"/>
+            </VBox>
+        </VBox>
+    </ScrollPane>
+    <HBox fx:id="scroll_locator"
+          AnchorPane.leftAnchor="6"
+          AnchorPane.rightAnchor="6"
+          alignment="CENTER"
+          mouseTransparent="true"
+          maxWidth="Infinity"
+          visible="false">
+        <Region styleClass="line"
+                maxWidth="Infinity"
+                HBox.hgrow="ALWAYS">
+            <HBox.margin>
+                <Insets top="2" />
+            </HBox.margin>
+        </Region>
+    </HBox>
+    <Label fx:id="scroll_locator_time"
+           text="0:00"
+           visible="false"/>
+</AnchorPane>

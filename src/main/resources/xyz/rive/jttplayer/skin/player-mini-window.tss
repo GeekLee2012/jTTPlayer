@@ -1,0 +1,180 @@
+@import url("common.css");
+
+#app_main_mini_mode {
+    -fx-background-image: url("$BKGND");
+    -fx-background-repeat: no-repeat;
+}
+
+#app_main_mini_mode Region {
+    -fx-cursor: hand;
+}
+
+#app_main_mini_mode #app_logo {
+    -fx-pref-width: $ICON_WIDTH;
+    -fx-background-size: $ICON_WIDTH $ICON_HEIGHT;
+    -fx-pref-height: $ICON_HEIGHT;
+    -fx-background-image: url("$ICON_IMG");
+    -fx-background-position: center center;
+}
+
+#app_main_mini_mode #mute {
+    -fx-pref-width: $MUTE_WIDTH;
+    -fx-pref-height: $MUTE_HEIGHT;
+    -fx-cursor: hand;
+    -fx-background-image: url("$MUTE_IMG");
+}
+
+#app_main_mini_mode #mute:hover {
+    -fx-background-position: $MUTE_POS_1;
+}
+
+#app_main_mini_mode #mute.active,
+#app_main_mini_mode #mute:pressed {
+    -fx-background-position: $MUTE_POS_2;
+}
+
+#app_main_mini_mode #lyric_btn {
+    -fx-pref-width: $LYRIC_WIDTH;
+    -fx-pref-height: $LYRIC_HEIGHT;
+    -fx-background-image: url("$LYRIC_IMG");
+}
+
+#app_main_mini_mode #lyric_btn.active,
+#app_main_mini_mode #lyric_btn:hover {
+    -fx-background-position: $LYRIC_POS_1;
+}
+
+#app_main_mini_mode #lyric_btn:pressed {
+    -fx-background-position: $LYRIC_POS_2;
+}
+
+#app_main_mini_mode #open_btn {
+    -fx-pref-width: $OPEN_WIDTH;
+    -fx-pref-height: $OPEN_HEIGHT;
+    -fx-background-image: url("$OPEN_IMG");
+}
+
+#app_main_mini_mode #open_btn:hover {
+    -fx-background-position: $OPEN_POS_1;
+}
+
+#app_main_mini_mode #open_btn:pressed {
+    -fx-background-position: $OPEN_POS_2;
+}
+
+#app_main_mini_mode #stop_btn {
+    -fx-pref-width: $STOP_WIDTH;
+    -fx-pref-height: $STOP_HEIGHT;
+    -fx-background-image: url("$STOP_IMG");
+}
+
+#app_main_mini_mode #stop_btn:disabled {
+    -fx-background-position: $STOP_POS_00;
+}
+
+#app_main_mini_mode #stop_btn:hover {
+    -fx-background-position: $STOP_POS_1;
+}
+
+#app_main_mini_mode #stop_btn:pressed {
+    -fx-background-position: $STOP_POS_2;
+}
+
+#app_main_mini_mode #prev_btn {
+    -fx-pref-width: $PREV_WIDTH;
+    -fx-pref-height: $PREV_HEIGHT;
+    -fx-background-image: url("$PREV_IMG");
+}
+
+#app_main_mini_mode #prev_btn:hover {
+    -fx-background-position: $PREV_POS_1;
+}
+
+#app_main_mini_mode #prev_btn:pressed {
+    -fx-background-position: $PREV_POS_2;
+}
+
+#app_main_mini_mode #next_btn {
+    -fx-pref-width: $NEXT_WIDTH;
+    -fx-pref-height: $NEXT_HEIGHT;
+    -fx-background-image: url("$NEXT_IMG");
+}
+
+#app_main_mini_mode #next_btn:hover {
+    -fx-background-position: $NEXT_POS_1;
+}
+
+#app_main_mini_mode #next_btn:pressed {
+    -fx-background-position: $NEXT_POS_2;
+}
+
+#app_main_mini_mode #play_btn {
+    -fx-pref-width: $PLAY_WIDTH;
+    -fx-pref-height: $PLAY_HEIGHT;
+    -fx-background-image: url("$PLAY_IMG");
+}
+
+#app_main_mini_mode #play_btn:hover {
+    -fx-background-position: $PLAY_POS_1;
+}
+
+#app_main_mini_mode #play_btn:pressed {
+    -fx-background-position: $PLAY_POS_2;
+}
+
+#app_main_mini_mode #pause_btn {
+    -fx-pref-width: $PAUSE_WIDTH;
+    -fx-pref-height: $PAUSE_HEIGHT;
+    -fx-background-image: url("$PAUSE_IMG");
+    -fx-visibility: hidden;
+}
+
+#app_main_mini_mode #pause_btn:hover {
+    -fx-background-position: $PAUSE_POS_1;
+}
+
+#app_main_mini_mode #pause_btn:pressed {
+    -fx-background-position: $PAUSE_POS_2;
+}
+
+#app_main_mini_mode #mini_btn {
+    -fx-pref-width: $MINI_WIDTH;
+    -fx-pref-height: $MINI_HEIGHT;
+    -fx-background-image: url("$MINI_IMG");
+}
+
+#app_main_mini_mode #mini_btn:hover {
+    -fx-background-position: $MINI_POS_1;
+}
+
+#app_main_mini_mode #mini_btn:pressed {
+    -fx-background-position: $MINI_POS_2;
+}
+
+#app_main_mini_mode #minimode_btn {
+    -fx-pref-width: $MINIMODE_WIDTH;
+    -fx-pref-height: $MINIMODE_HEIGHT;
+    -fx-background-image: url("$MINIMODE_IMG");
+}
+
+#app_main_mini_mode #minimode_btn:hover {
+    -fx-background-position: $MINIMODE_POS_1;
+}
+
+#app_main_mini_mode #minimode_btn:pressed {
+    -fx-background-position: $MINIMODE_POS_2;
+}
+
+#app_main_mini_mode #close_btn {
+    -fx-pref-width: $CLOSE_WIDTH;
+    -fx-pref-height: $CLOSE_HEIGHT;
+    -fx-background-image: url("$CLOSE_IMG");
+}
+
+#app_main_mini_mode #close_btn:hover {
+    -fx-background-position: $CLOSE_POS_1;
+}
+
+#app_main_mini_mode #close_btn:pressed {
+    -fx-background-position: $CLOSE_POS_2;
+}

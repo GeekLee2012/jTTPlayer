@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import xyz.rive.jttplayer.control.TabsView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.CheckBox?>
+<?import xyz.rive.jttplayer.control.BorderTitleView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import xyz.rive.jttplayer.control.FileBrowseButton?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="xyz.rive.jttplayer.controller.PreferenceNetworkOptionsController"
+      fx:id="network_options"
+      stylesheets="@css/preference-view-network-options.css">
+    <TabsView fx:id="network_content">
+        <tabs>
+            <Label styleClass="active" text="在线试听" />
+            <Label text="歌曲下载" />
+        </tabs>
+        <contents>
+            <GridPane hgap="13" vgap="3">
+                <VBox.margin>
+                    <Insets top="-3" />
+                </VBox.margin>
+                <!-- Row -->
+                <HBox GridPane.rowIndex="0"
+                      GridPane.columnSpan="2">
+                    <CheckBox text="接收每周推荐歌曲"/>
+                </HBox>
+
+                <!-- Row -->
+                <HBox GridPane.rowIndex="1"
+                      GridPane.columnIndex="0"
+                      spacing="2">
+                    <Label text="缓存空间:" />
+                    <Spinner styleClass="spinner_m"
+                             initialValue="0"
+                             min="600"
+                             max="2048"
+                             editable="true"/>
+                    <Label text="MB(600MB-2GB)" />
+                </HBox>
+                <HBox GridPane.rowIndex="1"
+                      GridPane.columnIndex="1"
+                      spacing="3">
+                    <Label text="缓存路径:" />
+                    <TextField prefWidth="88" />
+                    <FileBrowseButton />
+                </HBox>
+
+                <!-- Row -->
+                <HBox GridPane.rowIndex="2"
+                      GridPane.columnSpan="2"
+                      spacing="20">
+                    <RadioButton text="正常限速(听歌体验更好)"
+                                 selected="true">
+                        <toggleGroup>
+                            <ToggleGroup fx:id="group1"/>
+                        </toggleGroup>
+                    </RadioButton>
+                    <RadioButton text="智能限速(节省带宽占用)">
+                        <toggleGroup>
+                            <fx:reference source="group1" />
+                        </toggleGroup>
+                    </RadioButton>
+                </HBox>
+            </GridPane>
+
+            <GridPane hgap="20" vgap="3">
+                <!-- Row -->
+                <HBox GridPane.rowIndex="0"
+                      GridPane.columnIndex="0">
+                    <CheckBox text="按照歌手名创建文件夹保存"/>
+                </HBox>
+                <HBox GridPane.rowIndex="0"
+                      GridPane.columnIndex="1">
+                    <CheckBox text="下载歌曲时同步下载歌词"/>
+                </HBox>
+
+                <!-- Row -->
+                <HBox GridPane.rowIndex="1"
+                      GridPane.columnIndex="0">
+                    <CheckBox text="试听歌曲时同步下载歌曲文件"/>
+                </HBox>
+                <HBox GridPane.rowIndex="1"
+                      GridPane.columnIndex="1">
+                    <CheckBox text="同时下载任务数(1-5)"/>
+                    <Spinner styleClass="spinner_m"
+                             initialValue="1"
+                             min="1"
+                             max="5"
+                             editable="true"/>
+                </HBox>
+
+                <!-- Row -->
+                <HBox GridPane.rowIndex="2"
+                      GridPane.columnSpan="2"
+                      spacing="3">
+                    <Label text="下载路径:" />
+                    <TextField HBox.hgrow="ALWAYS" />
+                    <FileBrowseButton />
+                </HBox>
+            </GridPane>
+        </contents>
+    </TabsView>
+
+    <BorderTitleView title="代理服务器">
+        <RadioButton text="不使用代理服务器"
+                     selected="true">
+            <toggleGroup>
+                <ToggleGroup fx:id="group2" />
+            </toggleGroup>
+        </RadioButton>
+        <RadioButton text="使用Internet Explorer的代理设置">
+            <toggleGroup>
+                <fx:reference source="group2" />
+            </toggleGroup>
+        </RadioButton>
+        <RadioButton text="使用自定义的代理服务器">
+            <toggleGroup>
+                <fx:reference source="group2" />
+            </toggleGroup>
+        </RadioButton>
+        <HBox spacing="6">
+            <HBox>
+                <Label text="服务器："/>
+                <TextField />
+            </HBox>
+            <HBox>
+                <Label text="端口："/>
+                <TextField text="0"/>
+            </HBox>
+        </HBox>
+        <HBox spacing="6">
+            <HBox>
+                <Label text="用户名："/>
+                <TextField />
+            </HBox>
+            <HBox>
+                <Label text="密码："/>
+                <TextField />
+            </HBox>
+        </HBox>
+    </BorderTitleView>
+
+    <BorderTitleView title="freedb（用于从 freedb.org 免费获取CD的专辑和音轨信息）">
+        <CheckBox text="播放缺少信息的CD音轨时自动查询"/>
+        <CheckBox text="查询失败时在屏幕右下角显示错误信息"/>
+        <Label text="选择 freedb 服务器："/>
+        <HBox maxWidth="Infinity">
+            <ComboBox HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+        </HBox>
+    </BorderTitleView>
+</VBox>

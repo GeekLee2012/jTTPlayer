@@ -1,0 +1,44 @@
+.tabs_view .tabs {
+    /*-fx-padding: 8 0 0 0;
+    -fx-pref-height: 28;*/
+    -fx-border-width: 0;
+    -fx-alignment: bottom-left;
+    -fx-spacing: -1;
+}
+
+.tabs_view .tabs Label {
+    -fx-cursor: hand;
+    -fx-background-color: #f0f0f0;
+    -fx-border-color: #d9d9d9;
+    -fx-padding: 2 8;
+    -fx-translate-y: 4;
+}
+
+.tabs_view .tabs Label:hover {
+    -fx-background-color: #d9eaf8;
+}
+
+.tabs_view .tabs Label.active {
+    -fx-background-color: #ffffff;
+    -fx-padding: 2 8 6 8;
+}
+
+.tabs_view .tab_content {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #d9d9d9;
+    -fx-padding: 5 12 4 12;
+}
+
+.tabs_view .active_tab_bottom {
+    -fx-translate-x: -12;
+    -fx-translate-y: -6;
+    /*-fx-pref-width: 42;
+    -fx-max-width: 42;*/
+    -fx-min-height: 3;
+    -fx-pref-height: 3;
+    -fx-background-color: #ffffff;
+}
+
+.tabs_view GridPane {
+    -fx-border-width: 0;
+}

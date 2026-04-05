@@ -1,0 +1,90 @@
+@import url("common.css");
+
+#lyric_offset_view {
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-border-width: 1;
+    -fx-border-color: #cecece;
+    /*-fx-effect: innershadow(three-pass-box, #000000, 3, 1, 0, 0);*/
+}
+
+/* Top */
+#lyric_offset_view #top {
+    -fx-pref-height: 28;
+    -fx-background-color: #ffffff;
+}
+
+#lyric_offset_view #top .title {
+    -fx-text-fill: #777777;
+}
+
+#lyric_offset_view #top .close_btn {
+    -fx-pref-width: 36;
+    -fx-pref-height: 28;
+    -fx-cursor: hand;
+    -fx-background-image: url("../images/close4.png");
+    -fx-background-size: 10 10;
+    -fx-background-position: center center;
+}
+
+#lyric_offset_view #top .close_btn:hover {
+    -fx-background-color: #de172b;
+    -fx-background-image: url("../images/close5.png");
+}
+
+/* Center */
+#lyric_offset_view #center {
+    -fx-padding: 12 18 1 18;
+}
+
+#lyric_offset_view #center #offset {
+    -fx-pref-width: 88;
+}
+
+/* Bottom */
+#lyric_offset_view #bottom {
+    -fx-pref-height: 43;
+    -fx-background-color: transparent;
+}
+
+#lyric_offset_view #bottom .actions Label {
+    -fx-background-color: #e1e1e1;
+    -fx-border-color: #a9a9a9;
+    -fx-padding: 1 10;
+    -fx-cursor: hand;
+    -fx-pref-width: 80;
+}
+
+#lyric_offset_view  #bottom .actions Label:hover {
+    -fx-background-color: #e5f1fa;
+    -fx-border-color: #3f87d6;
+}
+
+#lyric_offset_view #bottom .actions #apply_close {
+    -fx-padding: 0 10;
+    -fx-border-width: 2;
+    -fx-border-color: #006acb;
+}
+
+#lyric_offset_view #bottom .actions #apply_close:hover {
+    -fx-padding: 1 11;
+    -fx-border-width: 1;
+}
+
+#lyric_offset_view #bottom .actions #apply_close .graphic {
+    -fx-pref-width: 16;
+    -fx-min-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/apply.png");
+    -fx-background-position: center center;
+}
+
+#lyric_offset_view #bottom .actions #cancel_close .graphic {
+    -fx-pref-width: 16;
+    -fx-min-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/cancel.png");
+    -fx-background-position: center center;
+}
+

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import xyz.rive.jttplayer.control.BorderTitleView?>
+<?import javafx.scene.layout.Region?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="xyz.rive.jttplayer.controller.PreferenceGeneralOptionsController"
+      fx:id="general_options"
+      stylesheets="@css/preference-view.css">
+    <BorderTitleView title="选项">
+        <GridPane hgap="30" vgap="3">
+            <!-- Row -->
+            <HBox GridPane.rowIndex="0"
+                  GridPane.columnIndex="0">
+                <CheckBox text="启动播放器后最小化">
+                    <padding>
+                        <Insets right="13"/>
+                    </padding>
+                </CheckBox>
+            </HBox>
+            <HBox GridPane.rowIndex="0"
+                  GridPane.columnIndex="1">
+                <CheckBox fx:id="allow_tray_icon"
+                          text="在系统栏显示程序图标" />
+            </HBox>
+            <!-- Row -->
+            <HBox GridPane.rowIndex="1"
+                  GridPane.columnIndex="0">
+                <CheckBox text="在工具提示中显示快捷键" />
+            </HBox>
+            <HBox GridPane.rowIndex="1"
+                  GridPane.columnIndex="1">
+                <CheckBox text="在屏幕右下角弹窗播放提示" />
+            </HBox>
+            <!-- Row -->
+            <HBox GridPane.rowIndex="2"
+                  GridPane.columnIndex="0">
+                <CheckBox text="在菜单上显示命令提示" />
+            </HBox>
+            <HBox GridPane.rowIndex="2"
+                  GridPane.columnIndex="1">
+                <CheckBox text="分多列显示播放曲目菜单" />
+            </HBox>
+            <!-- Row -->
+            <HBox GridPane.rowIndex="3"
+                  GridPane.columnIndex="0">
+                <CheckBox text="在任务栏滚动歌曲标题" />
+            </HBox>
+            <HBox GridPane.rowIndex="3"
+                  GridPane.columnIndex="1">
+                <CheckBox text="向MSN和百度Hi发送播放的歌曲信息" />
+            </HBox>
+            <!-- Row -->
+            <HBox GridPane.rowIndex="4"
+                  GridPane.columnSpan="2" >
+                <CheckBox text="淡入淡出效果显示主要窗口（需要Windows 2000或更高）" />
+            </HBox>
+            <!-- Row -->
+            <HBox GridPane.rowIndex="5"
+                  GridPane.columnSpan="2" >
+                <CheckBox  fx:id="allow_win_auto_attach"
+                           text="当窗口靠近时自动粘合" />
+                <Spinner fx:id="win_auto_attach_limit"
+                         initialValue="0"
+                         min="0"
+                         max="66"
+                         editable="true"/>
+                <Label text="像素">
+                    <padding>
+                        <Insets left="3"/>
+                    </padding>
+                </Label>
+            </HBox>
+            <!-- Row -->
+            <HBox GridPane.rowIndex="6"
+                  GridPane.columnSpan="2" >
+                <CheckBox fx:id="allow_metadata_auto_switch"
+                          text="标题栏自动切换歌曲信息，滚动延时间隔" />
+                <Spinner fx:id="metadata_auto_switch_interval"
+                         initialValue="5"
+                         min="1"
+                         max="1024"
+                         editable="true"/>
+                <Label text="秒">
+                    <padding>
+                        <Insets left="3"/>
+                    </padding>
+                </Label>
+            </HBox>
+            <!-- Row -->
+            <!--
+            <HBox GridPane.rowIndex="7"
+                  GridPane.columnSpan="2" >
+                <CheckBox text="自动关闭计算机" />
+            </HBox>
+            -->
+        </GridPane>
+    </BorderTitleView>
+
+    <BorderTitleView title="命令行方式（从外部打开或添加文件）" >
+        <CheckBox text="从命令行方式打开文件时先清除当前播放列表" />
+        <HBox>
+            <CheckBox text="从命令行方式操作时总是针对这个列表：" />
+            <TextField />
+        </HBox>
+    </BorderTitleView>
+
+    <BorderTitleView title="软件更新" >
+        <HBox>
+            <Label text="自动检查软件新版本："/>
+            <HBox styleClass="action"
+                  spacing="10">
+                <ComboBox />
+                <Label styleClass="action"
+                       text="立即检查"/>
+            </HBox>
+        </HBox>
+    </BorderTitleView>
+    <BorderTitleView title="jTTPlayer" >
+        <HBox spacing="18">
+            <HBox>
+                <Label text="作者："/>
+                <Label styleClass="link"
+                       text="RIVE2012" />
+            </HBox>
+            <HBox>
+                <Label text="版本："/>
+                <Label fx:id="version"
+                       styleClass="link" />
+            </HBox>
+            <HBox>
+                <Label text="开源协议："/>
+                <Label styleClass="link"
+                       text="AGPL 3.0" />
+                <!--
+                https://www.gnu.org/licenses/agpl-3.0.en.html
+                -->
+            </HBox>
+            <HBox>
+                <Label text="源码："/>
+                <Region styleClass="git_repo"/>
+            </HBox>
+        </HBox>
+    </BorderTitleView>
+</VBox>

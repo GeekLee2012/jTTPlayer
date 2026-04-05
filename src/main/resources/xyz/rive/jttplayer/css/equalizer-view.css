@@ -1,0 +1,111 @@
+@import url("common.css");
+
+#equalizer_view {
+    /*-fx-background-image: url("../images/eq_skin.bmp");*/
+    -fx-background-repeat: no-repeat;
+    -fx-background-radius: 12;
+    /*-fx-border-radius: 12;
+    -fx-border-size: 1;
+    -fx-padding: 0 6;
+    -fx-effect: innershadow(three-pass-box, #a0a0a0, 3, 1, 0, 0);*/
+}
+
+/****** Top ******/
+#equalizer_view #top {
+    -fx-pref-width: 100%;
+    /*-fx-pref-height: 34;*/
+    -fx-background: transparent;
+}
+
+/*
+#equalizer_view #top_right_actions {
+    -fx-pref-width: 21;
+    -fx-pref-height: 21;
+}
+
+#equalizer_view #top #right_actions Region {
+    -fx-cursor: hand;
+}
+
+#equalizer_view #equalizer_enabled_btn {
+    -fx-pref-width: 110;
+    -fx-pref-height: 25;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("../images/eq_enabled.png");
+    -fx-cursor: hand;
+}
+
+#equalizer_view #equalizer_enabled_btn:hover {
+    -fx-background-position: -110 0;
+}
+
+#equalizer_view #equalizer_enabled_btn:pressed,
+ #equalizer_view #equalizer_enabled_btn.active {
+    -fx-background-position: -220 0;
+}
+
+#equalizer_view #equalizer_reset_btn {
+    -fx-pref-width: 110;
+    -fx-pref-height: 25;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("../images/reset.png");
+    -fx-cursor: hand;
+}
+
+#equalizer_view #equalizer_reset_btn:hover {
+    -fx-background-position: -110 0;
+}
+
+#equalizer_view #equalizer_reset_btn:pressed {
+    -fx-background-position: -220 0;
+}
+
+#equalizer_view #equalizer_profile_btn {
+    -fx-pref-width: 110;
+    -fx-pref-height: 25;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("../images/eq_profile.png");
+    -fx-cursor: hand;
+}
+
+#equalizer_view #equalizer_profile_btn:hover {
+    -fx-background-position: -110 0;
+}
+
+#equalizer_view #equalizer_profile_btn:pressed {
+    -fx-background-position: -220 0;
+}
+
+
+#equalizer_view #close_btn {
+    -fx-pref-width: 18;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("../images/close.png");
+    -fx-cursor: hand;
+}
+
+#equalizer_view #close_btn:hover {
+    -fx-background-position: -18 0;
+}
+
+#equalizer_view #close_btn:pressed {
+    -fx-background-position: -36 0;
+}
+*/
+
+#equalizer_view #equalizer_enabled_btn,
+#equalizer_view #equalizer_reset_btn,
+#equalizer_view #equalizer_profile_btn,
+#equalizer_view #close_btn {
+    -fx-cursor: hand;
+}
+
+/****** Center ******/
+#equalizer_view  #center {
+    -fx-padding: 0 3 5 3;
+}
+
+/****** Bottom ******/
+#equalizer_view  #bottom {
+    -fx-pref-height: 26;
+}

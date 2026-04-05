@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.geometry.Insets?>
+<?import xyz.rive.jttplayer.control.SimpleTableView?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="xyz.rive.jttplayer.controller.PreferenceSoundDevicesOptionsController"
+      fx:id="sound_devices_options"
+      stylesheets="@css/preference-view-sound-devices-options.css"
+      maxHeight="Infinity">
+    <HBox>
+        <Label text="输出设备："/>
+        <ComboBox maxWidth="Infinity"
+                  HBox.hgrow="ALWAYS" />
+    </HBox>
+    <HBox>
+        <Label text="缓冲长度："/>
+        <Spinner initialValue="0"
+                 min="0"
+                 max="9999"
+                 editable="true"/>
+        <Label text="毫秒"/>
+    </HBox>
+    <HBox>
+        <Label text="输出格式："/>
+        <ComboBox />
+        <CheckBox text="高频抖动">
+            <HBox.margin>
+                <Insets left="12" />
+            </HBox.margin>
+        </CheckBox>
+        <ComboBox />
+    </HBox>
+    <HBox>
+        <CheckBox text="启用采样频率转换"/>
+        <ComboBox />
+        <Label text="模式：">
+            <HBox.margin>
+                <Insets left="12" />
+            </HBox.margin>
+        </Label>
+        <ComboBox />
+    </HBox>
+    <HBox>
+        <CheckBox text="优先使用硬件混音缓冲区(DirectSound方式硬件加速)"/>
+    </HBox>
+    <HBox>
+        <CheckBox text="创建主缓冲区(DirectSound方式用于修正老声卡的音质问题)"/>
+    </HBox>
+    <SimpleTableView VBox.vgrow="ALWAYS">
+        <header>
+            <Label text="属性"/>
+            <Label text="值"/>
+        </header>
+    </SimpleTableView>
+    <Label text="提示：上述所有参数设置都在重新播放时才会生效。"/>
+    <Label text="注意：对于某些声卡驱动或操作系统，Kernel Streaming和ASIO不支持音量调节，甚至可能无法正常播放声音。"
+           wrapText="true" />
+</VBox>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="xyz.rive.jttplayer.controller.SearchComputerController"
+            fx:id="search_computer_view"
+            stylesheets="@css/search-computer-view.css">
+    <top>
+        <AnchorPane fx:id="top">
+            <Label styleClass="title"
+                   text="搜索计算机上的音乐"
+                   AnchorPane.leftAnchor="7"
+                   AnchorPane.topAnchor="0" />
+            <Region styleClass="close_btn"
+                    AnchorPane.rightAnchor="0"
+                    AnchorPane.topAnchor="0"
+                    onMouseClicked="#closeView"/>
+        </AnchorPane>
+    </top>
+    <center>
+        <BorderPane fx:id="center">
+            <top>
+                <BorderPane>
+                    <center>
+                        <VBox spacing="8">
+                            <HBox spacing="8"
+                                  maxWidth="Infinity">
+                                <Label text="搜索位置:"/>
+                                <ComboBox fx:id="search_location"
+                                          maxWidth="Infinity"
+                                          HBox.hgrow="ALWAYS"/>
+                            </HBox>
+                            <HBox spacing="8"
+                                  maxWidth="Infinity">
+                                <VBox.margin>
+                                    <Insets top="2" />
+                                </VBox.margin>
+                                <Label text="搜索类型:"/>
+                                <ListView fx:id="search_types"
+                                          HBox.hgrow="ALWAYS"/>
+                            </HBox>
+                            <HBox spacing="8"
+                                  maxWidth="Infinity">
+                                <Label text="高级选项:"/>
+                                <HBox HBox.hgrow="ALWAYS">
+                                    <CheckBox text="不包含少于"/>
+                                    <Spinner fx:id="min_seconds"
+                                             initialValue="30"
+                                             min="0"
+                                             max="99999"
+                                             editable="true">
+                                        <HBox.margin>
+                                            <Insets left="3" right="5"/>
+                                        </HBox.margin>
+                                    </Spinner>
+                                    <Label text="秒的文件"/>
+                                </HBox>
+                                <HBox spacing="8">
+                                    <Label text="全选"
+                                           styleClass="action"
+                                           onMouseClicked="#selectAllTypes"/>
+                                    <Label text="全不选"
+                                           styleClass="action"
+                                           onMouseClicked="#deselectAllTypes"/>
+                                </HBox>
+                            </HBox>
+                        </VBox>
+                    </center>
+                    <right>
+                        <VBox styleClass="right_actions"
+                              spacing="8">
+                            <Label fx:id="start_search"
+                                   styleClass="action"
+                                   text="开始搜索" />
+                            <Label fx:id="stop_search"
+                                   text="停止搜索"
+                                   styleClass="action"
+                                   managed="false"
+                                   visible="false"/>
+                            <Label fx:id="finish_search"
+                                   styleClass="action"
+                                   text="完成"
+                                   graphicTextGap="15">
+                                <VBox.margin>
+                                    <Insets top="2" />
+                                </VBox.margin>
+                                <graphic>
+                                    <Region styleClass="graphic"/>
+                                </graphic>
+                            </Label>
+                            <Label fx:id="add_selections"
+                                   styleClass="action"
+                                   text="添加已选结果"
+                                   graphicTextGap="0">
+                                <graphic>
+                                    <Region styleClass="graphic"/>
+                                </graphic>
+                            </Label>
+                        </VBox>
+                    </right>
+                    <bottom>
+                        <VBox spacing="5">
+                            <Region styleClass="splitter">
+                                <VBox.margin>
+                                    <Insets top="18"/>
+                                </VBox.margin>
+                            </Region>
+                            <HBox>
+                                <Label text="搜索到的结果："/>
+                                <Label text="已搜到" />
+                                <Label fx:id="current_found"
+                                       text="0" />
+                                <Label text="个，正在搜索" />
+                                <Label fx:id="current_location"
+                                       text="" />
+                                <VBox.margin>
+                                    <Insets bottom="3"/>
+                                </VBox.margin>
+                            </HBox>
+                        </VBox>
+                    </bottom>
+                </BorderPane>
+            </top>
+            <center>
+                <ListView fx:id="search_result"/>
+            </center>
+        </BorderPane>
+    </center>
+</BorderPane>

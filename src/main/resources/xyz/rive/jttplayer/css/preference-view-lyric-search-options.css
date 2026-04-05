@@ -1,0 +1,51 @@
+@import url("preference-view.css");
+
+#preference_view #lyric_search_options {
+
+}
+
+#preference_view #lyric_search_options #search_orders .list-cell:hover {
+    -fx-background-color: #f3f3f3;
+}
+
+#preference_view #lyric_search_options #search_orders .list-cell:selected {
+    -fx-background-color: #047ddb;
+}
+
+
+#preference_view #lyric_search_options #search_orders .list-cell:selected .check-box {
+    -fx-text-fill: #ffffff;
+}
+
+#preference_view #lyric_search_options #search_orders .list-cell:selected .check-box .box,
+#preference_view #lyric_search_options #search_orders .list-cell:hover .check-box .box {
+    -fx-background-color: #ffffff;
+}
+
+#preference_view #lyric_search_options #add_btn {
+    -fx-pref-width: 24;
+    -fx-pref-height: 24;
+    -fx-background-position: center center;
+    -fx-background-image: url("../images/add.png");
+}
+
+#preference_view #lyric_search_options #remove_btn {
+    -fx-pref-width: 24;
+    -fx-pref-height: 24;
+    -fx-background-position: center center;
+    -fx-background-image: url("../images/remove.png");
+}
+
+#preference_view #lyric_search_options #move_up_btn {
+    -fx-pref-width: 24;
+    -fx-pref-height: 24;
+    -fx-background-position: center center;
+    -fx-background-image: url("../images/previous.png");
+}
+
+#preference_view #lyric_search_options #move_down_btn {
+    -fx-pref-width: 24;
+    -fx-pref-height: 24;
+    -fx-background-position: center center;
+    -fx-background-image: url("../images/next2.png");
+}

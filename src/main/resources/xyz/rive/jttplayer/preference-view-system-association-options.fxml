@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import xyz.rive.jttplayer.control.BorderTitleView?>
+<HBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="xyz.rive.jttplayer.controller.PreferenceSystemAssociationOptionsController"
+      fx:id="system_association_options"
+      stylesheets="@css/preference-view-system-association-options.css">
+    <VBox maxHeight="Infinity"
+          HBox.hgrow="ALWAYS"
+          spacing="5">
+        <HBox.margin>
+            <Insets top="8" bottom="9"/>
+        </HBox.margin>
+        <Label text="关联文件类型："/>
+        <ListView VBox.vgrow="ALWAYS"/>
+        <HBox spacing="6" minHeight="30">
+            <VBox.margin>
+                <Insets top="3" />
+            </VBox.margin>
+            <Label text="Vista, Win7下设置关联实现"/>
+            <Label styleClass="action"
+                   text="手动设置关联"/>
+        </HBox>
+    </VBox>
+    <VBox maxHeight="Infinity"
+          prefWidth="158"
+          spacing="5">
+        <HBox.margin>
+            <Insets left="12" top="8"/>
+        </HBox.margin>
+        <Label text="当前文件类型的图标："/>
+        <Label fx:id="select_file_icon"
+               styleClass="action"
+               text="选择文件图标"
+               maxWidth="Infinity"
+               HBox.hgrow="ALWAYS"/>
+        <Label styleClass="action"
+               text="从文件夹自动选择图标"
+               maxWidth="Infinity"
+               HBox.hgrow="ALWAYS"/>
+        <CheckBox text="关联CD播放器"/>
+        <CheckBox text="关联文件夹"/>
+        <CheckBox text="启动时检查关联"/>
+        <Label fx:id="select_player_icon"
+               styleClass="action"
+               text="选择播放器图标"
+               maxWidth="Infinity"
+               HBox.hgrow="ALWAYS"/>
+        <BorderTitleView title="创建快捷方式"
+                         spacing="7">
+            <Label styleClass="action"
+                   text="我的桌面"
+                   maxWidth="Infinity"
+                   HBox.hgrow="ALWAYS"/>
+            <Label styleClass="action"
+                   text="程序菜单"
+                   maxWidth="Infinity"
+                   HBox.hgrow="ALWAYS"/>
+            <Label styleClass="action"
+                   text="快速启动"
+                   maxWidth="Infinity"
+                   HBox.hgrow="ALWAYS"/>
+        </BorderTitleView>
+    </VBox>
+</HBox>

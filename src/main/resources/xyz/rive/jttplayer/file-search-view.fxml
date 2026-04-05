@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.CheckBox?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:id="file_search_view"
+            fx:controller="xyz.rive.jttplayer.controller.FileSearchController"
+            stylesheets="@css/file-search-view.css">
+    <top>
+        <AnchorPane fx:id="top" >
+            <Label styleClass="title"
+                   text="查找文件"
+                   AnchorPane.leftAnchor="7"
+                   AnchorPane.topAnchor="3"/>
+            <Region styleClass="close_btn"
+                    AnchorPane.rightAnchor="0"
+                    AnchorPane.topAnchor="0"
+                    onMouseClicked="#closeView"/>
+        </AnchorPane>
+    </top>
+    <center>
+        <VBox fx:id="center"
+              spacing="6">
+            <HBox maxWidth="Infinity"
+                  spacing="10">
+                <HBox HBox.hgrow="ALWAYS">
+                    <Label text="标   题："/>
+                    <TextField fx:id="file_title"
+                               HBox.hgrow="ALWAYS" />
+                </HBox>
+                <Label styleClass="action"
+                       text="查找下一个"
+                       onMouseClicked="#searchNext"/>
+            </HBox>
+            <HBox maxWidth="Infinity"
+                  spacing="10">
+                <HBox HBox.hgrow="ALWAYS">
+                    <Label text="艺术家："/>
+                    <TextField fx:id="artist"
+                               HBox.hgrow="ALWAYS"/>
+                </HBox>
+                <Label styleClass="action"
+                       text="标记全部"
+                       onMouseClicked="#markupAll"/>
+            </HBox>
+            <HBox maxWidth="Infinity"
+                  spacing="10">
+                <HBox HBox.hgrow="ALWAYS">
+                    <Label text="专   辑："/>
+                    <TextField fx:id="album"
+                               HBox.hgrow="ALWAYS"/>
+                </HBox>
+                <Label fx:id="cancel_close"
+                       styleClass="action"
+                       text="关闭"
+                       graphicTextGap="7"
+                       onMouseClicked="#closeView">
+                    <graphic>
+                        <Region styleClass="graphic"/>
+                    </graphic>
+                </Label>
+            </HBox>
+        </VBox>
+    </center>
+    <bottom>
+        <HBox fx:id="bottom"
+              alignment="CENTER_LEFT"
+              spacing="12">
+            <CheckBox fx:id="match_case"
+                      text="大小写匹配"/>
+            <CheckBox fx:id="match_whole_words"
+                      text="全字符匹配"/>
+            <CheckBox fx:id="search_reversed"
+                      text="反方向查找"/>
+        </HBox>
+    </bottom>
+</BorderPane>

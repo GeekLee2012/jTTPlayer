@@ -1,0 +1,25 @@
+@import url("preference-view.css");
+
+
+#preference_view #media_library_options {
+
+}
+
+#preference_view #media_library_options Region.action {
+    -fx-background-image: url("../images/remove.png");
+    -fx-background-position: center center;
+    -fx-background-size: 18 18;
+    -fx-pref-width: 24;
+    -fx-pref-height: 22;
+    -fx-background-color: #e1e1e1;
+    -fx-border-color: #adadad;
+    -fx-cursor: hand;
+}
+
+#preference_view #media_library_options #add_btn {
+    -fx-background-image: url("../images/add.png");
+}
+
+#preference_view #media_library_options #remove_btn {
+    -fx-background-image: url("../images/remove.png");
+}

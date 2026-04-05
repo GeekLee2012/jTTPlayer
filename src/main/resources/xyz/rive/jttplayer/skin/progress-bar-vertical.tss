@@ -1,0 +1,30 @@
+.progress_bar_vertical {
+    -fx-padding: 0;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+}
+
+.progress_bar_vertical .progress {
+    -fx-pref-width: $PROGRESS_WIDTH;
+    -fx-background-image: url("$PROGRESS_IMG");
+    -fx-background-position: bottom center;
+    -fx-background-repeat: no-repeat;
+    -fx-cursor: hand;
+}
+
+.progress_bar_vertical .thumb {
+    -fx-pref-width: $THUMB_WIDTH;
+    -fx-pref-height: $THUMB_HEIGHT;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("$THUMB_IMG");
+    /*-fx-background-position: $THUMB_POS_0;*/
+    -fx-cursor: hand;
+}
+
+.progress_bar_vertical .thumb:hover {
+    -fx-background-position: $THUMB_POS_1;
+}
+
+.progress_bar_vertical .thumb:pressed {
+    -fx-background-position: $THUMB_POS_2;
+}

@@ -1,0 +1,42 @@
+/* Slider Horizontal */
+.slider_horizontal {
+    /*-fx-pref-width: 52;
+    -fx-pref-height: 5;*/
+    -fx-background-color: transparent;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+.slider_horizontal .progress {
+    /*-fx-pref-height: 6;
+    -fx-background-image: url("../images/eqfactor_full2.bmp");*/
+    -fx-background-repeat: no-repeat;
+}
+
+.slider_horizontal .thumb {
+    /*-fx-pref-width: 12;
+    -fx-pref-height: 12;
+    -fx-background-image: url("../images/eqfactor_thumb2.bmp");*/
+    -fx-background-repeat: no-repeat;
+}
+
+/* Slider Vertical */
+.slider_vertical {
+    -fx-background-color: transparent;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+.slider_vertical .progress {
+    /*-fx-pref-width: 6;
+    -fx-background-image: url("../images/eqfactor_full.bmp");*/
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: bottom center;
+}
+
+.slider_vertical .thumb {
+    /*-fx-pref-width: 12;
+    -fx-pref-height: 12;
+    -fx-background-image: url("../images/eqfactor_thumb.bmp");*/
+    -fx-background-repeat: no-repeat;
+}

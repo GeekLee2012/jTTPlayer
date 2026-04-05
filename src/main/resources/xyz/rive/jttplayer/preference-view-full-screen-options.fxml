@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import xyz.rive.jttplayer.control.BorderTitleView?>
+<?import xyz.rive.jttplayer.control.ColorButton?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="xyz.rive.jttplayer.controller.PreferenceFullScreenOptionsController"
+      fx:id="full_screen_options"
+      stylesheets="@css/preference-view-full-screen-options.css">
+    <BorderTitleView title="视觉效果与歌词同屏显示">
+        <VBox.margin>
+            <Insets top="10" />
+        </VBox.margin>
+        <GridPane hgap="15" vgap="3">
+            <!-- Row -->
+            <HBox GridPane.rowIndex="0"
+                  GridPane.columnIndex="0">
+                <Label text="视觉效果："/>
+                <ComboBox />
+            </HBox>
+            <CheckBox GridPane.rowIndex="0"
+                      GridPane.columnIndex="1"
+                      text="对所有视觉效果使用统一设置"/>
+
+            <!-- Row -->
+            <HBox GridPane.rowIndex="1"
+                  GridPane.columnIndex="0">
+                <Label text="视觉效果与歌词位置：" />
+                <ComboBox />
+            </HBox>
+            <HBox GridPane.rowIndex="1"
+                  GridPane.columnIndex="1">
+                <Label text="歌词占居屏幕：" />
+                <ComboBox />
+            </HBox>
+        </GridPane>
+    </BorderTitleView>
+
+    <BorderTitleView title="歌词全屏显示">
+        <GridPane hgap="20" vgap="3">
+            <!-- Row -->
+            <HBox GridPane.rowIndex="0"
+                  GridPane.columnIndex="0">
+                <Label text="滚动模式："/>
+                <ComboBox />
+            </HBox>
+            <HBox GridPane.rowIndex="0"
+                  GridPane.columnIndex="1">
+                <Label text="对齐方式："/>
+                <ComboBox />
+            </HBox>
+
+            <!-- Row -->
+            <HBox GridPane.rowIndex="1"
+                  GridPane.columnIndex="0">
+                <Label text="淡入淡出：" />
+                <ComboBox />
+            </HBox>
+            <HBox GridPane.rowIndex="1"
+                  GridPane.columnIndex="1">
+                <Label text="竖直行距：" />
+                <Spinner min="0"
+                         max="100"
+                         editable="true" />
+                <Label text="像素" />
+            </HBox>
+
+            <!-- Row -->
+            <CheckBox GridPane.rowIndex="2"
+                      GridPane.columnIndex="0"
+                      text="淡入淡出当前行的歌词"/>
+            <CheckBox GridPane.rowIndex="2"
+                      GridPane.columnIndex="1"
+                      text="卡拉OK方式显示当前行歌词"/>
+
+            <!-- Row -->
+            <CheckBox GridPane.rowIndex="3"
+                      GridPane.columnIndex="0"
+                      text="以桌面为背景显示全屏歌词"/>
+            <CheckBox GridPane.rowIndex="3"
+                      GridPane.columnIndex="1"
+                      text="自动调整字体以适应歌词宽度"/>
+            <!-- Row -->
+            <HBox GridPane.rowIndex="4"
+                  GridPane.columnIndex="0"
+                  spacing="3">
+                <Label text="颜色:"/>
+                <ColorButton text="普通"/>
+                <ColorButton text="加亮"/>
+                <ColorButton text="背景"/>
+            </HBox>
+            <HBox GridPane.rowIndex="4"
+                  GridPane.columnIndex="1">
+                <Label text="字体:"/>
+                <Label fx:id="setup_font_btn"
+                       styleClass="action"
+                       text="选择"
+                       graphicTextGap="7">
+                    <HBox.margin>
+                        <Insets left="3" />
+                    </HBox.margin>
+                    <graphic>
+                        <Region styleClass="graphic"/>
+                    </graphic>
+                </Label>
+            </HBox>
+        </GridPane>
+    </BorderTitleView>
+</VBox>

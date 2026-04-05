@@ -1,0 +1,288 @@
+/*@font-face {
+    font-family: "PingFang SC";
+    src: url("../fonts/PingFangSC-Regular.ttf");
+}*/
+
+* {
+    -fx-background-repeat: no-repeat;
+    /* macOS、Windows、Linux */
+    -fx-font-family: "PingFang SC", "System", "Microsoft YaHei", "Segoe UI", "Noto Sans CJK", "sans-serif";
+    -pref-text-fill-1: #777777;
+    -app-text-fill-2: #8dbac5;
+    -app-color-2: #28445e;
+    -fx-text-fill: -pref-text-fill-1;
+}
+
+/* TextField */
+TextField {
+    -fx-pref-height: 26;
+    -fx-padding: 2 3;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+    -fx-highlight-fill: #137ad4;
+}
+
+/* TextArea */
+TextArea {
+    -fx-pref-height: 60;
+    -fx-pref-width: 268;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #a9a9a9;
+    -fx-wrap-text: true;
+}
+
+TextArea .scroll-pane {
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+}
+
+TextArea .content {
+    -fx-padding: 2 3;
+    -fx-background-insets: 0;
+    -fx-border-width: 0;
+    -fx-background-color: #ffffff;
+    -fx-border-color: transparent;
+}
+
+/* CheckBox */
+CheckBox {
+    -fx-label-padding: 0 3;
+    -fx-cursor: hand;
+}
+
+CheckBox .box {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+    -fx-background-image: url("../images/checkbox2.png");
+    -fx-background-size: 13 13;
+    -fx-pref-width: 13;
+    -fx-pref-height: 13;
+}
+
+CheckBox .box .mark {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+}
+
+CheckBox:selected .box {
+    -fx-background-image: url("../images/checkbox3.png");
+}
+
+/* Spinner */
+Spinner {
+    -fx-pref-width: 43;
+    -fx-pref-height: 20;
+    -fx-padding: 0;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+    -fx-focus-traversable: false;
+    -fx-effect: none;
+}
+
+Spinner:active {
+    -fx-effect: none;
+}
+
+Spinner .text-field {
+    -fx-padding: 2;
+    -fx-pref-width: 23;
+    -fx-pref-height: 20;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-border-color: transparent;
+    -fx-display-caret: false;
+    /*-fx-highlight-fill: none;
+    -fx-alignment: center-right;*/
+    /*-fx-border-color: #a1a1a1;*/
+}
+
+Spinner .increment-arrow-button,
+Spinner .decrement-arrow-button{
+    -fx-pref-width: 20;
+    -fx-pref-height: 20;
+    -fx-padding: 0;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-border-color: transparent;
+}
+
+Spinner .increment-arrow-button .increment-arrow,
+Spinner .decrement-arrow-button .decrement-arrow {
+    /*-fx-pref-width: 3;
+    -fx-pref-height: 3;
+    -fx-padding: 0;*/
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-border-color: transparent;
+}
+
+Spinner.spinner_m {
+    -fx-pref-width: 60;
+}
+
+Spinner.spinner_m .text-field {
+    -fx-pref-width: 40;
+}
+
+ComboBox {
+    -fx-pref-width: 95;
+    -fx-pref-height: 26;
+    -fx-min-height: 26;
+    -fx-padding: 0;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-background-color: #e1e1e1;
+    -fx-border-color: #c7c7c7;
+}
+
+ComboBox .text-input {
+    -fx-padding: 1;
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+}
+
+ComboBox .list-cell {
+    -fx-pref-width: 70;
+    -fx-pref-height: 24;
+    -fx-padding: 0 3;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+}
+
+ComboBox .arrow-button {
+    -fx-pref-width: 20;
+    -fx-pref-height: 20;
+    -fx-padding: 0 3;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+}
+
+ComboBox:disabled,
+ComboBox:disabled .list-cell {
+    -fx-opacity: 1 !important;
+    -fx-text-fill: #777777 !important;
+    -fx-background-color: #f0f0f0 !important;
+}
+
+ComboBox:disabled .arrow-button,
+ComboBox:disabled .arrow-button .arrow {
+    visibility: hidden;
+}
+/*
+ComboBox .scroll-bar {
+    visibility: hidden;
+    -fx-pref-width: 0;
+}
+
+ComboBox .scroll-bar .increment-button,
+ComboBox .scroll-bar .increment-button .increment-arrow,
+ComboBox .scroll-bar .decrement-button,
+ComboBox .scroll-bar .decrement-button .decrement-arrow {
+	visibility: hidden;
+    -fx-pref-height: 0;
+}
+
+ComboBox .scroll-bar .thumb,
+ComboBox .scroll-bar .track  {
+	visibility: hidden;
+}
+*/
+
+ComboBox .combo-box-popup .list-cell {
+    -fx-padding: 1 3;
+}
+
+ComboBox .combo-box-popup .list-cell:selected,
+ComboBox .combo-box-popup .list-cell:hover {
+    -fx-background-color: #137ad4;
+    -fx-text-fill: #ffffff;
+}
+
+ComboBox .combo-box-popup .list-cell:selected Label,
+ComboBox .combo-box-popup .list-cell:hover Label {
+    -fx-background-color: #137ad4;
+    -fx-text-fill: #ffffff;
+}
+
+
+Label.link {
+    /*-fx-text-fill: #0b24fb;*/
+    -fx-text-fill: #7d8af5;
+    -fx-cursor: hand;
+}
+
+Label.link:hover {
+    -fx-text-fill: #fa5051;
+    -fx-underline: true;
+}
+
+Label.action {
+    -fx-background-color: #e1e1e1;
+    -fx-border-color: #a9a9a9;
+    -fx-padding: 0 10;
+    -fx-cursor: hand;
+    -fx-pref-height: 26;
+}
+
+Region.action {
+    -fx-background-color: #e1e1e1;
+    -fx-border-color: #a9a9a9;
+    -fx-cursor: hand;
+}
+
+Label.action:hover {
+    -fx-background-color: #e5f1fa;
+    -fx-border-color: #3f87d6;
+}
+
+RadioButton {
+    -fx-cursor: hand;
+    -fx-graphic-text-gap: 0;
+}
+
+RadioButton .radio {
+    -fx-background-image: url("../images/radio_btn.png");
+    -fx-background-size: 13 13;
+    -fx-pref-width: 13;
+    -fx-pref-height: 13;
+    -fx-background-position: center center;
+}
+
+RadioButton .radio .dot {
+    -fx-visibility: hidden;
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+}
+
+RadioButton:selected .radio {
+    -fx-background-image: url("../images/radio_btn_selected.png");
+}
+
+RadioButton .text {
+    -fx-translate-x: -3;
+}
+
+.resizable,
+.h_resize {
+    -fx-cursor: h_resize;
+}
+
+.v_resize {
+    -fx-cursor: v_resize;
+}
+
+.se_resize {
+    -fx-cursor: se_resize;
+}

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import xyz.rive.jttplayer.control.AnimatedTrackMetadata?>
+<?import xyz.rive.jttplayer.control.ProgressBarHorizontal?>
+<?import xyz.rive.jttplayer.control.PlayTime?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Label?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:id="app_main"
+            fx:controller="xyz.rive.jttplayer.controller.MainPreviewController">
+    <Region fx:id="top"
+            AnchorPane.topAnchor="0"
+            AnchorPane.leftAnchor="0"
+            AnchorPane.rightAnchor="0" />
+
+    <Region fx:id="app_logo" />
+    <Region fx:id="set_btn" />
+    <Region fx:id="mini_btn" />
+    <Region fx:id="minimode_btn" />
+    <Region fx:id="close_btn" />
+
+    <AnimatedTrackMetadata fx:id="info" />
+    <HBox fx:id="visual_box"
+          alignment="CENTER">
+        <ImageView fx:id="track_cover" />
+    </HBox>
+
+    <Label fx:id="stereo"
+           visible="false"
+           managed="false"/>
+    <Label fx:id="status"
+           visible="false"
+           managed="false"/>
+
+    <ProgressBarHorizontal fx:id="play_progress"/>
+    <PlayTime fx:id="play_time"/>
+
+    <Region fx:id="stop_btn"
+            managed="false"
+            visible="false" />
+    <Region fx:id="open_btn"
+            managed="false"
+            visible="false" />
+    <Region fx:id="prev_btn" />
+    <Region fx:id="play_btn" />
+    <Region fx:id="pause_btn"
+            visible="false"
+            managed="false" />
+    <Region fx:id="next_btn" />
+    <Region fx:id="mode_single_btn" />
+    <Region fx:id="mode_loop_btn" />
+    <Region fx:id="mode_slider_btn" />
+    <Region fx:id="mode_circle_btn" />
+    <Region fx:id="mode_random_btn" />
+
+    <Region fx:id="mute" />
+    <ProgressBarHorizontal fx:id="volume_fill"/>
+
+    <Region fx:id="playback_queue_btn" />
+    <Region fx:id="equalizer_btn" />
+    <Region fx:id="lyric_btn" />
+    <Region fx:id="browser_btn" />
+</AnchorPane>

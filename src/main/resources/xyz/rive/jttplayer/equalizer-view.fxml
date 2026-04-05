@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import xyz.rive.jttplayer.control.SliderHorizontal?>
+<?import xyz.rive.jttplayer.control.SliderVertical?>
+<?import javafx.scene.layout.Region?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:id="equalizer_view"
+            fx:controller="xyz.rive.jttplayer.controller.EqualizerController"
+            onMouseClicked="#showNavigationContextMenu" >
+    <Region fx:id="top"
+            AnchorPane.topAnchor="0"
+            AnchorPane.leftAnchor="0"
+            AnchorPane.rightAnchor="0" />
+
+    <Region fx:id="close_btn"
+            AnchorPane.topAnchor="6"
+            AnchorPane.rightAnchor="10"
+            onMouseClicked="#closeView" />
+
+    <SliderHorizontal fx:id="balance"
+                      AnchorPane.leftAnchor="21"
+                      AnchorPane.topAnchor="49" />
+    <SliderHorizontal fx:id="surround"
+                      AnchorPane.leftAnchor="21"
+                      AnchorPane.topAnchor="80" />
+    <SliderVertical fx:id="preamp"
+                    AnchorPane.leftAnchor="103"
+                    AnchorPane.topAnchor="44" />
+
+    <!-- 10 Bands -->
+    <SliderVertical styleClass="eq_band" />
+    <SliderVertical styleClass="eq_band" />
+    <SliderVertical styleClass="eq_band" />
+    <SliderVertical styleClass="eq_band" />
+    <SliderVertical styleClass="eq_band" />
+    <SliderVertical styleClass="eq_band" />
+    <SliderVertical styleClass="eq_band" />
+    <SliderVertical styleClass="eq_band" />
+    <SliderVertical styleClass="eq_band" />
+    <SliderVertical styleClass="eq_band" />
+
+    <Region fx:id="equalizer_enabled_btn"
+            AnchorPane.leftAnchor="1"
+            AnchorPane.topAnchor="110"
+            onMouseClicked="#toggleEqualizerEnabled" />
+    <Region fx:id="equalizer_reset_btn"
+            AnchorPane.leftAnchor="113"
+            AnchorPane.topAnchor="110"
+            onMouseClicked="#resetEqualizer" />
+    <Region fx:id="equalizer_profile_btn"
+            AnchorPane.leftAnchor="1"
+            AnchorPane.topAnchor="225"
+            onMouseClicked="#showEqualizerProfile" />
+</AnchorPane>

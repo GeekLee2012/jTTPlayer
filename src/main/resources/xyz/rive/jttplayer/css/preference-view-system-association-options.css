@@ -1,0 +1,13 @@
+@import url("preference-view.css");
+
+#preference_view #system_association_options {
+
+}
+
+#preference_view #system_association_options #select_file_icon {
+    -fx-pref-height: 43;
+}
+
+#preference_view #system_association_options #select_player_icon {
+    -fx-pref-height: 43;
+}

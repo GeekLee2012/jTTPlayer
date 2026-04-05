@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Spinner?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:id="lyric_offset_view"
+            fx:controller="xyz.rive.jttplayer.controller.LyricOffsetController"
+            stylesheets="@css/lyric-offset-view.css">
+    <top>
+        <AnchorPane fx:id="top" >
+            <Label styleClass="title"
+                   text="调整全部歌词时间"
+                   AnchorPane.leftAnchor="7"
+                   AnchorPane.topAnchor="3"/>
+            <Region styleClass="close_btn"
+                    AnchorPane.rightAnchor="0"
+                    AnchorPane.topAnchor="0"
+                    onMouseClicked="#closeView"/>
+        </AnchorPane>
+    </top>
+    <center>
+        <VBox fx:id="center"
+              spacing="6">
+            <HBox>
+                <Label text="请输入要调整歌词的偏移时间："/>
+                <Spinner fx:id="offset"
+                         min="-1000000"
+                         initialValue="1000"
+                         max="1000000"
+                         amountToStepBy="100"
+                         editable="true" />
+                <Label text="毫秒">
+                    <HBox.margin>
+                        <Insets left="5" />
+                    </HBox.margin>
+                </Label>
+            </HBox>
+            <Label text="提示：负数表示提前，正数表示延后" />
+        </VBox>
+    </center>
+    <bottom>
+        <HBox fx:id="bottom"
+              alignment="TOP_CENTER">
+            <HBox styleClass="actions"
+                  spacing="12">
+                <HBox.margin>
+                    <Insets top="5" />
+                </HBox.margin>
+                <Label fx:id="apply_close"
+                       graphicTextGap="7"
+                       text="确定"
+                       onMouseClicked="#applyClose">
+                    <graphic>
+                        <Region styleClass="graphic"/>
+                    </graphic>
+                </Label>
+                <Label fx:id="cancel_close"
+                       text="取消"
+                       graphicTextGap="7"
+                       onMouseClicked="#closeView">
+                    <graphic>
+                        <Region styleClass="graphic"/>
+                    </graphic>
+                </Label>
+            </HBox>
+        </HBox>
+    </bottom>
+</BorderPane>

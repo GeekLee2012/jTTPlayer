@@ -1,0 +1,155 @@
+@import url("common.css");
+
+.pop_menu {
+    -fx-padding: 2 1;
+    -fx-background-color: #fcfcf9;
+    -fx-border-width: 1;
+    -fx-border-color: #cecece;
+    /*-fx-effect: innershadow(three-pass-box, #000000, 3, 1, 0, 0);*/
+    -menu-text-fill: #777777;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+}
+
+.pop_menu.with_slogan {
+    -fx-padding: 1;
+}
+
+.pop_menu .slogan_box {
+    -fx-min-width: 26;
+    -fx-max-width: 26;
+    -fx-background-color: linear-gradient(to bottom right, #98c1c6, #679095);
+    -fx-alignment: bottom-center;
+}
+
+.pop_menu .slogan_box Label {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16;
+    -fx-text-alignment: center;
+    -fx-wrap-text: true;
+    -fx-padding: 0 0 2 0;
+}
+
+.pop_menu .menu_box {
+    /*-fx-background-color: #fcfcf9;*/
+    -fx-spacing: 1;
+    -fx-border-image-source: url("../images/menuitem_graphic.png");
+    -fx-border-image-repeat: no-repeat;
+    -fx-border-image-width: 0 0 0 25;
+    -fx-border-image-slice: 0 0 0 25;
+}
+
+.pop_menu .menu_box HBox {
+    -fx-padding: 0 0 0 -25;
+    -fx-spacing: 7;
+    -fx-max-width: Infinity;
+    -fx-alignment: center-left;
+}
+
+.pop_menu.with_slogan .menu_box HBox {
+    -fx-padding: 0 0 0 -24;
+}
+
+.pop_menu .menu_box HBox .container {
+    -fx-padding: 1;
+    -fx-pref-height: 24;
+    -fx-border-color: transparent;
+    -fx-alignment: center-left;
+    -fx-max-width: Infinity;
+    -fx-cursor: hand;
+}
+
+.pop_menu .menu_box HBox .container:hover {
+    -fx-background-color: #c2d2ed;
+    -fx-border-color: #356cc2;
+    -fx-border-radius: 1;
+    -fx-background-radius: 1;
+    -fx-cursor: hand;
+}
+
+.pop_menu .menu_box HBox .container .icon_box {
+    -fx-border-color: transparent;
+    -fx-padding: 1;
+    -fx-alignment: center;
+}
+
+.pop_menu .menu_box HBox.active .container .icon_box {
+    -fx-background-color: #d2e2fd;
+    -fx-border-color: #356cc2;
+    -fx-alignment: center;
+}
+
+.pop_menu .menu_box HBox .container .icon {
+    -fx-pref-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+}
+
+.pop_menu .menu_box HBox.active.selected .container .icon {
+    -fx-background-image: url("../images/selected.png");
+    -fx-background-size: 8 8;
+    -fx-background-position: center center;
+}
+
+.pop_menu .menu_box HBox .container .icon_shadow {
+    -fx-pref-width: 16;
+    -fx-pref-height: 16;
+    /*-fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;*/
+}
+
+.pop_menu .menu_box HBox .container Label {
+    -fx-font-size: 13;
+    -fx-text-fill: -menu-text-fill;
+    -fx-alignment: center-left;
+}
+
+.pop_menu .menu_box HBox .container .submenu_flag {
+    -fx-pref-width: 0;
+    -fx-min-width: 0;
+    -fx-pref-height: 0;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+.pop_menu .menu_box HBox.more_menu .container .submenu_flag {
+    -fx-pref-width: 8;
+    -fx-min-width: 8;
+    -fx-pref-height: 14;
+    -fx-background-image: url("../images/arrow_right3.png");
+    -fx-background-size: 5 9;
+}
+
+.pop_menu .menu_box HBox.more_menu:hover .container .submenu_flag {
+    -fx-background-image: url("../images/arrow_right4.png");
+}
+
+.pop_menu .menu_box HBox.menuitem_sp,
+.pop_menu .menu_box HBox.menuitem_sp .container {
+    -fx-pref-height: 5;
+    -fx-min-height: 5;
+    -fx-max-height: 5;
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+}
+
+.pop_menu .menu_box HBox.menuitem_sp .container:hover {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-cursor: default;
+}
+
+.pop_menu .menu_box HBox.menuitem_sp .icon_box,
+.pop_menu .menu_box HBox.menuitem_sp .icon,
+.pop_menu .menu_box HBox.menuitem_sp .submenu_flag {
+    -fx-pref-height: 0;
+    -fx-padding: 0;
+}
+
+.pop_menu .menu_box HBox.menuitem_sp Label {
+    -fx-pref-height: 1;
+    -fx-min-height: 1;
+    -fx-max-height: 1;
+    -fx-background-color: #e1e1e1;
+}

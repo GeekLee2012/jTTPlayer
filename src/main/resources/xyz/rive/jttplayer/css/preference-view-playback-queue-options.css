@@ -1,0 +1,14 @@
+@import url("preference-view.css");
+
+#preference_view #playback_queue_options {
+
+}
+
+#preference_view #playback_queue_options TextField {
+    -fx-pref-width: 113;
+}
+
+#preference_view #playback_queue_options .font_btn,
+#preference_view #playback_queue_options .config_btn {
+    -fx-pref-width: 93;
+}

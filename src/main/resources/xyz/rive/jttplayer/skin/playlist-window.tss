@@ -1,0 +1,374 @@
+@import url("common.css");
+
+/* ListView */
+#playback_queue_view ListView {
+    -fx-background-color: transparent;
+}
+
+#playback_queue_view .list-view .list-cell {
+	-fx-background-color: transparent;
+	-fx-border-color: transparent;
+	-fx-padding: 0;
+}
+
+#playback_queue_view .list-view .list-cell:empty:hover {
+	-fx-background-color: transparent;
+	-fx-cursor: default;
+}
+
+#playback_queue_view .list-view .list-cell:hover {
+	-fx-background-radius: 2;
+	-fx-cursor: hand;
+	/*-fx-font-weight: bold;*/
+}
+
+#playback_queue_view .list-view .list-cell .selected
+/*,#playback_queue_view .list-view .list-cell:selected*/ {
+	-fx-border-width: 0.8;
+	-fx-background-radius: 1;
+	-fx-border-radius: 1;
+	/*-fx-font-weight: bold;*/
+}
+
+#playback_queue_view .list-view .list-cell .current {
+    -fx-border-color: #eeeeee;
+}
+
+/* Scrollbar */
+#playback_queue_view .scroll-bar {
+	-fx-pref-width: $SCROLLBAR_WIDTH;
+	-fx-pref-height: $SCROLLBAR_HEIGHT;
+	-fx-padding: 0;
+	-fx-background-color: transparent;
+	-fx-background-image: url("$SCROLLBAR_IMG");
+    -fx-background-repeat: repeat-y;
+    -fx-cursor: default !important;
+}
+
+#playback_queue_view .scroll-bar:horizontal {
+    visibility: hidden;
+    -fx-pref-height: 0;
+}
+
+#playback_queue_view .scroll-bar .decrement-button {
+	/*visibility: hidden;*/
+	-fx-pref-width: $SCROLLBAR_BTN_WIDTH;
+    -fx-pref-height: $SCROLLBAR_BTN_HEIGHT;
+    -fx-background-position: 0 0;
+    -fx-background-image: url("$SCROLLBAR_BTN_IMG");
+    -fx-background-repeat: no-repeat;
+}
+
+#playback_queue_view .scroll-bar .decrement-button .decrement-arrow {
+	visibility: hidden;
+	-fx-pref-height: 0;
+}
+
+#playback_queue_view .scroll-bar .track  {
+	visibility: hidden;
+}
+
+#playback_queue_view .scroll-bar .thumb  {
+	-fx-border-image-source: url("$SCROLLBAR_THUMB_IMG");
+    -fx-border-image-repeat: no-repeat;
+    -fx-border-image-width: 3 3 3 3;
+    -fx-border-image-slice: 3 3 3 3 fill;
+    -fx-pref-width: $SCROLLBAR_THUMB_WIDTH;
+    -fx-pref-height: $SCROLLBAR_THUMB_HEIGHT;
+    -fx-max-height: $SCROLLBAR_THUMB_HEIGHT;
+    -fx-cursor: default !important;
+}
+
+#playback_queue_view .scroll-bar .increment-button  {
+	/*visibility: hidden;*/
+	-fx-pref-width: $SCROLLBAR_BTN_WIDTH;
+    -fx-pref-height: $SCROLLBAR_BTN_HEIGHT;
+    -fx-background-position: $SCROLLBAR_BTN_VPOS_0;
+    -fx-background-image: url("$SCROLLBAR_BTN_IMG");
+    -fx-background-repeat: no-repeat;
+}
+
+#playback_queue_view .scroll-bar .increment-button .increment-arrow {
+	visibility: hidden;
+	-fx-pref-height: 0;
+}
+
+/* View */
+#playback_queue_view #view_bg {
+    -fx-border-image-repeat: no-repeat;
+    -fx-border-image-source: url("$BKGND");
+    -fx-border-image-width: $RESIZE_RECT;
+    -fx-border-image-slice: $RESIZE_RECT fill;
+}
+
+#playback_queue_view #view_title {
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("$TITLE_IMG");
+}
+
+#playback_queue_view #top {
+    -fx-pref-width: 100%;
+    -fx-pref-height: $TOP_HEIGHT;
+    -fx-background: transparent;
+}
+
+#playback_queue_view #close_btn {
+    -fx-pref-width: $CLOSE_WIDTH;
+    -fx-pref-height: $CLOSE_HEIGHT;
+    -fx-cursor: hand;
+    -fx-background-image: url("$CLOSE_IMG");
+}
+
+#playback_queue_view #close_btn:hover {
+    -fx-background-position: $CLOSE_POS_1;
+}
+
+#playback_queue_view #close_btn:pressed {
+    -fx-background-position: $CLOSE_POS_2;
+}
+
+#playback_queue_view #close_btn,
+#playback_queue_view #toolbar HBox:hover {
+    -fx-cursor: hand;
+}
+
+/* action */
+#playback_queue_view #toolbar HBox {
+    -fx-cursor: hand;
+    -fx-pref-width: $TOOLBAR_ITEM_WIDTH;
+    -fx-pref-height: $TOOLBAR_ITEM_HEIGHT;
+    -fx-alignment: center;
+}
+
+#playback_queue_view #toolbar HBox Region {
+    -fx-pref-width: $TOOLBAR_ITEM_IMG_WIDTH;
+    -fx-pref-height: $TOOLBAR_ITEM_IMG_HEIGHT;
+}
+
+#playback_queue_view #toolbar HBox Region {
+    -fx-background-image: url("$TOOLBAR_IMG");
+}
+
+#playback_queue_view #toolbar HBox:hover Region {
+    -fx-background-image: url("$TOOLBAR_HOT_IMG");
+}
+
+#playback_queue_view #toolbar .item_1 Region {
+    -fx-background-position: $TOOLBAR_ITEM_1_POS_0;
+}
+
+#playback_queue_view #toolbar .item_1:hover Region {
+    -fx-background-position: $TOOLBAR_ITEM_1_POS_0;
+}
+
+#playback_queue_view #toolbar .item_2 Region {
+    -fx-background-position: $TOOLBAR_ITEM_2_POS_0;
+}
+
+#playback_queue_view #toolbar .item_2:hover Region {
+    -fx-background-position: $TOOLBAR_ITEM_2_POS_0;
+}
+
+#playback_queue_view #toolbar .item_3 Region {
+    -fx-background-position: $TOOLBAR_ITEM_3_POS_0;
+}
+
+#playback_queue_view #toolbar .item_3:hover Region {
+    -fx-background-position: $TOOLBAR_ITEM_3_POS_0;
+}
+
+#playback_queue_view #toolbar .item_4 Region {
+    -fx-background-position: $TOOLBAR_ITEM_4_POS_0;
+}
+
+#playback_queue_view #toolbar .item_4:hover Region {
+    -fx-background-position: $TOOLBAR_ITEM_4_POS_0;
+}
+
+#playback_queue_view #toolbar .item_5 Region {
+    -fx-background-position: $TOOLBAR_ITEM_5_POS_0;
+}
+
+#playback_queue_view #toolbar .item_5:hover Region {
+    -fx-background-position: $TOOLBAR_ITEM_5_POS_0;
+}
+
+#playback_queue_view #toolbar .item_6 Region {
+    -fx-background-position: $TOOLBAR_ITEM_6_POS_0;
+}
+
+#playback_queue_view #toolbar .item_6:hover Region {
+    -fx-background-position: $TOOLBAR_ITEM_6_POS_0;
+}
+
+#playback_queue_view #toolbar .item_7 Region {
+    -fx-background-position: $TOOLBAR_ITEM_7_POS_0;
+}
+
+#playback_queue_view #toolbar .item_7:hover Region {
+    -fx-background-position: $TOOLBAR_ITEM_7_POS_0;
+}
+
+#playback_queue_view .list-cell Label {
+    -fx-text-fill: $TEXT_COLOR;
+    /*-fx-font-weight: bold;*/
+}
+
+/* #playback_queue_view .list-cell:selected Label */
+#playback_queue_view .list-cell .selected Label {
+    -fx-text-fill: #ffffff;
+}
+
+#playback_queue_view #name_list {
+    -fx-pref-height: 4096;
+}
+
+#playback_queue_view #name_list Label {
+    -fx-padding: 0 2;
+    -fx-border-width: 1;
+    -fx-border-color: transparent;
+    -fx-cursor: hand;
+    -fx-text-fill: $TEXT_COLOR;
+}
+
+#playback_queue_view #name_list .scroll-bar {
+	-fx-pref-width: 0;
+	-fx-pref-height: 0;
+}
+
+#playback_queue_view #name_list .list-cell:selected {
+    -fx-font-weight: bold;
+    -fx-text-fill: #047ddb;
+	-fx-border-color: transparent;
+}
+
+#playback_queue_view #name_list .selected  Label,
+#playback_queue_view #name_list .list-cell:selected Label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #047ddb;
+}
+
+
+#playback_queue_view #splitter {
+    -fx-pref-width: 5;
+    /*-fx-background-color: linear-gradient(to right, $TEXT_COLOR, #fcfcfc);*/
+    /*-fx-background-color: $TEXT_COLOR;
+    -fx-border-color: $TEXT_COLOR;*/
+    -fx-background-color: $SPLITTER_BKGND;
+    -fx-border-color: $SPLITTER_BORDER_COLOR;
+    -fx-opacity: 1;
+    -fx-border-width: 1 1.3 1 0;
+    -fx-padding: 0 -0.5 0 0;
+    -fx-alignment: center-right;
+    -fx-cursor: h-resize;
+}
+
+#playback_queue_view #splitter.collapsed {
+    -fx-border-width: 1 0 1 1.3;
+   -fx-padding: 0 0 0 -0.5;
+   -fx-alignment: center-left;
+   -fx-cursor: hand;
+}
+
+#playback_queue_view #splitter #collapse_btn {
+    -fx-pref-width: 6;
+    -fx-pref-height: 12;
+    -fx-background-size: 6 12;
+    -fx-rotate: 180deg;
+    -fx-cursor: hand;
+    -fx-shape: "M0,20.94V1.6A1.4,1.4,0,0,1,1.15,0,1.55,1.55,0,0,1,2.47.46l6.09,5L26.23,19.76c1,.8,1,1.61,0,2.42L2.57,41.39a2.57,2.57,0,0,1-.83.48A1.34,1.34,0,0,1,0,40.77a4.16,4.16,0,0,1,0-.61Z";
+    /*-fx-background-color: $DATA_BKGND;*/
+    -fx-background-color: $SPLITTER_BTN_COLOR;
+}
+
+#playback_queue_view #splitter.collapsed #collapse_btn {
+    -fx-rotate: 0deg;
+}
+
+#playback_queue_view #data_list {
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-padding: 0;
+}
+
+#playback_queue_view #name_list HBox {
+    -fx-cursor: hand;
+    -fx-padding: 3 4 3 0;
+    -fx-border-color: transparent;
+}
+
+#playback_queue_view #data_list HBox {
+    -fx-cursor: hand;
+    -fx-padding: 4 4 4 0;
+    -fx-border-color: transparent;
+}
+
+#playback_queue_view #data_list HBox.current {
+    -fx-border-color: transparent;
+}
+
+#playback_queue_view #data_list .flag {
+    -fx-pref-width: 5;
+    -fx-pref-height: 10;
+    -fx-max-width: 5;
+    -fx-max-height: 10;
+    -fx-background-image: none;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+    -fx-visibility: hidden;
+    -fx-shape: "M0,20.94V1.6A1.4,1.4,0,0,1,1.15,0,1.55,1.55,0,0,1,2.47.46l6.09,5L26.23,19.76c1,.8,1,1.61,0,2.42L2.57,41.39a2.57,2.57,0,0,1-.83.48A1.34,1.34,0,0,1,0,40.77a4.16,4.16,0,0,1,0-.61Z";
+    -fx-background-color: transparent;
+}
+
+#playback_queue_view #data_list .title {
+    -fx-max-width: Infinity;
+    -fx-text-overrun: ellipsis;
+    -fx-padding: 0 -15 0 0;
+}
+
+#playback_queue_view #data_list .duration {
+    -fx-pref-width: 36;
+    -fx-alignment: center-right;
+}
+
+#playback_queue_view #name_list .list-cell:even,
+#playback_queue_view #data_list .list-cell:even {
+    -fx-background-color: $DATA_BKGND;
+}
+
+#playback_queue_view #name_list .list-cell:odd,
+#playback_queue_view #data_list .list-cell:odd {
+	-fx-background-color: $DATA_BKGND_2;
+}
+
+#playback_queue_view #data_list .list-cell .selected {
+    -fx-background-color: $DATA_SELECT_BKGND !important;
+    /*-fx-border-color: #047ddb;*/
+    -fx-border-color: $DATA_SELECT_BORDER_COLOR;
+}
+
+#playback_queue_view #data_list .list-cell .selected Label {
+    /*-fx-text-fill: #047ddb !important;*/
+    -fx-text-fill: $DATA_SELECT_TEXT_COLOR !important;
+}
+
+#playback_queue_view #data_list .list-cell .selected.active .flag {
+    /*-fx-background-color: #047ddb !important;*/
+    -fx-background-color: $DATA_SELECT_TEXT_COLOR !important;
+}
+
+#playback_queue_view #data_list .list-cell .active .flag {
+   -fx-background-color: $HILIGHT_COLOR;
+}
+
+#playback_queue_view #name_list .list-cell .active Label,
+#playback_queue_view #data_list .list-cell .active Label {
+	-fx-text-fill: $HILIGHT_COLOR;
+}
+
+
+#playback_queue_view #data_list .list-cell .drag_over {
+    -fx-padding: 2 4 3 0;
+    -fx-border-width: 3 1 2 1;
+    -fx-border-color: $HILIGHT_COLOR transparent transparent transparent;
+}

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import xyz.rive.jttplayer.control.BorderTitleView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.geometry.Insets?>
+<?import xyz.rive.jttplayer.control.SimpleTableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="xyz.rive.jttplayer.controller.PreferenceSoundEffectOptionsController"
+      fx:id="sound_effect_options"
+      stylesheets="@css/preference-view-sound-effect-options.css"
+      maxHeight="Infinity">
+    <BorderTitleView title="Winamp 2音效插件(dsp_*.dll)"
+                     maxHeight="Infinity"
+                     VBox.vgrow="ALWAYS"
+                     spacing="6">
+        <HBox>
+            <Label text="插件目录：" />
+            <TextField HBox.hgrow="ALWAYS"/>
+            <Region styleClass="select_file_btn">
+                <HBox.margin>
+                    <Insets left="3"/>
+                </HBox.margin>
+            </Region>
+        </HBox>
+        <SimpleTableView VBox.vgrow="ALWAYS">
+            <VBox.margin>
+                <Insets top="2" />
+            </VBox.margin>
+            <header>
+                <Label text="描述"/>
+                <Label text="文件路径" />
+            </header>
+        </SimpleTableView>
+        <AnchorPane>
+            <Label AnchorPane.leftAnchor="0"
+                   AnchorPane.topAnchor="2"
+                   fx:id="plugin_config_btn"
+                   styleClass="action"
+                   text="配置插件">
+                <graphic>
+                    <Region styleClass="graphic"/>
+                </graphic>
+            </Label>
+            <HBox AnchorPane.rightAnchor="0"
+                  AnchorPane.topAnchor="2">
+                <Label text="调整加载顺序"/>
+                <Region fx:id="move_up_btn"
+                        styleClass="small_btn"/>
+                <Region fx:id="move_down_btn"
+                        styleClass="small_btn"/>
+            </HBox>
+        </AnchorPane>
+        <Label text="提示：选定即可激活，并且可以同时激活都个插件！"/>
+    </BorderTitleView>
+</VBox>

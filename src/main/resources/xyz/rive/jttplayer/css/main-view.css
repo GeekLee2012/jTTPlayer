@@ -1,0 +1,371 @@
+@import url("common.css");
+
+#app_main {
+    -fx-background-radius: 12;
+    /*-fx-background-image: url("../images/player_skin.bmp");*/
+    -fx-background-position: center center;
+    /*-fx-background-size: 327 141;*/
+    /*-fx-border-radius: 12;
+    -fx-border-size: 1;
+    -fx-padding: 0 6 3 6;*/
+    -fx-opacity: 1;
+    /*-fx-effect: innershadow(three-pass-box, #a0a0a0, 3, 1, 0, 0);*/
+}
+
+/****** Top ******/
+#app_main #top {
+    -fx-pref-width: 100%;
+    -fx-pref-height: 34;
+    -fx-background: transparent;
+}
+
+#app_logo {
+    -fx-background-image: url("../images/TTPlayer_x32.png");
+    -fx-background-position: center center;
+    /*
+    -fx-background-size: 16 16;
+    -fx-pref-width: 16;
+    -fx-pref-height: 16;
+    */
+    -fx-padding: 0 2;
+}
+
+/*
+#app_main #top_right_actions {
+    -fx-pref-height: 21;
+    -fx-spacing: 3;
+}
+
+#app_main #top_right_actions Region {
+    -fx-cursor: hand;
+}
+
+#app_main #open_btn {
+    -fx-pref-width: 27;
+    -fx-background-image: url("../images/open.bmp");
+}
+
+#app_main #open_btn:hover {
+    -fx-background-position: -27 0;
+}
+
+#app_main #open_btn:pressed {
+    -fx-background-position: -54 0;
+}
+
+#app_main #set_btn {
+    -fx-pref-width: 18;
+    -fx-background-image: url("../images/set.png");
+}
+
+#app_main #set_btn:hover {
+    -fx-background-position: -18 0;
+}
+
+#app_main #set_btn:pressed {
+    -fx-background-position: -36 0;
+}
+
+#app_main #mini_btn {
+    -fx-pref-width: 18;
+    -fx-background-image: url("../images/minimize.png");
+}
+
+#app_main #mini_btn:hover {
+    -fx-background-position: -18 0;
+}
+
+#app_main #mini_btn:pressed {
+    -fx-background-position: -36 0;
+}
+
+#app_main #minimode_btn {
+    -fx-pref-width: 18;
+    -fx-background-image: url("../images/minimode.png");
+}
+
+#app_main #minimode_btn:hover {
+    -fx-background-position: -18 0;
+}
+
+#app_main #minimode_btn:pressed {
+    -fx-background-position: -36 0;
+}
+
+#app_main #close_btn {
+    -fx-pref-width: 18;
+    -fx-background-image: url("../images/close.png");
+}
+
+#app_main #close_btn:hover {
+    -fx-background-position: -18 0;
+}
+
+#app_main #close_btn:pressed {
+    -fx-background-position: -36 0;
+}
+*/
+
+
+/****** Center ******/
+#app_main #center {
+    -fx-padding: 0 3 5 3;
+}
+
+#app_main #center #content {
+    -fx-pref-height: 64;
+    -fx-min-height: 64;
+}
+
+#app_main #center #spectrum {
+    -fx-pref-width: 90;
+    -fx-pref-height: 90;
+    -fx-background-color: transparent;
+    -fx-opacity: 0.8;
+    -fx-background-radius: 2;
+}
+
+#app_main #center #track_cover {
+    -fx-pref-width: 90;
+    -fx-pref-height: 90;
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+}
+
+#app_main #center #ext_states {
+    -fx-spacing: 5;
+}
+
+#app_main #ext_states Label {
+    -fx-text-fill: -app-text-fill-2;
+    -fx-font-size: 12;
+    -fx-font-weight: bold;
+}
+
+#app_main #ext_states #play_state {
+    -fx-pref-width: 75;
+    -fx-alignment: center-right;
+}
+
+#app_main #center_bottom {
+    -fx-pref-height: 56;
+    -fx-alignment: center;
+}
+
+#app_main #app_logo,
+#app_main #info,
+#app_main #play_time,
+#app_main #set_btn,
+#app_main #mini_btn,
+#app_main #minimode_btn,
+#app_main #close_btn,
+#app_main #open_btn,
+#app_main #stop_btn,
+#app_main #prev_btn,
+#app_main #play_btn,
+#app_main #pause_btn,
+#app_main #next_btn,
+#app_main #mode_single_btn,
+#app_main #mode_loop_btn,
+#app_main #mode_slider_btn,
+#app_main #mode_circle_btn,
+#app_main #mode_random_btn,
+#app_main #volume_status,
+#app_main #playback_queue_btn,
+#app_main #equalizer_btn,
+#app_main #lyric_btn,
+#app_main #browser_btn {
+    -fx-cursor: hand;
+}
+
+/*
+#app_main #volume_status {
+    -fx-pref-width: 15;
+    -fx-pref-height: 15;
+    -fx-cursor: hand;
+    -fx-background-image: url("../images/mute.bmp");
+}
+
+
+#app_main #volume_status.mute {
+    -fx-background-position: -15 0;
+}
+
+#app_main #center_bottom Region {
+    -fx-cursor: hand;
+}
+
+#app_main #play_ext_action {
+    -fx-padding: 0;
+}
+
+#app_main #playback_queue_btn {
+    -fx-pref-width: 39;
+    -fx-background-image: url("../images/playlist.png");
+}
+
+#app_main #playback_queue_btn.active,
+#app_main #playback_queue_btn:hover {
+    -fx-pref-width: 39;
+    -fx-background-image: url("../images/playlist.png");
+    -fx-background-position: -39 0;
+}
+
+#app_main #equalizer_btn {
+    -fx-pref-width: 39;
+    -fx-background-image: url("../images/equalizer.png");
+}
+
+#app_main #equalizer_btn.active,
+#app_main #equalizer_btn:hover {
+    -fx-pref-width: 39;
+    -fx-background-image: url("../images/equalizer.png");
+    -fx-background-position: -39 0;
+}
+
+#app_main #lyric_btn {
+    -fx-pref-width: 39;
+    -fx-background-image: url("../images/lyric.png");
+}
+
+#app_main #lyric_btn.active,
+#app_main #lyric_btn:hover {
+    -fx-pref-width: 39;
+    -fx-background-image: url("../images/lyric.png");
+    -fx-background-position: -39 0;
+}
+
+#app_main #browser_btn {
+    -fx-pref-width: 49;
+    -fx-background-image: url("../images/browser.png");
+}
+
+#app_main #browser_btn.active,
+#app_main #browser_btn:hover {
+    -fx-pref-width: 49;
+    -fx-background-image: url("../images/browser.png");
+    -fx-background-position: -49 0;
+}
+*/
+
+/****** Bottom ******/
+#app_main #bottom {
+    /*-fx-spacing: 2;*/
+}
+
+#app_main #play_ext_action Region {
+    -fx-pref-height: 22;
+    -fx-cursor: hand;
+}
+
+#app_main #bottom Region:hover {
+    -fx-cursor: hand;
+}
+
+/*
+#app_main #stop_btn {
+    -fx-pref-width: 56;
+    -fx-background-image: url("../images/stop.bmp");
+}
+
+#app_main #stop_btn:disabled {
+    -fx-background-position: -168 0;
+}
+
+#app_main #stop_btn:hover {
+    -fx-background-position: -56 0;
+}
+
+#app_main #stop_btn:pressed {
+    -fx-background-position: -112 0;
+}
+
+#app_main #prev_btn {
+    -fx-pref-width: 45;
+    -fx-background-image: url("../images/prev.png");
+}
+
+#app_main #prev_btn:hover {
+    -fx-background-position: -45 0;
+}
+
+#app_main #prev_btn:pressed {
+    -fx-background-position: -90 0;
+}
+
+#app_main #next_btn {
+    -fx-pref-width: 45;
+    -fx-background-image: url("../images/next.png");
+}
+
+#app_main #next_btn:hover {
+    -fx-background-position: -45 0;
+}
+
+#app_main #next_btn:pressed {
+    -fx-background-position: -90 0;
+}
+
+#app_main #play_btn {
+    -fx-pref-width: 56;
+    -fx-background-image: url("../images/play.png");
+    -fx-translate-y: -5.5;
+}
+
+#app_main #play_btn:hover {
+    -fx-background-position: -56 0;
+}
+
+#app_main #play_btn:pressed {
+    -fx-background-position: -112 0;
+}
+
+#app_main #pause_btn {
+    -fx-pref-width: 56;
+    -fx-background-image: url("../images/pause.png");
+    -fx-visibility: hidden;
+    -fx-translate-y: -5.5;
+}
+
+#app_main #pause_btn:hover {
+    -fx-background-position: -56 0;
+}
+
+
+#app_main #pause_btn:pressed {
+    -fx-background-position: -112 0;
+}
+
+#app_main #mode_btn {
+    -fx-pref-width: 45;
+    -fx-background-image: url("../images/mode_03.png");
+}
+
+#app_main #mode_btn:hover {
+    -fx-background-position: -45 0;
+}
+
+#app_main #mode_btn:pressed {
+    -fx-background-position: -90 0;
+}
+
+#app_main #mode_btn.mode_0 {
+    -fx-background-image: url("../images/mode_01.png");
+}
+
+#app_main #mode_btn.mode_1 {
+    -fx-background-image: url("../images/mode_02.png");
+}
+
+#app_main #mode_btn.mode_2 {
+    -fx-background-image: url("../images/mode_03.png");
+}
+
+#app_main #mode_btn.mode_3 {
+    -fx-background-image: url("../images/mode_04.png");
+}
+
+#app_main #mode_btn.mode_4 {
+    -fx-background-image: url("../images/mode_05.png");
+}
+*/

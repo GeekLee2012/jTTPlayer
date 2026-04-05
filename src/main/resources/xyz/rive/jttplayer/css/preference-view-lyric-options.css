@@ -1,0 +1,11 @@
+@import url("preference-view.css");
+
+#preference_view #lyric_options {
+
+}
+
+#preference_view #lyric_options #win_mode_scroll_mode,
+#preference_view #lyric_options #win_mode_alignment,
+#preference_view #lyric_options #win_mode_fade_in_fade_out  {
+    -fx-pref-width: 130px;
+}

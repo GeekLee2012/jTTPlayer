@@ -1,0 +1,26 @@
+@import url("preference-view.css");
+
+#preference_view #visual_options {
+
+}
+
+#preference_view #visual_options #visual_types,
+#preference_view #visual_options #visual_speed {
+    -fx-pref-width: 139;
+}
+
+#preference_view #visual_options #setup_font_btn .graphic {
+    -fx-pref-width: 16;
+    -fx-min-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/font.png");
+    -fx-background-position: center center;
+}
+
+#preference_view #visual_options #text_config_btn .graphic {
+    -fx-pref-width: 16;
+    -fx-min-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/write_text.png");
+    -fx-background-position: center center;
+}

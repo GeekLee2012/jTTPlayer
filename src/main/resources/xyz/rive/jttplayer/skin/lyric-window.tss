@@ -1,0 +1,128 @@
+@import url("common.css");
+
+
+#lyric_view #view_bg {
+    -fx-border-image-repeat: no-repeat;
+    -fx-border-image-source: url("$BKGND");
+    -fx-border-image-repeat: no-repeat;
+    -fx-border-image-width: $RESIZE_RECT;
+    -fx-border-image-slice: $RESIZE_RECT fill;
+}
+
+#lyric_view #top {
+    -fx-pref-width: 100%;
+    -fx-pref-height: $TOP_HEIGHT;
+    -fx-background: transparent;
+}
+
+#lyric_view #view_title {
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("$TITLE_IMG");
+}
+
+#lyric_view #desklrc_btn {
+    -fx-pref-width: $DESKLRC_WIDTH;
+    -fx-pref-height: $DESKLRC_HEIGHT;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("$DESKLRC_IMG");
+}
+
+#lyric_view #desklrc_btn:hover {
+    -fx-background-position: $DESKLRC_POS_1;
+}
+
+#lyric_view #desklrc_btn:pressed {
+    -fx-background-position: $DESKLRC_POS_2;
+}
+
+#lyric_view #ontop_btn {
+    -fx-pref-width: $ONTOP_WIDTH;
+    -fx-pref-height: $ONTOP_HEIGHT;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("$ONTOP_IMG");
+}
+
+#lyric_view #ontop_btn:hover {
+    -fx-background-position: $ONTOP_POS_1;
+}
+
+#lyric_view #ontop_btn.active,
+#lyric_view #ontop_btn:pressed {
+    -fx-background-position: $ONTOP_POS_2;
+}
+
+#lyric_view #close_btn {
+    -fx-pref-width: $CLOSE_WIDTH;
+    -fx-pref-height: $CLOSE_HEIGHT;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("$CLOSE_IMG");
+}
+
+#lyric_view #close_btn:hover {
+    -fx-background-position: $CLOSE_POS_1;
+}
+
+#lyric_view #close_btn:pressed {
+    -fx-background-position: $CLOSE_POS_2;
+}
+
+#lyric_view #desklrc_btn,
+#lyric_view #ontop_btn,
+#lyric_view #close_btn {
+    -fx-cursor: hand;
+}
+
+/****** Center ******/
+#lyric_view #lyric_content .line {
+    -fx-wrap-text: true;
+}
+
+#lyric_view #lyric_content .line Label {
+    -fx-text-fill: #5277a8;
+    -fx-font-size: 14;
+    -fx-wrap-text: true;
+    -fx-font-weight: normal;
+}
+
+#lyric_view #lyric_content .line.active Label {
+    -fx-text-fill: #11243c;
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+}
+
+#lyric_view #lyric_content .line.locator_current Label {
+    -fx-text-fill: $LOCATOR_TEXT_COLOR !important;
+}
+
+#lyric_view #lyric_content .line .word {
+    -fx-fill: #5277a8;
+    -fx-font-size: 14;
+}
+
+#lyric_view #lyric_content .line.active .word {
+    -fx-fill: #11243c;
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+}
+
+#lyric_view #lyric_content .line.locator_current .word {
+    -fx-fill: $LOCATOR_TEXT_COLOR !important;
+}
+
+#lyric_view #scroll_locator {
+    -fx-border-width: 0 2;
+    -fx-border-color: $LOCATOR_VLINE_COLOR;
+    -fx-pref-height: 13;
+    -fx-background-color: transparent;
+}
+
+#lyric_view #scroll_locator Region {
+    -fx-pref-height: 1;
+    -fx-max-height: 1;
+    -fx-background-color: $LOCATOR_LINE_COLOR;
+}
+
+#lyric_view #scroll_locator_time {
+    -fx-text-fill: $LOCATOR_LINE_COLOR;
+    -fx-font-size: 12;
+}

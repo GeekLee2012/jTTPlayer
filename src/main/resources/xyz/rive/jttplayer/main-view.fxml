@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import xyz.rive.jttplayer.control.AnimatedTrackMetadata?>
+<?import xyz.rive.jttplayer.control.ProgressBarHorizontal?>
+<?import xyz.rive.jttplayer.control.PlayTime?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Label?>
+<?import xyz.rive.jttplayer.control.ProgressBarVertical?>
+<?import javafx.scene.canvas.Canvas?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:id="app_main"
+            fx:controller="xyz.rive.jttplayer.controller.MainController"
+            onMouseClicked="#toggleAppMainMenu">
+    <Region fx:id="top"
+            AnchorPane.topAnchor="0"
+            AnchorPane.leftAnchor="0"
+            AnchorPane.rightAnchor="0" />
+
+    <Region fx:id="app_logo"
+            AnchorPane.leftAnchor="10"
+            AnchorPane.topAnchor="9"
+            onMouseClicked="#toggleAppMainMenu2" />
+    <Region fx:id="set_btn"
+            AnchorPane.leftAnchor="94"
+            AnchorPane.topAnchor="5"
+            onMouseClicked="#openPreference" />
+    <Region fx:id="mini_btn"
+            AnchorPane.rightAnchor="66"
+            AnchorPane.topAnchor="6"
+            onMouseClicked="#minimized"/>
+    <Region fx:id="minimode_btn"
+            AnchorPane.rightAnchor="38"
+            AnchorPane.topAnchor="6"
+            onMouseClicked="#toggleMiniMode" />
+    <Region fx:id="close_btn"
+            AnchorPane.rightAnchor="10"
+            AnchorPane.topAnchor="6"
+            onMouseClicked="#closeView" />
+
+    <AnimatedTrackMetadata fx:id="info"
+                           AnchorPane.leftAnchor="123"
+                           AnchorPane.topAnchor="39"/>
+    <HBox fx:id="visual_box"
+          AnchorPane.leftAnchor="15"
+          AnchorPane.topAnchor="41"
+          alignment="CENTER">
+        <ImageView fx:id="track_cover"
+                   onMouseClicked="#switchVisualEffect"/>
+        <Canvas fx:id="spectrum_canvas"
+                managed="false"
+                visible="false"
+                onMouseClicked="#switchVisualEffect" />
+    </HBox>
+
+    <Label fx:id="stereo"
+           visible="false"
+           managed="false"/>
+    <Label fx:id="status"
+           visible="false"
+           managed="false"/>
+
+    <ProgressBarHorizontal fx:id="play_progress"
+                           AnchorPane.leftAnchor="118"
+                           AnchorPane.topAnchor="61" />
+    <PlayTime fx:id="play_time"
+              AnchorPane.leftAnchor="262"
+              AnchorPane.topAnchor="68" />
+
+    <Region fx:id="stop_btn"
+            onMouseClicked="#stopPlay"
+            managed="false"
+            visible="false" />
+    <Region fx:id="open_btn"
+            onMouseClicked="#openFiles"
+            managed="false"
+            visible="false" />
+    <Region fx:id="prev_btn"
+            AnchorPane.leftAnchor="124"
+            AnchorPane.topAnchor="93"
+            onMouseClicked="#playPrevious"/>
+    <Region fx:id="play_btn"
+            AnchorPane.leftAnchor="170"
+            AnchorPane.topAnchor="87"
+            onMouseClicked="#togglePlay" />
+    <Region fx:id="pause_btn"
+            AnchorPane.leftAnchor="170"
+            AnchorPane.topAnchor="87"
+            onMouseClicked="#togglePlay"
+            visible="false"
+            managed="false" />
+    <Region fx:id="next_btn"
+            AnchorPane.leftAnchor="227"
+            AnchorPane.topAnchor="93"
+            onMouseClicked="#playNext" />
+
+    <Region fx:id="mode_single_btn"
+            AnchorPane.leftAnchor="273"
+            AnchorPane.topAnchor="93"
+            onMouseClicked="#togglePlayMode" />
+    <Region fx:id="mode_loop_btn"
+            AnchorPane.leftAnchor="273"
+            AnchorPane.topAnchor="93"
+            onMouseClicked="#togglePlayMode" />
+    <Region fx:id="mode_slider_btn"
+            AnchorPane.leftAnchor="273"
+            AnchorPane.topAnchor="93"
+            onMouseClicked="#togglePlayMode" />
+    <Region fx:id="mode_circle_btn"
+            AnchorPane.leftAnchor="273"
+            AnchorPane.topAnchor="93"
+            onMouseClicked="#togglePlayMode" />
+    <Region fx:id="mode_random_btn"
+            AnchorPane.leftAnchor="273"
+            AnchorPane.topAnchor="93"
+            onMouseClicked="#togglePlayMode" />
+
+    <Region fx:id="mute"
+            AnchorPane.leftAnchor="14"
+            AnchorPane.topAnchor="156"
+            onMouseClicked="#toggleMute" />
+    <ProgressBarHorizontal fx:id="volume_fill"/>
+    <ProgressBarVertical fx:id="volume_fill_v"
+                         managed="false"
+                         visible="false" />
+
+    <Region fx:id="playback_queue_btn"
+            AnchorPane.leftAnchor="156"
+            AnchorPane.topAnchor="152"
+            onMouseClicked="#togglePlaybackQueue" />
+    <Region fx:id="equalizer_btn"
+            AnchorPane.leftAnchor="198"
+            AnchorPane.topAnchor="152"
+            onMouseClicked="#toggleEqualizer" />
+    <Region fx:id="lyric_btn"
+            AnchorPane.leftAnchor="240"
+            AnchorPane.topAnchor="152"
+            onMouseClicked="#toggleLyric" />
+    <Region fx:id="browser_btn"
+            AnchorPane.leftAnchor="282"
+            AnchorPane.topAnchor="152"/>
+</AnchorPane>

@@ -1,0 +1,18 @@
+.file_browse_btn {
+    -fx-pref-width: 28;
+    -fx-pref-height: 20;
+    -fx-cursor: hand;
+    -fx-background-image: url("../images/browse2.png");
+    -fx-background-size: 20 20;
+    -fx-background-position: center center;
+    -fx-background-color: #e1e1e1;
+    -fx-border-color: #adadad;
+    /*-fx-padding: 1;*/
+}
+
+.file_browse_btn:hover {
+    /*-fx-padding: 0;
+    -fx-border-width: 2;*/
+    -fx-border-color: #3f87d6;
+    -fx-background-color: #d9eaf8;
+}

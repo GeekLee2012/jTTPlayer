@@ -1,0 +1,16 @@
+.track_meta {
+    -fx-max-width: 202;
+    -fx-min-width: 168;
+    -fx-padding: 0;
+}
+
+.track_meta Label {
+    /*-fx-pref-height: 18;*/
+    /*-fx-pref-height: 21;
+    -fx-font-size: 13;*/
+    /*-fx-font-weight: bold;*/
+    /*-fx-text-overrun: ellipsis;*/
+    -fx-text-fill: #ffffff;
+    /*-fx-text-overrun: clip;*/
+    -fx-padding: 0;
+}

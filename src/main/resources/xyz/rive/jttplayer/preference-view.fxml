@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.HBox?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="xyz.rive.jttplayer.controller.PreferenceController"
+            fx:id="preference_view"
+            stylesheets="@css/preference-view.css">
+    <top>
+        <AnchorPane fx:id="top">
+            <Label styleClass="title"
+                   text="千千静听 - 选项"
+                   AnchorPane.leftAnchor="7"
+                   AnchorPane.topAnchor="0" />
+            <Region styleClass="close_btn"
+                    AnchorPane.rightAnchor="0"
+                    AnchorPane.topAnchor="0"
+                    onMouseClicked="#closeView"/>
+        </AnchorPane>
+    </top>
+    <left>
+        <VBox fx:id="left" maxWidth="Infinity">
+            <VBox fx:id="navbar" VBox.vgrow="ALWAYS"/>
+        </VBox>
+    </left>
+    <center>
+        <BorderPane fx:id="center">
+            <top>
+                <VBox styleClass="top"
+                      spacing="4">
+                    <Label fx:id="content_title"
+                           maxWidth="Infinity"/>
+                    <Region styleClass="splitter" />
+                </VBox>
+            </top>
+            <center>
+            </center>
+            <bottom>
+                <Region styleClass="bottom" />
+            </bottom>
+        </BorderPane>
+    </center>
+    <bottom>
+        <AnchorPane fx:id="bottom">
+            <Label text="相关链接:"
+                   AnchorPane.leftAnchor="9"
+                   AnchorPane.bottomAnchor="9"/>
+            <HBox spacing="6"
+                  AnchorPane.leftAnchor="68"
+                  AnchorPane.bottomAnchor="9">
+                <Label styleClass="link"
+                       text="软件主页" />
+                <!--
+                <Label styleClass="link"
+                       text="千千音乐在线" />
+                <Label styleClass="link"
+                       text="论坛" />
+                -->
+                <Label styleClass="link"
+                       text="贴吧反馈" />
+            </HBox>
+            <HBox spacing="10"
+                  AnchorPane.rightAnchor="9"
+                  AnchorPane.bottomAnchor="8">
+                <Label styleClass="action"
+                       text="全部保存"/>
+                <Label styleClass="action"
+                       text="全部重置"/>
+                <Label fx:id="apply_close"
+                       styleClass="action"
+                       text="关闭"
+                       graphicTextGap="7"
+                       onMouseClicked="#applyClose">
+                    <graphic>
+                        <Region styleClass="graphic"/>
+                    </graphic>
+                </Label>
+            </HBox>
+        </AnchorPane>
+    </bottom>
+</BorderPane>

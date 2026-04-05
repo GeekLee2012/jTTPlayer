@@ -1,0 +1,69 @@
+@import url("common.css");
+
+#file_search_view {
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-border-width: 1;
+    -fx-border-color: #cecece;
+    /*-fx-effect: innershadow(three-pass-box, #000000, 3, 1, 0, 0);*/
+}
+
+/* Top */
+#file_search_view #top {
+    -fx-pref-height: 28;
+    -fx-background-color: #ffffff;
+}
+
+#file_search_view #top .title {
+    -fx-text-fill: #777777;
+}
+
+#file_search_view #top .close_btn {
+    -fx-pref-width: 36;
+    -fx-pref-height: 28;
+    -fx-cursor: hand;
+    -fx-background-image: url("../images/close4.png");
+    -fx-background-size: 10 10;
+    -fx-background-position: center center;
+}
+
+#file_search_view #top .close_btn:hover {
+    -fx-background-color: #de172b;
+    -fx-background-image: url("../images/close5.png");
+}
+
+/* Center */
+#file_search_view #center {
+    -fx-padding: 12 12 1 12;
+}
+
+#file_search_view #center Label.action {
+    -fx-background-color: #e1e1e1;
+    -fx-border-color: #a9a9a9;
+    -fx-padding: 1 3;
+    -fx-min-width: 88;
+    -fx-pref-width: 88;
+    -fx-cursor: hand;
+    -fx-alignment: center;
+}
+
+#file_search_view  #center Label.action:hover {
+    -fx-background-color: #e5f1fa;
+    -fx-border-color: #3f87d6;
+}
+
+#file_search_view #center #cancel_close .graphic {
+    -fx-pref-width: 16;
+    -fx-min-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/cancel.png");
+    -fx-background-position: center center;
+}
+
+/* Bottom */
+#file_search_view #bottom {
+    -fx-pref-height: 41;
+    -fx-background-color: transparent;
+    -fx-padding: 0 12 3 12;
+}

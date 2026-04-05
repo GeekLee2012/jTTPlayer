@@ -1,0 +1,80 @@
+@import url("common.css");
+
+#equalizer_view {
+    -fx-background-image: url("$BKGND");
+    -fx-background-repeat: no-repeat;
+}
+
+#equalizer_view #top {
+    -fx-pref-width: 100%;
+    -fx-pref-height: $TOP_HEIGHT;
+    -fx-background: transparent;
+}
+
+#equalizer_view #equalizer_enabled_btn {
+    -fx-pref-width: $ENABLED_WIDTH;
+    -fx-pref-height: $ENABLED_HEIGHT;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("$ENABLED_IMG");
+}
+
+#equalizer_view #equalizer_enabled_btn:hover {
+    -fx-background-position: $ENABLED_POS_1;
+}
+
+#equalizer_view #equalizer_enabled_btn:pressed,
+#equalizer_view #equalizer_enabled_btn.active {
+    -fx-background-position: $ENABLED_POS_2;
+}
+
+#equalizer_view #equalizer_reset_btn {
+    -fx-pref-width: $RESET_WIDTH;
+    -fx-pref-height: $RESET_HEIGHT;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("$RESET_IMG");
+}
+
+#equalizer_view #equalizer_reset_btn:hover {
+    -fx-background-position: $RESET_POS_1;
+}
+
+#equalizer_view #equalizer_reset_btn:pressed {
+    -fx-background-position: $RESET_POS_2;
+}
+
+#equalizer_view #equalizer_profile_btn {
+    -fx-pref-width: $PROFILE_WIDTH;
+    -fx-pref-height: $PROFILE_HEIGHT;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("$PROFILE_IMG");
+}
+
+#equalizer_view #equalizer_profile_btn:hover {
+    -fx-background-position: $PROFILE_POS_1;
+}
+
+#equalizer_view #equalizer_profile_btn:pressed {
+    -fx-background-position: $PROFILE_POS_2;
+}
+
+#equalizer_view #close_btn {
+    -fx-pref-width: $CLOSE_WIDTH;
+    -fx-pref-height: $CLOSE_HEIGHT;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("$CLOSE_IMG");
+}
+
+#equalizer_view #close_btn:hover {
+    -fx-background-position: $CLOSE_POS_1;
+}
+
+#equalizer_view #close_btn:pressed {
+    -fx-background-position: $CLOSE_POS_2;
+}
+
+#equalizer_view #equalizer_enabled_btn,
+#equalizer_view #equalizer_reset_btn,
+#equalizer_view #equalizer_profile_btn,
+#equalizer_view #close_btn {
+    -fx-cursor: hand;
+}

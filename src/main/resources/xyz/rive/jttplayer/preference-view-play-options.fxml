@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import xyz.rive.jttplayer.control.BorderTitleView?>
+<?import xyz.rive.jttplayer.control.FileBrowseButton?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="xyz.rive.jttplayer.controller.PreferencePlayOptionsController"
+      fx:id="play_options"
+      stylesheets="@css/preference-view.css">
+
+    <BorderTitleView title="播放">
+        <!--
+        <HBox maxWidth="Infinity"
+              spacing="5">
+            <Label text="MPV Binary文件:"/>
+            <TextField fx:id="mvp_path"
+                       HBox.hgrow="ALWAYS"/>
+            <FileBrowseButton onMouseClicked="#selectMpvFile"/>
+        </HBox>
+        -->
+        <HBox maxWidth="Infinity">
+            <Label text="播放器内核："/>
+            <ComboBox fx:id="play_core_option"
+                      HBox.hgrow="ALWAYS" />
+            <TextField fx:id="play_core_path"
+                       HBox.hgrow="ALWAYS">
+                <HBox.margin>
+                    <Insets left="6" right="2"/>
+                </HBox.margin>
+            </TextField>
+            <FileBrowseButton onMouseClicked="#selectPlayCoreFile"/>
+        </HBox>
+        <GridPane hgap="30" vgap="3">
+            <!-- Row -->
+            <CheckBox text="程序启动时自动播放"
+                      GridPane.rowIndex="0"
+                      GridPane.columnIndex="0"/>
+            <CheckBox text="继续上一次的播放进度"
+                      GridPane.rowIndex="0"
+                      GridPane.columnIndex="1"/>
+            <!-- Row -->
+            <HBox GridPane.rowIndex="1"
+                  GridPane.columnIndex="0">
+                <Label text="连续播放文件时间隔：" />
+                <Spinner initialValue="0"
+                         min="0"
+                         max="100"
+                         editable="true"/>
+                <Label text="秒">
+                    <padding>
+                        <Insets left="3"/>
+                    </padding>
+                </Label>
+            </HBox>
+            <CheckBox text="出现错误时不再连续播放"
+                      GridPane.rowIndex="1"
+                      GridPane.columnIndex="1"/>
+            <!-- Row -->
+            <HBox GridPane.rowIndex="2"
+                  GridPane.columnIndex="0">
+                <Label text="播放优先级：" />
+                <ComboBox>
+                </ComboBox>
+            </HBox>
+            <HBox GridPane.rowIndex="2"
+                  GridPane.columnIndex="1">
+                <Label text="全文件缓冲：" />
+                <Spinner styleClass="spinner_m"
+                         initialValue="0"
+                         min="0"
+                         max="9999"
+                         editable="true"/>
+                <Label text="KB">
+                    <padding>
+                        <Insets left="3"/>
+                    </padding>
+                </Label>
+            </HBox>
+        </GridPane>
+    </BorderTitleView>
+
+    <BorderTitleView title="声音淡入淡出(仅支持DirectSound输出方式)" >
+        <GridPane hgap="30" vgap="3">
+            <padding>
+                <Insets top="3"/>
+            </padding>
+            <!-- Row -->
+            <HBox GridPane.rowIndex="0"
+                  GridPane.columnIndex="0">
+                <CheckBox text="播放时：">
+                    <padding>
+                        <Insets right="13"/>
+                    </padding>
+                </CheckBox>
+                <Spinner styleClass="spinner_m"
+                         initialValue="0"
+                         min="0"
+                         max="9999"
+                         editable="true"/>
+                <Label text="毫秒">
+                    <padding>
+                        <Insets left="3" right="15"/>
+                    </padding>
+                </Label>
+            </HBox>
+            <HBox GridPane.rowIndex="0"
+                  GridPane.columnIndex="1">
+                <CheckBox text="暂停时：" />
+                <Spinner styleClass="spinner_m"
+                         initialValue="0"
+                         min="0"
+                         max="9999"
+                         editable="true"/>
+                <Label text="毫秒">
+                    <padding>
+                        <Insets left="3"/>
+                    </padding>
+                </Label>
+            </HBox>
+            <!-- Row -->
+            <HBox GridPane.rowIndex="1"
+                  GridPane.columnIndex="0">
+                <CheckBox text="交叉定位：" />
+                <Spinner styleClass="spinner_m"
+                         initialValue="0"
+                         min="0"
+                         max="9999"
+                         editable="true"/>
+                <Label text="毫秒">
+                    <padding>
+                        <Insets left="3"/>
+                    </padding>
+                </Label>
+            </HBox>
+            <HBox GridPane.rowIndex="1"
+                  GridPane.columnIndex="1">
+                <CheckBox text="停止时：" />
+                <Spinner styleClass="spinner_m"
+                         initialValue="0"
+                         min="0"
+                         max="9999"
+                         editable="true"/>
+                <Label text="毫秒">
+                    <padding>
+                        <Insets left="3"/>
+                    </padding>
+                </Label>
+            </HBox>
+            <!-- Row -->
+            <HBox GridPane.rowIndex="2"
+                  GridPane.columnSpan="2">
+                <CheckBox text="歌曲自动切换时" />
+                <Spinner styleClass="spinner_m"
+                         initialValue="0"
+                         min="0"
+                         max="9999"
+                         editable="true"/>
+                <Label text="毫秒">
+                    <padding>
+                        <Insets left="3"/>
+                    </padding>
+                </Label>
+            </HBox>
+        </GridPane>
+    </BorderTitleView>
+
+    <BorderTitleView title="回放增益(自动音量)">
+        <CheckBox text="启用回放增益(使用增益信息将不同文件的音量调节到相同水平)" />
+        <CheckBox text="自动扫描(在播放未包含增益信息的文件时自动扫描增益信息)"/>
+        <CheckBox text="扫描增益信息时跳过已包含增益信息的文件" />
+        <Label styleClass="long_text"
+               text="提示：“自动增益信息”是通过对音频文件的扫描分析检测到的一个最佳的增益值，在以后的播放中如果使用这个增益值就可以把音频文件的音量调整到最佳的水平，从而减少甚至避免不同音频文件之间的音量差异。"/>
+    </BorderTitleView>
+</VBox>
