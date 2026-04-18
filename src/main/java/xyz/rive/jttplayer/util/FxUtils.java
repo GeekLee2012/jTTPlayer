@@ -404,6 +404,10 @@ public final class FxUtils {
         return isOS("mac");
     }
 
+    public static boolean isLinux() {
+        return isOS("linux");
+    }
+
     public static boolean isMouseHover(PopMenu menu, double screenX, double screenY) {
         double x = menu.getX();
         double y = menu.getY();
@@ -430,8 +434,10 @@ public final class FxUtils {
                     "/select,",
                     "\"" + detransformPath(url) + "\""
             };
+        } else if(isLinux()) {
+            cmdArray = new String[] { "xdg-open", transformPath(url) };
         }
-        //Linux Unsupported / Unknown
+        // Linux is now supported
         if(cmdArray != null) {
             runExec(cmdArray);
         }

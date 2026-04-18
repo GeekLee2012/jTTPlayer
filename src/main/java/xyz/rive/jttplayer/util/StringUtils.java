@@ -162,7 +162,9 @@ public final class StringUtils {
         String dataRoot = "Library/Application Support";
         if(isWindows()) {
             dataRoot = "AppData/Roaming";
-        } else if(!isMacOS()) {
+        } else if(isLinux()) {
+            dataRoot = ".config";
+        } else {
             dataRoot = "Documents";
         }
         return String.format("%1$s/%2$s/jTTPlayer",
