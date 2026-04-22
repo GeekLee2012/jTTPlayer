@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:id="lyric_desktop_view"
+      styleClass="dnm_trigger"
       maxHeight="Infinity"
       onMouseClicked="#hideAllMenus"
       fx:controller="xyz.rive.jttplayer.controller.LyricDesktopController"

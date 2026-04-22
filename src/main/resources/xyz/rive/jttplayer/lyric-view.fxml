@@ -9,19 +9,25 @@
 <?import javafx.geometry.Insets?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             fx:id="lyric_view"
+            styleClass="dnm_trigger"
             fx:controller="xyz.rive.jttplayer.controller.LyricController"
             onMouseClicked="#showLyricMenu">
+
+    <Region fx:id="top"
+            mouseTransparent="true"
+            AnchorPane.topAnchor="0"
+            AnchorPane.leftAnchor="0"
+            AnchorPane.rightAnchor="0" />
+
     <Region fx:id="view_bg"
+            mouseTransparent="true"
             AnchorPane.topAnchor="0"
             AnchorPane.bottomAnchor="0"
             AnchorPane.leftAnchor="0"
             AnchorPane.rightAnchor="0" />
+
     <Region fx:id="lyric_content_bg" />
     <Region fx:id="view_title" />
-    <Region fx:id="top"
-            AnchorPane.topAnchor="0"
-            AnchorPane.leftAnchor="0"
-            AnchorPane.rightAnchor="0" />
 
     <Region fx:id="desklrc_btn"
             managed="false"
@@ -44,7 +50,7 @@
               maxWidth="Infinity">
             <VBox styleClass="line"
                   maxWidth="Infinity">
-                <Label text="千千静听 v7.1.0"/>
+                <Label text="千千静听 5.7 正式版"/>
             </VBox>
         </VBox>
     </ScrollPane>

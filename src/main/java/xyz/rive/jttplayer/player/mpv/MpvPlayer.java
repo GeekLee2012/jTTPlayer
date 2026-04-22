@@ -10,6 +10,7 @@ import xyz.rive.jttplayer.common.Pair;
 import xyz.rive.jttplayer.common.Track;
 import xyz.rive.jttplayer.util.JsonUtils;
 
+import java.io.IOException;
 import java.net.SocketAddress;
 import java.nio.channels.SocketChannel;
 import java.nio.file.Files;
@@ -17,9 +18,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
+import static xyz.rive.jttplayer.util.FileUtils.transformPath;
 import static xyz.rive.jttplayer.util.FxUtils.isWindows;
 import static xyz.rive.jttplayer.util.StringUtils.isEmpty;
 import static xyz.rive.jttplayer.util.StringUtils.trim;
@@ -34,11 +38,12 @@ public class MpvPlayer extends AbastractPlayer {
     private boolean debug = false;
     private boolean loaded = false;
     private double pendingSeek = -1;
+    private boolean serverReady = false;
+    private boolean clientReady = false;
 
     public MpvPlayer() {
         super();
         socketNameProperty.addListener((__, oldValue, newValue) -> setup());
-
         setSocketFile(isWindows() ? DEFAULT_SOCKET_NAME_WINDOWS : DEFAULT_SOCKET_NAME);
     }
 
@@ -46,22 +51,54 @@ public class MpvPlayer extends AbastractPlayer {
         socketNameProperty.set(filename);
     }
 
-    protected boolean setup() {
+    private boolean setServerReady(boolean value) {
+        serverReady = value;
+        return serverReady;
+    }
+
+    private boolean setClientReady(boolean value) {
+        clientReady = value;
+        return clientReady;
+    }
+
+    protected Future<Boolean> setup() {
+        CompletableFuture<Boolean> setupFuture = new CompletableFuture<>();
+        if (isReady()) {
+            setupFuture.complete(true);
+            return setupFuture;
+        }
+        //Unready
         if(isEmpty(getPlayCorePath()) || isEmpty(socketNameProperty.get())) {
-            return false;
+            setupFuture.complete(false);
+            return setupFuture;
         }
-        try {
-            Future<Boolean> future = startIpcServer();
-            if(future.get()) {
-                if(startIpcClient()) {
-                    ipcCommand = new IpcCommand(ipcChannel);
-                    return true;
+        Future<Boolean> serverFuture = serverReady ? null : startIpcServer();
+        runTask(() -> {
+            try {
+                if(setServerReady(serverFuture != null ? serverFuture.get() : true)) {
+                    if (debug) {
+                        System.out.println(">>> IPC Server Started");
+                    }
+                    Future<Boolean> clientFuture = startIpcClient();
+                    runTask(() -> {
+                        try {
+                            if(setClientReady(clientFuture.get())) {
+                                if (debug) {
+                                    System.out.println(">>> IPC Client Started");
+                                }
+                                ipcCommand = new IpcCommand(ipcChannel);
+                                setupFuture.complete(true);
+                            }
+                        } catch (Exception e) {
+                           e.printStackTrace();
+                        }
+                    });
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
+        });
+        return setupFuture;
     }
 
     public void setDebug(boolean debug) {
@@ -143,31 +180,57 @@ public class MpvPlayer extends AbastractPlayer {
         return future;
     }
 
-    private boolean openIpcChannel(String socketFileName) throws Exception {
-        return isWindows() ? openPipeChanel(socketFileName)
-                : openSocketChannel(socketFileName);
+    private void closeIpcChannel() throws IOException {
+        if (ipcChannel != null) {
+            ipcChannel.close();
+        }
+    }
+
+    private Future<Boolean> openIpcChannel(String socketFileName) throws Exception {
+        closeIpcChannel();
+        CompletableFuture<Boolean> future = new CompletableFuture<>();
+        runTask(() -> {
+            try {
+                future.complete(isWindows() ?
+                        openPipeChanel(socketFileName) :
+                        openSocketChannel(socketFileName)
+                );
+            } catch (Exception e) {
+                e.printStackTrace();
+                future.complete(false);
+            }
+        });
+        return future;
     }
 
     private boolean openSocketChannel(String socketFileName) throws Exception {
-        SocketAddress socketAddress = AFUNIXSocketAddress.of(Paths.get(socketFileName));
         AFUNIXSelectorProvider provider = AFUNIXSelectorProvider.provider();
         SocketChannel channel = provider.openSocketChannel();
         ipcChannel = new SocketIpcChannel(channel);
-        return channel.connect(socketAddress);
+        return ipcChannel.connect(socketFileName);
     }
 
-    private boolean openPipeChanel(String socketFileName) throws Exception {
+    private boolean openPipeChanel(String socketFileName) throws IOException {
         ipcChannel = new NamedPipeIpcChannel(socketFileName);
-        return true;
+        return ipcChannel.connect(socketFileName);
     }
 
-    private boolean startIpcClient() throws Exception {
-        if(openIpcChannel(socketNameProperty.get())) {
-            setRunning(true);
-            startReceiver();
-            return true;
-        }
-        return false;
+    private Future<Boolean> startIpcClient() throws Exception {
+        CompletableFuture<Boolean> clientFuture = new CompletableFuture<>();
+        Future<Boolean> channelFuture = openIpcChannel(socketNameProperty.get());
+        runTask(() -> {
+            try {
+                if (channelFuture.get()) {
+                    setRunning(true);
+                    startReceiver();
+                    clientFuture.complete(true);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                clientFuture.complete(false);
+            }
+        });
+        return clientFuture;
     }
 
     private void startReceiver() {
@@ -176,6 +239,9 @@ public class MpvPlayer extends AbastractPlayer {
                 try {
                     readSocketMessage(ipcChannel)
                             .ifPresent(this::processMessages);
+                    if(isWindows()) {
+                        Thread.sleep(100);
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -336,6 +402,7 @@ public class MpvPlayer extends AbastractPlayer {
         if(mode == null) {
             mode = "replace";
         }
+        url = transformPath(url);
         ipcCommand.sendCommand("loadfile", url, mode);
         return true;
     }
@@ -346,7 +413,7 @@ public class MpvPlayer extends AbastractPlayer {
 
     @Override
     public void play()  {
-        if(!isTrackAvailable()) {
+        if(!isTrackPlayable()) {
             return ;
         }
         if(!load(getCurrentUrl())) {
@@ -356,7 +423,7 @@ public class MpvPlayer extends AbastractPlayer {
 
     @Override
     public void pause() {
-        if(!isTrackAvailable()) {
+        if(!isTrackPlayable()) {
             return ;
         }
         execCommand(() -> ipcCommand.setProperty("pause", true));
@@ -364,7 +431,7 @@ public class MpvPlayer extends AbastractPlayer {
 
     @Override
     public void togglePause() {
-        if(!isTrackAvailable()) {
+        if(!isTrackPlayable()) {
             return ;
         }
         execCommand(() -> ipcCommand.cycleProperty("pause"));
@@ -377,7 +444,7 @@ public class MpvPlayer extends AbastractPlayer {
 
     @Override
     public void seekRelative(double seconds) {
-        if(!isTrackAvailable()) {
+        if(!isTrackPlayable()) {
            return ;
         }
         execCommand(() -> {
@@ -388,7 +455,7 @@ public class MpvPlayer extends AbastractPlayer {
     @Override
     public void seek(double seconds) {
         setPendingSeek(seconds);
-        if(!isTrackAvailable() || seconds < 0) {
+        if(!isTrackPlayable() || seconds < 0) {
             return ;
         }
         execCommand(() -> {
@@ -434,7 +501,7 @@ public class MpvPlayer extends AbastractPlayer {
 
     private void setTrack(Track track) {
         //关闭上一曲
-        if(isTrackAvailable()) {
+        if(isTrackPlayable()) {
             stop();
         }
         setCurrentTrack(track);
@@ -443,7 +510,7 @@ public class MpvPlayer extends AbastractPlayer {
     @Override
     public void play(Track track) {
         setTrack(track);
-        if(isTrackAvailable()) {
+        if(isTrackPlayable()) {
             load(track.getUrl());
             play();
         }

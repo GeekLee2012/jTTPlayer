@@ -16,6 +16,7 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import xyz.rive.jttplayer.ApplicationContext;
 import xyz.rive.jttplayer.common.*;
+import xyz.rive.jttplayer.control.DndAction;
 import xyz.rive.jttplayer.manager.*;
 import xyz.rive.jttplayer.menu.*;
 import xyz.rive.jttplayer.menu.strategy.ShowStrategy;
@@ -36,6 +37,7 @@ import java.util.function.Consumer;
 
 import static xyz.rive.jttplayer.common.Constants.*;
 import static xyz.rive.jttplayer.util.FxUtils.*;
+import static xyz.rive.jttplayer.util.StringUtils.trimLowerCase;
 
 public abstract class CommonController implements Initializable {
     protected String name = "common";
@@ -61,7 +63,7 @@ public abstract class CommonController implements Initializable {
        */
     }
 
-    public StageManager getStageManger() {
+    public StageManager getStageManager() {
         return context.getStageManager();
     }
 
@@ -86,27 +88,27 @@ public abstract class CommonController implements Initializable {
     }
 
     protected Stage getMainStage() {
-        return getStageManger().getMainStage();
+        return getStageManager().getMainStage();
     }
 
     protected Stage getEqualizerStage() {
-        return getStageManger().getEqualizerStage();
+        return getStageManager().getEqualizerStage();
     }
 
     protected Stage getPlaybackQueueStage() {
-        return getStageManger().getPlaybackQueueStage();
+        return getStageManager().getPlaybackQueueStage();
     }
 
     protected Stage getLyricStage() {
-        return getStageManger().getLyricStage();
+        return getStageManager().getLyricStage();
     }
 
     protected Stage getLyricDesktopStage() {
-        return getStageManger().getLyricDesktopStage();
+        return getStageManager().getLyricDesktopStage();
     }
 
     protected Stage getLyricMiniModeStage() {
-        return getStageManger().getLyricMiniModeStage();
+        return getStageManager().getLyricMiniModeStage();
     }
 
     protected void setupController(CommonController controller, Node root, String name) {
@@ -134,11 +136,11 @@ public abstract class CommonController implements Initializable {
             if(isMainStage) {
                 getPlayerManager().exit();
             } else if(EQUALIZER.equalsIgnoreCase(name)) {
-                getStageManger().setEqualizerShow(false);
+                getStageManager().setEqualizerShow(false);
             } else if(PLAYBACK_QUEUE.equalsIgnoreCase(name)) {
-                getStageManger().setPlaybackQueueShow(false);
+                getStageManager().setPlaybackQueueShow(false);
             } else if(LYRIC.equalsIgnoreCase(name)) {
-                getStageManger().setLyricShow(false);
+                getStageManager().setLyricShow(false);
             }
 
             onClosed();
@@ -278,29 +280,29 @@ public abstract class CommonController implements Initializable {
 
     public void togglePlaybackQueue(MouseEvent event) {
         consumeContextMenuEvent(event);
-        getStageManger().togglePlaybackQueueShow();
+        getStageManager().togglePlaybackQueueShow();
     }
 
     public void toggleEqualizer(MouseEvent event) {
         consumeContextMenuEvent(event);
-        getStageManger().toggleEqualizerShow();
+        getStageManager().toggleEqualizerShow();
     }
 
     public void toggleLyric(MouseEvent event) {
         consumeContextMenuEvent(event);
-        getStageManger().toggleLyricShow();
+        getStageManager().toggleLyricShow();
     }
 
     public boolean isPlaybackQueueShow() {
-        return getStageManger().isPlaybackQueueShow();
+        return getStageManager().isPlaybackQueueShow();
     }
 
     public boolean isEqualizerShow() {
-        return getStageManger().isEqualizerShow();
+        return getStageManager().isEqualizerShow();
     }
 
     public boolean isLyricShow() {
-        return getStageManger().isLyricShow();
+        return getStageManager().isLyricShow();
     }
 
     public TrackService getTrackService() {
@@ -343,6 +345,32 @@ public abstract class CommonController implements Initializable {
         getTrackService().appendToPlaybackQueue(file);
     }
 
+    protected void handleDndAction(DndAction.DndContext ctx) {
+        List<File> files = ctx.getFiles();
+        if(files == null || files.isEmpty()) {
+            return ;
+        }
+        if(files.size() == 1) {
+            File file = files.get(0);
+            if (file.isDirectory()) {
+                appendToPlaybackQueue(file);
+                return ;
+            } else if (trimLowerCase(file.getName()).endsWith(".m3u")
+                    || trimLowerCase(file.getName()).endsWith(".m3u8")
+                    || trimLowerCase(file.getName()).endsWith(".jttpl") ) {
+                restorePlaybackQueue(file);
+                return ;
+            }
+        }
+
+        appendToPlaybackQueue(files);
+    }
+
+
+    public void restorePlaybackQueue(File file) {
+        getPlayerManager().addPlaybackQueue(file);
+    }
+
     public void setCurrentIndex(int queueIndex, int trackIndex) {
         getPlayerManager().setCurrentIndex(queueIndex, trackIndex);
     }
@@ -364,23 +392,23 @@ public abstract class CommonController implements Initializable {
     }
 
     public StageManager onPlaybackQueueShow(Consumer<Boolean> listener) {
-        return getStageManger().onPlaybackQueueShow(listener);
+        return getStageManager().onPlaybackQueueShow(listener);
     }
 
     public StageManager onEqualizerShow(Consumer<Boolean> listener) {
-        return getStageManger().onEqualizerShow(listener);
+        return getStageManager().onEqualizerShow(listener);
     }
 
     public StageManager onLyricShow(Consumer<Boolean> listener) {
-        return getStageManger().onLyricShow(listener);
+        return getStageManager().onLyricShow(listener);
     }
 
     public StageManager onLyricDesktopShow(Consumer<Boolean> listener) {
-        return getStageManger().onLyricDesktopShow(listener);
+        return getStageManager().onLyricDesktopShow(listener);
     }
 
     public StageManager onLyricDesktopLocked(Consumer<Boolean> listener) {
-        return getStageManger().onLyricDesktopLocked(listener);
+        return getStageManager().onLyricDesktopLocked(listener);
     }
 
     public PlayerManager onPlaybackQueuesSize(ChangeListener<? super Number> listener) {
@@ -400,15 +428,15 @@ public abstract class CommonController implements Initializable {
     }
 
     public StageManager onPlaybackQueueStageResized(Consumer<Size[]> listener) {
-        return getStageManger().onPlaybackQueueStageResized(listener);
+        return getStageManager().onPlaybackQueueStageResized(listener);
     }
 
     public StageManager onPlaybackQueueNamesCollapsed(ChangeListener<? super Boolean> listener) {
-        return getStageManger().onPlaybackQueueNamesCollapsed(listener);
+        return getStageManager().onPlaybackQueueNamesCollapsed(listener);
     }
 
     public Consumer<Size[]> getPlaybackQueueStageResizedListener() {
-        return getStageManger().getPlaybackQueueStageResizedListener();
+        return getStageManager().getPlaybackQueueStageResizedListener();
     }
 
     public void runFx(Runnable runnable) {
@@ -416,11 +444,11 @@ public abstract class CommonController implements Initializable {
     }
 
     public boolean isPlaybackQueueNamesCollapsed() {
-        return getStageManger().isPlaybackQueueNamesCollapsed();
+        return getStageManager().isPlaybackQueueNamesCollapsed();
     }
 
     public void setPlaybackQueueNamesCollapsed(boolean collapsed) {
-        getStageManger().setPlaybackQueueNamesCollapsedProperty(collapsed);
+        getStageManager().setPlaybackQueueNamesCollapsedProperty(collapsed);
     }
 
     public void showAppMenu(InputEvent event) {
@@ -554,7 +582,7 @@ public abstract class CommonController implements Initializable {
     }
 
     public boolean isLyricDesktopMode() {
-        return getStageManger().isLyricDesktopMode();
+        return getStageManager().isLyricDesktopMode();
     }
 
     public ScheduledFuture<?> runDelay(Runnable task, long millis) {
@@ -588,16 +616,6 @@ public abstract class CommonController implements Initializable {
         return getSkinManager().getImageSize(skin, imageName);
     }
 
-    public void setBackgroundImage(Region region, SkinXml skin, String imageName) {
-        //FxUtils.setBackgroundImage(region, getSkinEntry(skin, imageName));
-        FxUtils.setCssBackgroundImage(region, getSkinEntryPath(skin, imageName));
-    }
-
-    public void setBackgroundImage(Region region, SkinXml skin, String imageName, int x, int y) {
-        //FxUtils.setBackgroundImage(region, getSkinEntry(skin, imageName), x, y);
-        FxUtils.setCssBackgroundImage(region, getSkinEntryPath(skin, imageName), x, y);
-    }
-
     public void setAnchorAuto(Region region, SkinXml skin, SkinXmlItem item, SkinXmlWindowItem winItem) {
         double winWidth = winItem.width();
         double winHeight = winItem.height();
@@ -608,7 +626,7 @@ public abstract class CommonController implements Initializable {
         if (winHeight <= 0) {
             winHeight = size.height();
         }
-        if (item.isAlignRight()) {
+        if (item.isAlignRight() || item.isAlignTopRight()) {
             setAnchorAlignRight(region,
                     (winWidth - item.x2),
                     item.y1
@@ -633,52 +651,6 @@ public abstract class CommonController implements Initializable {
         }
     }
 
-    public void setupActionSkinItem(
-            Region region, SkinXml skin, SkinXmlItem item,
-            SkinXmlWindowItem winItem) {
-        setPrefSize(region, item.size());
-        setAnchorAuto(region, skin, item, winItem);
-        setBackgroundImage(region, skin, item.image);
-
-        region.setOnMouseEntered(e -> {
-            if (region.getUserData() == null) {
-                setBackgroundImage(region, skin, item.image, -1 * item.width(), 0);
-            }
-        });
-
-        region.setOnMouseExited(e -> {
-            if (region.getUserData() == null) {
-                setBackgroundImage(region, skin, item.image, 0, 0);
-            }
-        });
-
-        region.setOnMousePressed(e -> {
-            if (region.getUserData() == null) {
-                setBackgroundImage(region, skin, item.image, -2 * item.width(), 0);
-            }
-        });
-
-        region.setOnMouseReleased(e -> {
-            if (region.getUserData() == null) {
-                setBackgroundImage(region, skin, item.image, 0, 0);
-            }
-        });
-    }
-
-    protected void toggleBtnHighlight(Region btn, SkinXml skin, SkinXmlItem item, boolean active) {
-        if(btn == null) {
-            return ;
-        }
-        Size size = getSkinImageSize(skin, item.image);
-        int x = 0;
-        btn.setUserData(null);
-        if(active) {
-            btn.setUserData(true);
-            x = (int) (size.width() / -2);
-        }
-        setBackgroundImage(btn, skin, item.image, x, 0);
-    }
-
     protected void setItemsHidden(Node... items) {
         for (Node item : items) {
             item.setManaged(false);
@@ -690,6 +662,14 @@ public abstract class CommonController implements Initializable {
         for (Node item : items) {
             item.setManaged(true);
             item.setVisible(true);
+        }
+    }
+
+    protected void setItemsAutoVisible(boolean visible, Node... items) {
+        if (visible) {
+            setItemsVisible(items);
+        } else {
+            setItemsHidden(items);
         }
     }
 

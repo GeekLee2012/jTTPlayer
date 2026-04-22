@@ -1,0 +1,139 @@
+@import url("common.css");
+
+#search_track_resource_online_view{
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-border-width: 1;
+    -fx-border-color: #cecece;
+    /*-fx-effect: innershadow(three-pass-box, #000000, 3, 1, 0, 0);*/
+}
+
+/* Top */
+#search_track_resource_online_view#top {
+    -fx-pref-height: 28;
+    -fx-background-color: #ffffff;
+}
+
+#search_track_resource_online_view#top .title {
+    -fx-text-fill: #777777;
+}
+
+#search_track_resource_online_view#top .close_btn {
+    -fx-pref-width: 36;
+    -fx-pref-height: 28;
+    -fx-cursor: hand;
+    -fx-background-image: url("../images/close4.png");
+    -fx-background-size: 10 10;
+    -fx-background-position: center center;
+}
+
+#search_track_resource_online_view#top .close_btn:hover {
+    -fx-background-color: #de172b;
+    -fx-background-image: url("../images/close5.png");
+}
+
+/* Center */
+#search_track_resource_online_view#center {
+    -fx-padding: 12 12 1 12;
+}
+
+#search_track_resource_online_view#center ListView .list-cell:selected {
+    -fx-background-color: #137ad4;
+}
+
+#search_track_resource_online_view#center ListView .list-cell:selected Label {
+    -fx-text-fill: #ffffff;
+}
+
+#search_track_resource_online_view#center Label.action {
+    -fx-background-color: #e1e1e1;
+    -fx-border-color: #a9a9a9;
+    -fx-padding: 1 3;
+    -fx-min-width: 80;
+    -fx-cursor: hand;
+}
+
+#search_track_resource_online_view#center Label.action:hover {
+    -fx-background-color: #e5f1fa;
+    -fx-border-color: #3f87d6;
+}
+
+#search_track_resource_online_view#center #search_btn .graphic {
+    -fx-pref-width: 16;
+    -fx-min-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/search_online.png");
+    -fx-background-position: center center;
+}
+
+#search_track_resource_online_view#center #lyric_list HBox {
+    -fx-padding: 1;
+}
+
+#search_track_resource_online_view#center #lyric_list .sqno {
+    -fx-pref-width: 30;
+}
+
+#search_track_resource_online_view#center #lyric_list .title {
+    -fx-max-width: 258;
+    -fx-text-overrun: ellipsis;
+}
+
+#search_track_resource_online_view#center #lyric_list .artist,
+#search_track_resource_online_view#center #lyric_list .album {
+    -fx-pref-width: 108;
+    -fx-text-overrun: ellipsis;
+}
+
+#search_track_resource_online_view#center #lyric_list .duration {
+    -fx-pref-width: 39;
+    -fx-alignment: center-right;
+}
+
+/* Bottom */
+#search_track_resource_online_view#bottom {
+    -fx-pref-height: 83;
+    -fx-background-color: transparent;
+    -fx-padding: 10 12 10 12;
+}
+
+#search_track_resource_online_view#bottom #switch_filename_btn {
+    -fx-pref-width: 32;
+    -fx-pref-height: 26;
+    -fx-cursor: hand;
+    -fx-background-image: url("../images/convert.png");
+    -fx-background-size: 20 20;
+    -fx-background-position: center center;
+    -fx-background-color: #e1e1e1;
+    -fx-border-color: #adadad;
+}
+
+#search_track_resource_online_view#bottom #switch_filename_btn:hover {
+    -fx-border-color: #3f87d6;
+    -fx-background-color: #d9eaf8;
+}
+
+#search_track_resource_online_view#bottom #download_cover_btn,
+#search_track_resource_online_view#bottom #download_lrc_btn {
+    -fx-padding: 1 3;
+    -fx-min-width: 93;
+}
+
+#search_track_resource_online_view#bottom #download_cover_btn .graphic,
+#search_track_resource_online_view#bottom #download_lrc_btn .graphic {
+    -fx-pref-width: 16;
+    -fx-min-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/download.png");
+    -fx-background-position: center center;
+}
+
+
+#search_track_resource_online_view#bottom #cancel_close .graphic {
+    -fx-pref-width: 16;
+    -fx-min-width: 16;
+    -fx-pref-height: 16;
+    -fx-background-image: url("../images/cancel.png");
+    -fx-background-position: center center;
+}

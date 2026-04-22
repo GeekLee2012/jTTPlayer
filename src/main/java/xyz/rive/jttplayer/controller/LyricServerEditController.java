@@ -27,6 +27,8 @@ public class LyricServerEditController extends CommonController {
     private TextField server_name;
     @FXML
     private TextArea api_url;
+    @FXML
+    private Label error_msg;
     private Server server;
     private Consumer<Server> okAction;
 
@@ -62,13 +64,18 @@ public class LyricServerEditController extends CommonController {
         if (isEmpty(name) || isEmpty(apiUrl)) {
             return ;
         }
+
+        boolean createMode = (server == null);
+
         //不允许重名
-        if (getConfiguration().getLyricSearchOptions()
+        if (createMode && getConfiguration().getLyricSearchOptions()
                 .existsServer(name)) {
+            error_msg.setText("错误：已存在同名的服务器！");
+            setItemsVisible(error_msg);
             return ;
         }
 
-        if (server == null) {
+        if (createMode) {
             server = new Server();
         }
         server.setName(trim(name));
@@ -85,6 +92,8 @@ public class LyricServerEditController extends CommonController {
     public void beforeCloseView() {
         server_name.setText("");
         api_url.setText("");
+        error_msg.setText("");
+        setItemsHidden(error_msg);
         server = null;
         title.setText("添加歌词服务器");
     }

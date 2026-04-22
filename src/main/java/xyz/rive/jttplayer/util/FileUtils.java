@@ -99,6 +99,9 @@ public final class FileUtils {
     }
 
     public static void writeText(String fileName, String text) {
+        if (isEmpty(text)) {
+            return ;
+        }
         try {
             String name = transformPath(fileName);
             Path path = Paths.get(name);
@@ -134,6 +137,13 @@ public final class FileUtils {
         fileName = trim(fileName);
         int from = fileName.lastIndexOf("/");
         int to = fileName.lastIndexOf(".");
+        //名字中可能也带“.”
+        int dashIndex = fileName.lastIndexOf("-");
+        int len = fileName.length();
+        //一般后缀名不会太长
+        if (dashIndex > to || (len - to) >= 6) {
+            to = len;
+        }
         if(to > -1) {
             fileName = trim(fileName.substring(from + 1, to));
         }
@@ -242,6 +252,35 @@ public final class FileUtils {
     public static boolean deleteIfExists(Path path) {
         try {
             return Files.deleteIfExists(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static String getParentPath(String url) {
+        if (isEmpty(url)) {
+            return null;
+        }
+        try {
+            Path path = Paths.get(transformPath(url));
+            if (Files.exists(path)) {
+                return path.getParent().toFile().getAbsolutePath();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static boolean copy(String source, String target) {
+        try {
+            Files.copy(
+                    Paths.get(transformPath(source)),
+                    Paths.get(transformPath(target)),
+                    StandardCopyOption.REPLACE_EXISTING
+            );
+            return true;
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,16 +1,14 @@
 package xyz.rive.jttplayer;
 
 
+import javafx.application.Application;
 import javafx.stage.*;
 import xyz.rive.jttplayer.common.*;
-import xyz.rive.jttplayer.controller.CommonController;
-import xyz.rive.jttplayer.controller.MainController;
 import xyz.rive.jttplayer.manager.*;
 import xyz.rive.jttplayer.service.AsyncService;
 import xyz.rive.jttplayer.service.MetadataService;
 import xyz.rive.jttplayer.service.PlaybackQueueService;
 import xyz.rive.jttplayer.service.TrackService;
-import xyz.rive.jttplayer.skin.LyricXml;
 import xyz.rive.jttplayer.skin.SkinXml;
 import xyz.rive.jttplayer.skin.StandaloneXml;
 
@@ -37,6 +35,7 @@ public class ApplicationContext {
     private TssManager tssManager;
 
     private final Map<String, Object> attributes = new ConcurrentHashMap<>();
+    private Application app;
 
     private ApplicationContext() {
 
@@ -211,4 +210,16 @@ public class ApplicationContext {
     public String getWorkPath() {
         return getConfiguration().getWorkPath();
     }
+
+    public ApplicationContext setApplication(Application app) {
+        this.app = app;
+        return this;
+    }
+
+    public void browseUrl(String url) {
+        if (app != null) {
+            app.getHostServices().showDocument(url);
+        }
+    }
+
 }

@@ -2,13 +2,11 @@ package xyz.rive.jttplayer.manager;
 
 import javafx.beans.property.*;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.jnativehook.GlobalScreen;
 import xyz.rive.jttplayer.ApplicationContext;
 import xyz.rive.jttplayer.common.*;
 import xyz.rive.jttplayer.control.GlobalShortcutKeys;
@@ -86,7 +84,7 @@ public class PlayerManager extends AbstractManager {
     }
 
     private void registerPlayers() {
-        registerPlayer(0, new BassPlayer());
+        registerPlayer(0, new BassPlayer().setTempPath(getWorkPath()));
         registerPlayer(1, new MpvPlayer());
     }
 
@@ -101,20 +99,24 @@ public class PlayerManager extends AbstractManager {
                         return ;
                     }
                     stopOldPlayer();
+                    if (!getActivePlayer().isReady()) {
+                        getActivePlayer().setCurrentTrack(track);
+                        return ;
+                    }
+
                     getActivePlayer().play(track);
                     if(ignoreCurrentIndexMode) {
                         getActivePlayer().pause();
                         setPlayStateProperty(PlayState.PAUSED.getValue());
                         setIgnoreCurrentIndexMode(false);
                     }
-
                 });
         getActivePlayer().onStarted(started -> {
             if(seekOnPaused) {
                 setSeekOnPaused(false);
                 return ;
             }
-            if(isRestoring()) {
+            if(isUnready()) {
                 return ;
             }
             setPlayStateProperty(PlayState.PLAYING.getValue());
@@ -195,11 +197,12 @@ public class PlayerManager extends AbstractManager {
         if(activePlayer == null || activePlayer != doGetPlayer()) {
             activePlayer = doGetPlayer();
             activePlayer.setPlayCorePath(getPlayOptions().getPlayCorePath());
-        }
-        if(isEqualizerEnabled()) {
-            activePlayer.setEqualizer(getEqualizerValues());
-        } else {
-            activePlayer.removeEqualizer();
+
+            if(isEqualizerEnabled()) {
+                activePlayer.setEqualizer(getEqualizerValues());
+            } else {
+                activePlayer.removeEqualizer();
+            }
         }
         return activePlayer;
     }
@@ -352,7 +355,7 @@ public class PlayerManager extends AbstractManager {
             setRestoring(false);
             setIgnoreCurrentIndexMode(false);
             setSeekOnPaused(false);
-        }, 2233);
+        }, 1688);
     }
 
     public boolean isMiniMode() {
@@ -477,8 +480,12 @@ public class PlayerManager extends AbstractManager {
         getActivePlayer().toggleMute();
     }
 
+    public boolean isUnready() {
+        return !getActivePlayer().isReady() || isRestoring();
+    }
+
     public void setPlayStateProperty(int state) {
-        playStateProperty.set(state);
+        playStateProperty.set(isUnready() ? PlayState.UNKNOWN.getValue() : state);
     }
 
     public void togglePlay() {
@@ -497,9 +504,7 @@ public class PlayerManager extends AbstractManager {
         } else {
             setCurrentPlaybackQueueIndex(getActivePlaybackQueueIndex());
             Optional.ofNullable(getCurrentPlaybackQueue())
-                    .ifPresent(queue -> {
-                        playNext();
-                    });
+                    .ifPresent(queue -> playNext());
         }
     }
 
@@ -634,6 +639,10 @@ public class PlayerManager extends AbstractManager {
 
     private void seek(int seconds, boolean playing) {
         getActivePlayer().seek(seconds);
+        if (!getActivePlayer().isReady()) {
+            setPlayStateProperty(PlayState.PAUSED.getValue());
+            return ;
+        }
         //Seek-On-Paused
         if(!playing) {
             getActivePlayer().pause();
@@ -1299,20 +1308,6 @@ public class PlayerManager extends AbstractManager {
                                 togglePlay();
                             });
                 });
-    }
-
-    public void setupShortcutKeys() {
-        //getMainStage().getScene().getAccelerators().put(KeyCombination.valueOf("space"), this::togglePlay);
-
-        //Maven仓库版本不是最新，经常导致应用崩溃
-        //API设计有点繁琐，不好用
-
-        try {
-            GlobalScreen.registerNativeHook();
-            GlobalScreen.addNativeKeyListener(new GlobalShortcutKeys(getContext()));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public String getSkinRoot() {

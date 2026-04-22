@@ -7,7 +7,7 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             fx:id="lyric_mini_mode"
             fx:controller="xyz.rive.jttplayer.controller.LyricMiniModeController"
-            onMouseClicked="#hideAllMenus">
+            onMouseClicked="#toggleAppMainMenu">
     <VBox fx:id="lyric_content"
           styleClass="dnm_trigger"
           alignment="CENTER_LEFT"
@@ -16,6 +16,6 @@
           AnchorPane.bottomAnchor="2"
           AnchorPane.rightAnchor="2">
         <Label fx:id="lyric_line"
-               text="千千静听 7.1.0" />
+               text="千千静听 5.7 正式版" />
     </VBox>
 </AnchorPane>

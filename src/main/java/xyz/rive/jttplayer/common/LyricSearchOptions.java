@@ -16,8 +16,10 @@ import static xyz.rive.jttplayer.util.StringUtils.*;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LyricSearchOptions {
     private List<ItemOrder> searchOrders;
+    private boolean saveToTrackPath = true;
     private String downloadPath;
     private List<Server> servers;
+    private String selectedServer;
 
     public List<ItemOrder> getSearchOrders() {
         if (searchOrders == null) {
@@ -57,12 +59,14 @@ public class LyricSearchOptions {
     }
 
 
+    @JsonIgnore
     public void clearItemOrders() {
         if (searchOrders != null && !searchOrders.isEmpty()) {
             searchOrders.clear();
         }
     }
 
+    @JsonIgnore
     public List<ItemOrder> prepareSearchOrders() {
         if (getSearchOrders().isEmpty()) {
             searchOrders.add(new ItemOrder(TRACK_DIR_PLACEHOLDER, false, 0));
@@ -82,6 +86,7 @@ public class LyricSearchOptions {
         this.servers = servers;
     }
 
+    @JsonIgnore
     public void updateServer(Server server) {
         for (Server s : servers) {
             if (contentEquals(s.getId(), server.getId())) {
@@ -92,12 +97,34 @@ public class LyricSearchOptions {
         }
     }
 
-    public boolean existsServer(String name) {
+    @JsonIgnore
+    public Server getServer(String name) {
         for (Server s : servers) {
             if (contentEquals(s.getName(), name)) {
-                return true;
+                return s;
             }
         }
-        return false;
+        return null;
+    }
+
+    @JsonIgnore
+    public boolean existsServer(String name) {
+        return getServer(name) != null;
+    }
+
+    public String getSelectedServer() {
+        return selectedServer;
+    }
+
+    public void setSelectedServer(String selectedServer) {
+        this.selectedServer = selectedServer;
+    }
+
+    public boolean isSaveToTrackPath() {
+        return saveToTrackPath;
+    }
+
+    public void setSaveToTrackPath(boolean saveToTrackPath) {
+        this.saveToTrackPath = saveToTrackPath;
     }
 }

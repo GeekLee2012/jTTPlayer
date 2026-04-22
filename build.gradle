@@ -17,8 +17,10 @@ dependencies {
     implementation("com.kohlschutter.junixsocket:junixsocket-core:2.10.1")
     implementation("com.github.houbb:opencc4j:1.13.1")
     implementation("com.belerweb:pinyin4j:2.5.0")
-    implementation("com.1stleg:jnativehook:2.1.0")
-    implementation 'com.squareup.okhttp3:okhttp:3.12.13'
+    //implementation("com.1stleg:jnativehook:2.1.0")
+    implementation("com.squareup.okhttp3:okhttp:3.12.13")
+    implementation("net.java.dev.jna:jna:5.18.1")
+    implementation("net.java.dev.jna:jna-platform:5.18.1")
     implementation fileTree(dir: "libbass", includes: ["*.jar"])
 }
 
@@ -48,8 +50,9 @@ jar {
                         "nlp-common-0.0.5.jar" +
                         "opencc4j-1.13.1.jar" +
                         "pinyin4j-2.5.0.jar" +
-                        "jnativehook-2.1.0.jar" +
-                        "okhttp-3.12.13.jar"
+                        "okhttp-3.12.13.jar" +
+                        "jna-5.18.1.jar" +
+                        "jna-platform-5.18.1.jar"
         )
     }
 }

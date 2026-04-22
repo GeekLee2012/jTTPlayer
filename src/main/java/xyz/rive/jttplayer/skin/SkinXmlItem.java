@@ -40,6 +40,11 @@ public class SkinXmlItem extends PositionBasedItem {
         return isAlign("right");
     }
 
+    public boolean isAlignTopRight() {
+        return isAlign("top+right")
+                || isAlign("right+top");
+    }
+
     public boolean isAlignBottomLeft() {
         return isAlign("bottom+left")
                 || isAlign("left+bottom");

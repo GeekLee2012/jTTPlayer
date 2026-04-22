@@ -54,6 +54,9 @@ public class PreferencePlayOptionsController extends CommonController {
 
     private void restoreLastPlayCorePath(int index) {
         String paths = getConfiguration().getPlayOptions().getLastPlayCorePaths();
+        if (isEmpty(paths)) {
+            return ;
+        }
         String[] pathArr = trim(paths).split(";");
         play_core_path.setText(trim(pathArr[index]));
     }
@@ -90,14 +93,14 @@ public class PreferencePlayOptionsController extends CommonController {
             if (exists(path)) {
                 chooser.setInitialDirectory(new File(path));
             }
-            selection = chooser.showDialog(getStageManger().getPreferenceStage());
+            selection = chooser.showDialog(getStageManager().getPreferenceStage());
         } else {
             FileChooser chooser = new FileChooser();
             chooser.setTitle("选择播放器内核文件");
             if (exists(path)) {
                 chooser.setInitialDirectory(new File(path).getParentFile());
             }
-            selection = chooser.showOpenDialog(getStageManger().getPreferenceStage());
+            selection = chooser.showOpenDialog(getStageManager().getPreferenceStage());
         }
         if(selection == null) {
             return ;

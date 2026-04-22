@@ -7,6 +7,7 @@
     -fx-border-color: #cecece;
     /*-fx-effect: innershadow(three-pass-box, #000000, 3, 1, 0, 0);*/
     -menu-text-fill: #777777;
+    -fx-text-fill: -menu-text-fill;
     -fx-background-radius: 0;
     -fx-border-radius: 0;
 }
@@ -28,6 +29,14 @@
     -fx-text-alignment: center;
     -fx-wrap-text: true;
     -fx-padding: 0 0 2 0;
+}
+
+.pop_menu .slogan_box Region {
+    -fx-pref-width: 24;
+    -fx-pref-height: 169;
+    -fx-background-size: 24 169;
+    -fx-background-image: url("../images/slogan.png");
+    -fx-translate-y: 5;
 }
 
 .pop_menu .menu_box {

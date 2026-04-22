@@ -15,6 +15,8 @@ import java.util.function.BiConsumer;
  */
 public final class StageDnmAction {
     private Stage stage;
+    private double startX;
+    private double startY;
     private double fromX;
     private double fromY;
     private double fromSceneX;
@@ -59,13 +61,17 @@ public final class StageDnmAction {
         if(trigger == null) {
             return ;
         }
-        trigger.setOnMousePressed(e -> {
+        trigger.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
             if (!propagation) {
                 e.consume();
             }
             if(!enabled) {
                 return ;
             }
+            if (isResizeAction()) {
+                return ;
+            }
+
             fromX = stage.getX();
             fromY = stage.getY();
             width = stage.getWidth();
@@ -73,26 +79,31 @@ public final class StageDnmAction {
             fromSceneX = e.getSceneX();
             fromSceneY = e.getSceneY();
             alwaysOnTop = stage.isAlwaysOnTop();
+            startX = fromX;
+            startY = fromY;
         });
 
-        trigger.setOnMouseDragged(e -> {
+        trigger.addEventHandler(MouseEvent.MOUSE_DRAGGED, e -> {
             if (!propagation) {
                 e.consume();
             }
             if(!this.enabled) {
                 return ;
             }
+
+            if (isResizeAction()) {
+                return ;
+            }
+
             if(e.getTarget() != trigger && !(trigger instanceof Label)) {
                 return ;
             }
-            if(fromSceneX >= (width - 6) || (fromSceneY >= height - 6)) {
-                return ;
-            }
+
 
             dragged = true;
 
             double toX = e.getScreenX() - fromSceneX;
-            double toY = e.getScreenY() - fromSceneY;;
+            double toY = e.getScreenY() - fromSceneY;
 
             Position[] positions = {
                     new Position(fromX, fromY),
@@ -123,16 +134,21 @@ public final class StageDnmAction {
             //fromSceneY = e.getSceneY();
         });
 
-        trigger.setOnMouseReleased(e -> {
+        trigger.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> {
             if (!propagation) {
                 e.consume();
             }
+            if (isResizeAction()) {
+                return ;
+            }
+
             if(dragged) {
                 dragged = false;
             }
+
             moveFinishedHandlers.forEach(handler -> {
                 if (handler != null) {
-                    handler.accept(e, new Position(fromX, fromY));
+                    handler.accept(e, new Position(startX, startY));
                 }
             });
         });
@@ -157,6 +173,13 @@ public final class StageDnmAction {
             moveFinishedHandlers.add(handler);
         }
         return this;
+    }
+
+    private boolean isResizeAction() {
+        Node root = stage.getScene().getRoot();
+        return root.getStyleClass().contains("h_resize")
+                || root.getStyleClass().contains("v_resize")
+                || root.getStyleClass().contains("se_resize");
     }
 
 

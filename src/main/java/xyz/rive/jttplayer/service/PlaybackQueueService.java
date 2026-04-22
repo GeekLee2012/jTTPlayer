@@ -162,7 +162,7 @@ public class PlaybackQueueService {
         } else if(trimLowerCase(fileName).endsWith(".jttpl")) {
             queue = parseFromJttpl(fileName);
         }
-        if(queue != null && isEmpty(queue.getName())) {
+        if(queue != null && isEmpty(queue.getRawName())) {
             queue.setName(guessSimpleName(fileName));
         }
         return queue;

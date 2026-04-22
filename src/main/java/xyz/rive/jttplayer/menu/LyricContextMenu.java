@@ -27,7 +27,7 @@ public class LyricContextMenu extends AbstractContextMenu {
         menuMetas.add(MenuMeta.separator());
         menuMetas.add(new MenuMeta("在线搜索",
                 getIconStyle("common.png", 22),
-                null,
+                new ShowSearchOnlineStageAction(),
                 (MenuMeta __) -> MenuMeta.toDisabledState(
                         context.getConfiguration().getLyricSearchOptions()
                                 .getServers().isEmpty()

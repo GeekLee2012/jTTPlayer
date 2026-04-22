@@ -129,24 +129,28 @@
             <HBox>
                 <Label text="作者："/>
                 <Label styleClass="link"
-                       text="RIVE2012" />
+                       text="RIVE2012"
+                       onMouseClicked="#visitAuthor"/>
             </HBox>
             <HBox>
                 <Label text="版本："/>
                 <Label fx:id="version"
-                       styleClass="link" />
+                       styleClass="link"
+                       onMouseClicked="#visitReleases" />
             </HBox>
             <HBox>
                 <Label text="开源协议："/>
                 <Label styleClass="link"
-                       text="AGPL 3.0" />
+                       text="AGPL 3.0"
+                       onMouseClicked="#visitLicense"/>
                 <!--
                 https://www.gnu.org/licenses/agpl-3.0.en.html
                 -->
             </HBox>
             <HBox>
                 <Label text="源码："/>
-                <Region styleClass="git_repo"/>
+                <Region styleClass="git_repo"
+                        onMouseClicked="#visitRepository"/>
             </HBox>
         </HBox>
     </BorderTitleView>

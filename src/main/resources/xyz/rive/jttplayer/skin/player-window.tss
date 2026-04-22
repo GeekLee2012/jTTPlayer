@@ -276,6 +276,35 @@
     -fx-background-position: $PAUSE_POS_2;
 }
 
+#app_main #play_mini_btn {
+    -fx-pref-width: $PLAY_MINI_WIDTH;
+    -fx-pref-height: $PLAY_MINI_HEIGHT;
+    -fx-background-image: url("$PLAY_MINI_IMG");
+}
+
+#app_main #play_mini_btn:hover {
+    -fx-background-position: $PLAY_MINI_POS_1;
+}
+
+#app_main #play_mini_btn:pressed {
+    -fx-background-position: $PLAY_MINI_POS_2;
+}
+
+#app_main #pause_mini_btn {
+    -fx-pref-width: $PAUSE_MINI_WIDTH;
+    -fx-pref-height: $PAUSE_MINI_HEIGHT;
+    -fx-background-image: url("$PAUSE_MINI_IMG");
+    -fx-visibility: hidden;
+}
+
+#app_main #pause_mini_btn:hover {
+    -fx-background-position: $PAUSE_MINI_POS_1;
+}
+
+#app_main #pause_mini_btn:pressed {
+    -fx-background-position: $PAUSE_MINI_POS_2;
+}
+
 /* Mode */
 #app_main #mode_single_btn {
     -fx-pref-width: $MODE_SINGLE_WIDTH;
@@ -347,6 +376,90 @@
     -fx-background-position: $MODE_RANDOM_POS_2;
 }
 
+
+/* toolbar */
+#app_main #toolbar {
+    -fx-pref-width: $TOOLBAR_WIDTH;
+    -fx-pref-height: $TOOLBAR_HEIGHT;
+    -fx-background-image: url("$TOOLBAR_BAR_IMG");
+}
+
+#app_main #toolbar HBox {
+    -fx-cursor: hand;
+    -fx-pref-width: $TOOLBAR_ITEM_WIDTH;
+    -fx-pref-height: $TOOLBAR_ITEM_HEIGHT;
+    -fx-alignment: center;
+}
+
+#app_main #toolbar HBox Region {
+    -fx-pref-width: $TOOLBAR_ITEM_IMG_WIDTH;
+    -fx-pref-height: $TOOLBAR_ITEM_IMG_HEIGHT;
+}
+
+#app_main #toolbar HBox Region {
+    -fx-background-image: url("$TOOLBAR_IMG");
+}
+
+#app_main #toolbar HBox:hover Region {
+    -fx-background-image: url("$TOOLBAR_HOT_IMG");
+}
+
+#app_main #toolbar .item_1 Region {
+    -fx-background-position: $TOOLBAR_ITEM_1_POS_0;
+}
+
+#app_main #toolbar .item_1:hover Region {
+    -fx-background-position: $TOOLBAR_ITEM_1_POS_0;
+}
+
+#app_main #toolbar .item_2 Region {
+    -fx-background-position: $TOOLBAR_ITEM_2_POS_0;
+}
+
+#app_main #toolbar .item_2:hover Region {
+    -fx-background-position: $TOOLBAR_ITEM_2_POS_0;
+}
+
+#app_main #toolbar .item_3 Region {
+    -fx-background-position: $TOOLBAR_ITEM_3_POS_0;
+}
+
+#app_main #toolbar .item_3:hover Region {
+    -fx-background-position: $TOOLBAR_ITEM_3_POS_0;
+}
+
+#app_main #toolbar .item_4 Region {
+    -fx-background-position: $TOOLBAR_ITEM_4_POS_0;
+}
+
+#app_main #toolbar .item_4:hover Region {
+    -fx-background-position: $TOOLBAR_ITEM_4_POS_0;
+}
+
+#app_main #toolbar .item_5 Region {
+    -fx-background-position: $TOOLBAR_ITEM_5_POS_0;
+}
+
+#app_main #toolbar .item_5:hover Region {
+    -fx-background-position: $TOOLBAR_ITEM_5_POS_0;
+}
+
+#app_main #toolbar .item_6 Region {
+    -fx-background-position: $TOOLBAR_ITEM_6_POS_0;
+}
+
+#app_main #toolbar .item_6:hover Region {
+    -fx-background-position: $TOOLBAR_ITEM_6_POS_0;
+}
+
+#app_main #toolbar .item_7 Region {
+    -fx-background-position: $TOOLBAR_ITEM_7_POS_0;
+}
+
+#app_main #toolbar .item_7:hover Region {
+    -fx-background-position: $TOOLBAR_ITEM_7_POS_0;
+}
+
 /* Cursor */
 #app_main #app_logo,
 #app_main #info,
@@ -354,6 +467,8 @@
 #app_main #set_btn,
 #app_main #mini_btn,
 #app_main #minimode_btn,
+#app_main #play_mini_btn,
+#app_main #pause_mini_btn,
 #app_main #close_btn,
 #app_main #open_btn,
 #app_main #stop_btn,

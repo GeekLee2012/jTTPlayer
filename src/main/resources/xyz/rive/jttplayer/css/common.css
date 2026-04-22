@@ -234,6 +234,7 @@ Label.action {
     -fx-padding: 0 10;
     -fx-cursor: hand;
     -fx-pref-height: 26;
+    -fx-alignment: center;
 }
 
 Region.action {

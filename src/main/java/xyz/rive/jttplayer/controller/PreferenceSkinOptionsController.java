@@ -1,20 +1,13 @@
 package xyz.rive.jttplayer.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.transform.Scale;
 import javafx.stage.DirectoryChooser;
 import xyz.rive.jttplayer.skin.SkinXml;
 
@@ -23,7 +16,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import static xyz.rive.jttplayer.skin.Constants.DEFAULT_SKIN_NAME;
-import static xyz.rive.jttplayer.skin.Constants.DEFAULT_SKIN_SNAME;
 import static xyz.rive.jttplayer.util.FileUtils.guessSimpleName;
 import static xyz.rive.jttplayer.util.FileUtils.transformPath;
 import static xyz.rive.jttplayer.util.FxUtils.*;
@@ -98,7 +90,7 @@ public class PreferenceSkinOptionsController extends CommonController {
         consumeEvent(event);
         DirectoryChooser chooser = new DirectoryChooser();
         chooser.setTitle("选择皮肤根目录");
-        File selection = chooser.showDialog(getStageManger().getPreferenceStage());
+        File selection = chooser.showDialog(getStageManager().getPreferenceStage());
         if(selection == null) {
             return ;
         }
@@ -120,7 +112,7 @@ public class PreferenceSkinOptionsController extends CommonController {
         if (contentEquals(key, DEFAULT_SKIN_NAME)) {
             return ;
         }
-        getStageManger().showConfirm(
+        getStageManager().showConfirm(
                 String.format("皮肤将从硬盘上直接删除，确定要继续吗？\n文件名称为：%s", key),
                 () -> {
                     skin_list.getItems().remove(selection);

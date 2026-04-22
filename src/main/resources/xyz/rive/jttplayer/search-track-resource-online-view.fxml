@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ListView?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:id="search_track_resource_online_view"
+            fx:controller="xyz.rive.jttplayer.controller.SearchTrackResourceOnlineController"
+            stylesheets="@css/search-track-resource-online-view.css">
+    <top>
+        <AnchorPane fx:id="top" >
+            <Label styleClass="title"
+                   text="在线搜索歌曲资源"
+                   AnchorPane.leftAnchor="7"
+                   AnchorPane.topAnchor="3"/>
+            <Region styleClass="close_btn"
+                    AnchorPane.rightAnchor="0"
+                    AnchorPane.topAnchor="0"
+                    onMouseClicked="#closeView"/>
+        </AnchorPane>
+    </top>
+    <center>
+        <VBox fx:id="center"
+              spacing="8">
+            <HBox maxWidth="Infinity"
+                  alignment="CENTER_LEFT"
+                  spacing="5">
+                <Label text="服务器:"/>
+                <ComboBox fx:id="server_list"
+                          HBox.hgrow="ALWAYS"
+                          maxWidth="Infinity" />
+                <Label styleClass="link"
+                       text="代理设置"/>
+            </HBox>
+            <HBox spacing="10">
+                <HBox maxWidth="Infinity"
+                      HBox.hgrow="ALWAYS"
+                      alignment="CENTER_LEFT"
+                      spacing="5">
+                    <Label text="歌曲名:" />
+                    <TextField fx:id="track_title"
+                               HBox.hgrow="ALWAYS"
+                               maxWidth="Infinity"/>
+                </HBox>
+                <HBox maxWidth="Infinity"
+                      HBox.hgrow="ALWAYS"
+                      alignment="CENTER_LEFT"
+                      spacing="5">
+                    <Label text="歌手:" />
+                    <TextField fx:id="track_artist"
+                               HBox.hgrow="ALWAYS"
+                               maxWidth="Infinity"/>
+                </HBox>
+                <Label text="搜索"
+                       fx:id="search_btn"
+                       styleClass="action"
+                       graphicTextGap="7"
+                       onMouseClicked="#searchSongs">
+                    <graphic>
+                        <Region styleClass="graphic" />
+                    </graphic>
+                </Label>
+            </HBox>
+            <VBox spacing="3">
+                <Label text="搜索结果:" />
+                <ListView fx:id="lyric_list"/>
+            </VBox>
+        </VBox>
+    </center>
+    <bottom>
+        <AnchorPane fx:id="bottom">
+            <HBox maxWidth="Infinity"
+                  alignment="CENTER_LEFT"
+                  AnchorPane.topAnchor="2"
+                  AnchorPane.leftAnchor="0"
+                  AnchorPane.rightAnchor="0"
+                  spacing="5">
+                <Label text="保存为:"/>
+                <TextField fx:id="save_filename"
+                          HBox.hgrow="ALWAYS"
+                          maxWidth="Infinity" />
+                <Region fx:id="switch_filename_btn"
+                        onMouseClicked="#switchSaveFilename"/>
+            </HBox>
+            <CheckBox text="下载后与歌曲进行文件关联"
+                      AnchorPane.leftAnchor="0"
+                      AnchorPane.bottomAnchor="1" />
+            <HBox spacing="7"
+                  AnchorPane.rightAnchor="0"
+                  AnchorPane.bottomAnchor="0" >
+                <Label text="下载封面"
+                       fx:id="download_cover_btn"
+                       styleClass="action"
+                       graphicTextGap="7"
+                       onMouseClicked="#downloadCover">
+                    <graphic>
+                        <Region styleClass="graphic"/>
+                    </graphic>
+                </Label>
+                <Label text="下载歌词"
+                       fx:id="download_lrc_btn"
+                       styleClass="action"
+                       graphicTextGap="7"
+                       onMouseClicked="#downloadLrc">
+                    <graphic>
+                        <Region styleClass="graphic"/>
+                    </graphic>
+                </Label>
+                <Label text="关闭"
+                       fx:id="cancel_close"
+                       styleClass="action"
+                       graphicTextGap="7"
+                       onMouseClicked="#closeView">
+                    <graphic>
+                        <Region styleClass="graphic"/>
+                    </graphic>
+                </Label>
+            </HBox>
+        </AnchorPane>
+    </bottom>
+</BorderPane>

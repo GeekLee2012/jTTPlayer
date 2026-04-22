@@ -13,6 +13,8 @@ public class PositionBasedItem {
     //position: left, top, right, bottom
     public int x1, y1, x2, y2;
     public Size size;
+    public String proxy;
+
 
     public void setPosition(String[] pos) {
         if (pos != null && pos.length == 4) {
@@ -34,13 +36,16 @@ public class PositionBasedItem {
         return new Rect(x1, y1, x2, y2);
     }
 
+
     public int width() {
         return x2 - x1;
     }
 
+
     public int height() {
         return y2 - y1;
     }
+
 
     public Size size() {
         if (size == null) {
@@ -50,7 +55,7 @@ public class PositionBasedItem {
     }
 
     public boolean isItem(String name) {
-        return this != null && !isEmpty(name)
+        return !isEmpty(name)
                 && this.name.contentEquals(name);
     }
 
@@ -244,6 +249,21 @@ public class PositionBasedItem {
 
     public boolean isStatusItem() {
         return isItem(STATUS);
+    }
+
+
+    //移植版本：自定义
+    public boolean isProxyItem() {
+        return !isEmpty(proxy)
+                && Boolean.parseBoolean(proxy);
+    }
+
+    public boolean isPlayMiniItem() {
+        return isItem(PLAY_MINI);
+    }
+
+    public boolean isPauseMiniItem() {
+        return isItem(PAUSE_MINI);
     }
 
     @Override

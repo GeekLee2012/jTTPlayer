@@ -19,6 +19,7 @@ import static xyz.rive.jttplayer.common.Constants.LYRIC_DOWNLOAD_DIR_PLACEHOLDER
 import static xyz.rive.jttplayer.common.Constants.TRACK_DIR_PLACEHOLDER;
 import static xyz.rive.jttplayer.util.FileUtils.transformPath;
 import static xyz.rive.jttplayer.util.StringUtils.contentEquals;
+import static xyz.rive.jttplayer.util.StringUtils.trim;
 
 public class PreferenceLyricSearchOptionsController extends CommonController {
 
@@ -30,10 +31,29 @@ public class PreferenceLyricSearchOptionsController extends CommonController {
     private ComboBox<String> server_list;
     @FXML
     private TextField download_path;
+    @FXML
+    private CheckBox save_to_track_path;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setupController(this, lyric_search_options);
+
+        LyricSearchOptions options = getConfiguration().getLyricSearchOptions();
+        save_to_track_path.setSelected(options.isSaveToTrackPath());
+        download_path.setText(trim(options.getDownloadPath()));
+
+        save_to_track_path.selectedProperty().addListener((o, ov, nv) -> {
+            options.setSaveToTrackPath(nv);
+        });
+
+        download_path.textProperty().addListener(__ -> {
+            String path = trim(download_path.getText());
+            options.setDownloadPath(path);
+        });
+
+        server_list.valueProperty().addListener((o, ov, nv) -> {
+            options.setSelectedServer(nv);
+        });
     }
 
     public void loadContent() {
@@ -60,6 +80,7 @@ public class PreferenceLyricSearchOptionsController extends CommonController {
         options.getServers().forEach(server -> {
             server_list.getItems().add(server.getName());
         });
+        server_list.getSelectionModel().select(options.getSelectedServer());
     }
 
     private void syncSearchOrders() {
@@ -86,7 +107,7 @@ public class PreferenceLyricSearchOptionsController extends CommonController {
         consumeEvent(event);
         DirectoryChooser chooser = new DirectoryChooser();
         chooser.setTitle("选择目录");
-        File selection = chooser.showDialog(getStageManger().getPreferenceStage());
+        File selection = chooser.showDialog(getStageManager().getPreferenceStage());
         if (selection == null) {
             return ;
         }
@@ -160,7 +181,7 @@ public class PreferenceLyricSearchOptionsController extends CommonController {
         consumeEvent(event);
         DirectoryChooser chooser = new DirectoryChooser();
         chooser.setTitle("选择目录");
-        File selection = chooser.showDialog(getStageManger().getPreferenceStage());
+        File selection = chooser.showDialog(getStageManager().getPreferenceStage());
         if (selection == null) {
             return ;
         }
@@ -173,7 +194,7 @@ public class PreferenceLyricSearchOptionsController extends CommonController {
     public void showLyricServerManageView(MouseEvent event) {
         consumeEvent(event);
         String value = server_list.getValue();
-        Stage stage = getStageManger().getLyricServerManageStage();
+        Stage stage = getStageManager().getLyricServerManageStage();
         stage.setOnHidden(__ -> {
             loadServerList();
             boolean isExists = server_list.getItems().contains(value);

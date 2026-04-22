@@ -10,6 +10,7 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage stage) {
         ApplicationContext.getInstance()
+                .setApplication(this)
                 .start(stage);
     }
 

@@ -19,9 +19,17 @@
         <Region styleClass="app_logo"/>
         <VBox spacing="2">
             <Region styleClass="app_title"/>
-            <HBox spacing="20">
-                <Label text="版本：7.1.0（Unicode）" />
-                <Label text="版权所有：2003-2014"/>
+            <HBox spacing="67">
+                <HBox>
+                    <Label text="作者：" />
+                    <Label text="nanling"
+                           styleClass="link"/>
+                </HBox>
+                <Label text="版权所有：2003-2011"/>
+            </HBox>
+            <HBox spacing="50">
+                <Label text="版本：5.7 正式版" />
+                <Label text="完成日期：2011-3-7"/>
             </HBox>
         </VBox>
     </HBox>

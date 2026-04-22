@@ -24,6 +24,7 @@ public class LyricMiniModeController extends CommonController {
     @FXML
     private Label lyric_line;
     private Lyric lyric;
+    private boolean wordMode = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -35,7 +36,12 @@ public class LyricMiniModeController extends CommonController {
     private void setupListeners() {
         onTrackChanged((o, ov, nv) -> loadLyric());
         onTimePosition((o, ov, nv) -> renderLyric((Double) nv));
+        lyric_line.prefHeightProperty().bind(lyric_content.prefHeightProperty().add(4));
         loadLyric();
+    }
+
+    private void setWordMode(boolean value) {
+        wordMode = value;
     }
 
     public void loadLyric() {
@@ -48,6 +54,10 @@ public class LyricMiniModeController extends CommonController {
             } else if(track.hasEmbedLyric()) {
                 lyric = track.getLyricEmbed();
             }
+            if(lyric == null || !lyric.hasData()) {
+                return ;
+            }
+            setWordMode(lyric.isWordMode());
             renderLyric(getPlayerManager().getTimePosition());
         });
     }
@@ -56,6 +66,7 @@ public class LyricMiniModeController extends CommonController {
         Track track = getCurrentTrack();
         String text = track != null ? track.basicMetadata() : APP_TITLE_VERSION;
         updateLyricLine(text);
+        setWordMode(false);
         lyric = null;
     }
 
@@ -87,7 +98,11 @@ public class LyricMiniModeController extends CommonController {
         if(isEmpty(text)) {
            return ;
         }
-        runFx(() -> lyric_line.setText(trim(text)));
+        runFx(() -> {
+            lyric_line.setText(wordMode ?
+                    Lyric.mergeWordTokens(trim(text)) :
+                    trim(text));
+        });
     }
 
 }

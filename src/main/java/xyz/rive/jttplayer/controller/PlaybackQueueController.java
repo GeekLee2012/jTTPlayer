@@ -1,10 +1,7 @@
 package xyz.rive.jttplayer.controller;
 
-import javafx.beans.InvalidationListener;
 import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -32,7 +29,6 @@ import java.util.function.Predicate;
 
 import static xyz.rive.jttplayer.common.Constants.PLAYBACK_QUEUE;
 import static xyz.rive.jttplayer.common.SortBy.*;
-import static xyz.rive.jttplayer.skin.SkinXmlWindowItem.*;
 import static xyz.rive.jttplayer.util.FxUtils.*;
 import static xyz.rive.jttplayer.util.StringUtils.*;
 
@@ -44,8 +40,6 @@ public class PlaybackQueueController extends CommonController {
     private Region view_bg;
     @FXML
     private Region view_title;
-    @FXML
-    private Region top;
     @FXML
     private Region close_btn;
     @FXML
@@ -80,9 +74,7 @@ public class PlaybackQueueController extends CommonController {
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize(location, resources);
         setupController(this, playback_queue_view, PLAYBACK_QUEUE);
-        setupDndAction(ctx -> {
-                    appendToPlaybackQueue(ctx.getFiles());
-                }, playback_queue_view);
+        setupDndAction(this::handleDndAction, playback_queue_view);
 
         initToolbar();
         //double scrollbarWidth = 23;
@@ -161,6 +153,7 @@ public class PlaybackQueueController extends CommonController {
             item.getStyleClass().add("name_wrap");
             item.setUserData(queue);
             item.setOnMouseClicked(event -> {
+                lastSearchIndex = -1;
                 if(event.getButton() == MouseButton.SECONDARY) {
                     context.setupContextMenuTrigger(item);
                     getPlaybackQueueContextMenu()
@@ -245,9 +238,17 @@ public class PlaybackQueueController extends CommonController {
         if(files == null || files.isEmpty()) {
             return ;
         }
-        if(files.size() == 1 && files.get(0).isDirectory()) {
-            appendToPlaybackQueue(files.get(0));
-            return ;
+        if(files.size() == 1) {
+            File file = files.get(0);
+            if (file.isDirectory()) {
+                appendToPlaybackQueue(file);
+                return ;
+            } else if (trimLowerCase(file.getName()).endsWith(".m3u")
+                    || trimLowerCase(file.getName()).endsWith(".m3u8")
+                    || trimLowerCase(file.getName()).endsWith(".jttpl") ) {
+                restorePlaybackQueue(file);
+                return ;
+            }
         }
 
         int toIndex = data_list.getItems().indexOf(dragOverItem);
@@ -736,13 +737,14 @@ public class PlaybackQueueController extends CommonController {
         }
         name_list.setPrefWidth(width);
         name_list.setMinWidth(width);
+        setItemsAutoVisible(width >= 0, name_list);
         setPlaybackQueueNamesCollapsed(!collapsed);
         setupListPosition(width);
         refreshAllList();
     }
 
     public void setupListPosition(double width) {
-        double leftPadding = 2;
+        double leftPadding = 0;
         double splitterWidth = 5;
         AnchorPane.setLeftAnchor(splitter, width + leftPadding);
         AnchorPane.setLeftAnchor(data_list, width + leftPadding + splitterWidth);
@@ -767,7 +769,7 @@ public class PlaybackQueueController extends CommonController {
         menuMetas.add(new MenuMeta("文件夹",
                 new OpenFolderAction()));
         menuMetas.add(new MenuMeta("本地搜索",
-                new ShowStageAction(getStageManger().getSearchComputerStage()),
+                new ShowStageAction(getStageManager().getSearchComputerStage()),
                 (MenuMeta __) -> MenuMeta.toDisabledState(true)
         ));
         menuMetas.add(new MenuMeta("网上搜索",
@@ -776,7 +778,7 @@ public class PlaybackQueueController extends CommonController {
         ));
         menuMetas.add(MenuMeta.separator());
         menuMetas.add(new MenuMeta("网络URL",
-                new ShowStageAction(getStageManger().getPlayUrlStage())));
+                new ShowStageAction(getStageManager().getPlayUrlStage())));
         return menuMetas;
     }
 
@@ -864,11 +866,11 @@ public class PlaybackQueueController extends CommonController {
                 getIconStyle("common2.png", 3),
                 new ShowCurrentTrackPositionAction()));
         menuMetas.add(new MenuMeta("快速定位",
-                new ShowStageAction(getStageManger().getFileQuickPositionStage())));
+                new ShowStageAction(getStageManager().getFileQuickPositionStage())));
         menuMetas.add(MenuMeta.separator());
         menuMetas.add(new MenuMeta("查找歌曲",
                 getIconStyle("common2.png", 15),
-                (EventHandler<? super MouseEvent>) __ -> getStageManger().getFileSearchStage().show()));
+                (EventHandler<? super MouseEvent>) __ -> getStageManager().getFileSearchStage().show()));
         menuMetas.add(new MenuMeta("查找上一个",
                 new FileSearchAction(false)));
         menuMetas.add(new MenuMeta("查找下一个",
@@ -902,6 +904,9 @@ public class PlaybackQueueController extends CommonController {
         return menuMetas;
     }
 
+    public List<MenuMeta> getPlayModeMenu() {
+       return getMenuTemplates().getPlayModeMenuList();
+    }
 
     public PopMenu buildMenuBarPopMenu(int index) {
         List<MenuMeta> list = null;
@@ -918,7 +923,7 @@ public class PlaybackQueueController extends CommonController {
         } else if(index == 5) {
             list = getEditMenu();
         } else if(index == 6) {
-            list = getMenuTemplates().getPlayModeMenuList();
+            list = getPlayModeMenu();
         }
         return getMenuBarPopMenu()
                 .setMenuList(list);
@@ -1093,11 +1098,14 @@ public class PlaybackQueueController extends CommonController {
     @Override
     public void setupSkin() {
         super.setupSkin();
+        setItemsHidden(close_btn, toolbar);
+
         SkinXml skin = getActiveSkinXml();
         SkinXmlWindowItem winItem = skin.getPlaylistWindow();
 
         winItem.items.forEach(item -> {
             if (item.isCloseItem()) {
+                setItemsVisible(close_btn);
                 setAnchorAuto(close_btn, skin, item, winItem);
             } //
             else if (item.isPlaylistItem()) {
@@ -1108,8 +1116,16 @@ public class PlaybackQueueController extends CommonController {
                 );
             } //
             else if (item.isScrollbarItem()) {
+                /*
+                double width = item.width();
+                if (width <= 0) {
+                    Size size = getSkinImageSize(skin, item.barImage);
+                    width = size.width();
+                }
+                */
                 Size size = getSkinImageSize(skin, item.barImage);
-                titleWidthOffsetProperty.set((int) (63 + size.width()) * -1);
+                double width = size.width();
+                titleWidthOffsetProperty.set((int) (63 + width) * -1);
             } //
             else if (item.isToolbarItem()) {
                 //底部居中显示
@@ -1139,6 +1155,11 @@ public class PlaybackQueueController extends CommonController {
                         toolbarPosListener = null;
                     }
                     setAnchorAuto(toolbar, skin, item, winItem);
+                }
+                if (item.isProxyItem()) {
+                    setItemsHidden(toolbar);
+                } else {
+                    setItemsVisible(toolbar);
                 }
             } else if (item.isTitleItem()) {
                 setPrefSize(view_title, item.size());

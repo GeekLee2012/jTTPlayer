@@ -87,3 +87,7 @@
     -fx-background-position: center center;
 }
 
+#lyric_server_edit_view #bottom #error_msg {
+    -fx-text-fill: red;
+}
+

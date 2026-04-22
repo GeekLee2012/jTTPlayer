@@ -2,14 +2,14 @@
 
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Region?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:id="pop_menu"
             styleClass="pop_menu"
             stylesheets="@css/pop-menu.css">
     <left>
         <VBox styleClass="slogan_box">
-            <Label text="千千静听"/>
+            <Region />
         </VBox>
     </left>
     <center>

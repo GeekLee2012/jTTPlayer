@@ -48,7 +48,7 @@ public class LyricServerManageController extends CommonController {
 
     public void addServer(MouseEvent event) {
         consumeEvent(event);
-        getStageManger().getLyricServerEditStage().show();
+        getStageManager().getLyricServerEditStage().show();
         getControllerManager().createLyricServer(server -> {
                     Label item = new Label(server.getName());
                     item.setUserData(server);
@@ -65,7 +65,7 @@ public class LyricServerManageController extends CommonController {
         if (item == null) {
             return ;
         }
-        getStageManger().getLyricServerEditStage().show();
+        getStageManager().getLyricServerEditStage().show();
         getControllerManager().updateLyricServer(true,
                 getUserData(item, Server.class),
                 server -> {
@@ -83,12 +83,20 @@ public class LyricServerManageController extends CommonController {
             return ;
         }
         Server selection = getUserData(item, Server.class);
-        LyricSearchOptions options = getConfiguration().getLyricSearchOptions();
-        options.getServers().removeIf(server ->
-                contentEquals(selection.getId(), server.getId())
-        );
-        
-        loadContent();
+        getStageManager().showConfirm(
+                String.format("确定要删除当前服务器吗？\n" +
+                        "名称：%s\nURL：%s",
+                        selection.getName(),
+                        selection.getApiUrl()),
+                () -> {
+                    LyricSearchOptions options = getConfiguration().getLyricSearchOptions();
+                    options.getServers().removeIf(server ->
+                            contentEquals(selection.getId(), server.getId())
+                    );
+
+                    loadContent();
+                });
+
     }
 
 }

@@ -2,6 +2,7 @@ package xyz.rive.jttplayer.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -70,6 +71,10 @@ public class MainMiniModeController extends CommonController {
     @FXML
     private PlayTime play_time;
     @FXML
+    private Label stereo;
+    @FXML
+    private Label status;
+    @FXML
     private Region mute;
     @FXML
     private ProgressBarHorizontal volume_fill;
@@ -82,6 +87,7 @@ public class MainMiniModeController extends CommonController {
     @FXML
     private Canvas spectrum_canvas;
     private SpectrumAnimation spectrumAnimation;
+    private String lastStereoText = "声道";
 
 
     @Override
@@ -127,7 +133,7 @@ public class MainMiniModeController extends CommonController {
 
             //双击打开文件属性
             context.setFileAttributesTrack(getCurrentTrack());
-            getStageManger().getFileAttributesStage().show();
+            getStageManager().getFileAttributesStage().show();
         });
 
         play_progress.onMouseClicked(event -> {
@@ -205,7 +211,7 @@ public class MainMiniModeController extends CommonController {
         boolean isMute = (getPlayer().isMute()
                 || getPlayer().getVolume() <= 0);
         toggleBtnHighlight(mute, isMute);
-        //stereo.setText(isMute ? "静音" : lastStereoText);
+        stereo.setText(isMute ? "静音" : lastStereoText);
     }
 
     private void switchLyricStageByMode() {
@@ -302,7 +308,11 @@ public class MainMiniModeController extends CommonController {
                     getCurrentTrackIndex(),
                     getCurrentTrack()
             );
-            updateCover();
+            try {
+                updateCover();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         });
     }
 
@@ -322,7 +332,10 @@ public class MainMiniModeController extends CommonController {
         play_progress.setEnabled(seekable);
 
         runFx(() ->  {
+            lastStereoText = "立体声";
+            stereo.setText(lastStereoText);
             PlayState playState = PlayState.of(state);
+            status.setText("状态: ".concat(playState.getName()));
             if(playState == PlayState.STOPPING
                     || playState == PlayState.STOPPED) {
                 resetTrackProgress();
@@ -345,7 +358,7 @@ public class MainMiniModeController extends CommonController {
 
     public void minimized(MouseEvent event) {
         consumeEvent(event);
-        getStageManger().minimized();
+        getStageManager().minimized();
     }
 
     public void toggleMiniMode(MouseEvent event) {
@@ -457,7 +470,7 @@ public class MainMiniModeController extends CommonController {
                 lyric_btn, stop_btn, open_btn,
                 mute, volume_fill, volume_fill_v,
                 play_time, visual_box, track_cover,
-                spectrum_canvas
+                spectrum_canvas, stereo, status
         );
 
         SkinXml skin = getActiveSkinXml();
@@ -498,7 +511,6 @@ public class MainMiniModeController extends CommonController {
                 setItemsVisible(mute);
                 setPrefSize(mute, item.size());
                 setAnchorAuto(mute, skin, item, winItem);
-                setBackgroundImage(mute, skin, item.image);
             } else if (item.isVolumeItem()) {
                 volume_fill.setEnabled(!item.vertical);
                 Region volumeFill = item.vertical ? volume_fill_v : volume_fill;
@@ -539,6 +551,12 @@ public class MainMiniModeController extends CommonController {
                 setAnchorAuto(minimode_btn, skin, item, winItem);
             } else if (item.isCloseItem() || item.isExitItem()) {
                 setAnchorAuto(close_btn, skin, item, winItem);
+            } else if (item.isStereoItem()) {
+                setItemsVisible(stereo);
+                setAnchorAuto(stereo, skin, item, winItem);
+            } else if (item.isStatusItem()) {
+                setItemsVisible(status);
+                setAnchorAuto(status, skin, item, winItem);
             }
         }
         

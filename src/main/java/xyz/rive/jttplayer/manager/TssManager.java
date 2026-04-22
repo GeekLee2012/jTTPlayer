@@ -183,6 +183,8 @@ public class TssManager extends AbstractManager {
                 .replaceAll("\\$.*_POS_1", "0 0")
                 .replaceAll("\\$.*_POS_2", "0 0")
                 .replaceAll("\\$.*_POS_00", "0 0")
+                .replaceAll("\\$.*_VPOS_0", "0 0")
+                .replaceAll("\\$.*_POS_0", "0 0")
                 .replaceAll("\\$.*_POS", "0 0")
                 .replaceAll("\\$.*_BKGND", "none")
                 .replaceAll("\\$.*_COLOR", "none")
@@ -334,6 +336,34 @@ public class TssManager extends AbstractManager {
                 tss = setupActionItem(tss, skin, item, STOP);
             } else if (item.isOpenItem()) {
                 tss = setupActionItem(tss, skin, item, OPEN);
+            } else if (item.isToolbarItem()) {
+                int itemCount = 7;
+                int itemWidth = (int) (item.width() / itemCount);
+                Size imgSize = getImageSize(skin, item.image);
+                int itemImgWidth = (int) (imgSize.width() / itemCount);
+                int itemImgHeight = (int) (imgSize.height() / itemCount);
+                tss = tss.replaceAll("\\$TOOLBAR_IMG", getImageUrl(skin, item.image))
+                        .replaceAll("\\$TOOLBAR_HOT_IMG", getImageUrl(skin, item.hotImage))
+                        .replaceAll("\\$TOOLBAR_BAR_IMG", getImageUrl(skin, item.barImage))
+                        .replaceAll("\\$TOOLBAR_WIDTH", item.width() + "")
+                        .replaceAll("\\$TOOLBAR_HEIGHT", item.height() + "")
+                        .replaceAll("\\$TOOLBAR_ITEM_WIDTH", itemWidth + "")
+                        .replaceAll("\\$TOOLBAR_ITEM_HEIGHT", item.height() + "")
+                        .replaceAll("\\$TOOLBAR_ITEM_IMG_WIDTH", itemImgWidth + "").
+                        replaceAll("\\$TOOLBAR_ITEM_IMG_HEIGHT", itemImgHeight + "");
+                for (int i = 0; i < itemCount; i++) {
+                    tss = setupActionItem(tss,
+                            "",
+                            itemImgWidth,
+                            itemImgHeight,
+                            "TOOLBAR_ITEM_" + (i + 1),
+                            i
+                    );
+                }
+            } else if (item.isPlayMiniItem()) {
+                tss = setupActionItem(tss, skin, item, PLAY_MINI);
+            } else if (item.isPauseMiniItem()) {
+                tss = setupActionItem(tss, skin, item, PAUSE_MINI);
             }
         }
         return writeCssFile(tss, cssFilename);
@@ -363,7 +393,11 @@ public class TssManager extends AbstractManager {
             }
         }
 
-        tss = setupLyricStandaloneTss(tss, getContext().getActiveLyricXml());
+        try {
+            tss = setupLyricStandaloneTss(tss, getContext().getActiveLyricXml());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return writeCssFile(tss, "lyric-window");
     }
 
@@ -438,7 +472,11 @@ public class TssManager extends AbstractManager {
             }
         }
 
-        tss = setupPlaylistStandaloneTss(tss, getContext().getActivePlaylistXml());
+        try {
+            tss = setupPlaylistStandaloneTss(tss, getContext().getActivePlaylistXml());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return writeCssFile(tss, "playlist-window");
     }
 
@@ -451,6 +489,7 @@ public class TssManager extends AbstractManager {
 
     private String setupLyricStandaloneTss(String tss, StandaloneXml xml) {
         String textColor = isEmpty(xml.hilightColor) ? xml.textColor : xml.hilightColor;
+        textColor = isEmpty(textColor) ? "#11243c" : textColor;
         String locatorColor = Color.valueOf(textColor)
                 .darker().toString()
                 .replace("0x", "#");
@@ -460,6 +499,7 @@ public class TssManager extends AbstractManager {
     }
 
     private String setupPlaylistStandaloneTss(String tss, StandaloneXml xml) {
+        xml.textColor = isEmpty(xml.textColor) ? "#777777" : xml.textColor;
         String dColor = Color.valueOf(xml.textColor)
                 .darker().toString()
                 .replace("0x", "#");
@@ -577,8 +617,11 @@ public class TssManager extends AbstractManager {
                 .replaceAll("\\$BKGND", getImageUrl(skin, winItem.image))
                 .replaceAll("\\$DATA_HEIGHT", size.height() + "");
         StandaloneXml xml = getContext().getActiveLyricXml();
-        tss = setupPlaylistStandaloneTss(tss, xml);
-
+        try {
+            tss = setupPlaylistStandaloneTss(tss, xml);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return writeCssFile(tss, "lyric-mini-window");
     }
 }

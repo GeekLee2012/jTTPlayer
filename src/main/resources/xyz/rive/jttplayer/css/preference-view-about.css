@@ -14,13 +14,14 @@
 }
 
 #preference_view #about_view .app_title {
-    -fx-background-image: url("../images/ttplayer_title2.png");
+    -fx-background-image: url("../images/ttplayer_title.png");
     /*-fx-background-position: center center;*/
     /*-fx-background-size: 168 54;*/
-    -fx-background-size: 93 30;
-    -fx-pref-width: 93;
+    -fx-background-size: 128 30;
+    -fx-pref-width: 128;
     -fx-pref-height: 30;
     -fx-translate-x: -3;
+    -fx-translate-y: -4;
 }
 
 

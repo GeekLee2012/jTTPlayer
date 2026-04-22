@@ -106,11 +106,6 @@
     -fx-background-image: url("$TITLE_IMG");
 }
 
-#playback_queue_view #top {
-    -fx-pref-width: 100%;
-    -fx-pref-height: $TOP_HEIGHT;
-    -fx-background: transparent;
-}
 
 #playback_queue_view #close_btn {
     -fx-pref-width: $CLOSE_WIDTH;

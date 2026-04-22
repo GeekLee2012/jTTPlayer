@@ -13,10 +13,7 @@ import javafx.stage.Stage;
 import xyz.rive.jttplayer.anim.SpectrumAnimation;
 import xyz.rive.jttplayer.common.GeneralOptions;
 import xyz.rive.jttplayer.common.Track;
-import xyz.rive.jttplayer.control.AnimatedTrackMetadata;
-import xyz.rive.jttplayer.control.PlayTime;
-import xyz.rive.jttplayer.control.ProgressBarHorizontal;
-import xyz.rive.jttplayer.control.ProgressBarVertical;
+import xyz.rive.jttplayer.control.*;
 import xyz.rive.jttplayer.menu.action.OpenFilesAction;
 import xyz.rive.jttplayer.common.PlayState;
 import xyz.rive.jttplayer.menu.action.ShowStageAction;
@@ -44,8 +41,6 @@ public class MainController extends CommonController {
     @FXML
     private AnchorPane app_main;
     @FXML
-    private Region top;
-    @FXML
     private Region app_logo;
     @FXML
     private Region set_btn;
@@ -61,8 +56,6 @@ public class MainController extends CommonController {
     private ProgressBarHorizontal play_progress;
     @FXML
     private PlayTime play_time;
-    //@FXML
-    //private VolumeBarVertical volume_bar;
     @FXML
     private Label stereo;
     @FXML
@@ -112,12 +105,21 @@ public class MainController extends CommonController {
     @FXML
     private Canvas spectrum_canvas;
     private SpectrumAnimation spectrumAnimation;
+    @FXML
+    private DelegatedPlaylistToolbar toolbar;
+    private boolean hasDelegatedToolbar = false;
+    private boolean hasPlayMini = false;
+    private boolean hasPauseMini = false;
+    @FXML
+    private Region play_mini_btn;
+    @FXML
+    private Region pause_mini_btn;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize(location, resources);
         setupController(this, app_main, MAIN);
-        setupDndAction(ctx -> appendToPlaybackQueue(ctx.getFile()), app_main);
+        setupDndAction(this::handleDndAction, app_main);
         setupListeners();
         runFx(() -> {
             showVisualEffect();
@@ -135,7 +137,10 @@ public class MainController extends CommonController {
         });
 
         onEqualizerShow(show -> showStage(getEqualizerStage(), show, EqualizerController.class));
-        onPlaybackQueueShow(show -> showStage(getPlaybackQueueStage(), show, PlaybackQueueController.class));
+        onPlaybackQueueShow(show -> {
+            showDelegatedPlaylistToolbar(show);
+            showStage(getPlaybackQueueStage(), show, PlaybackQueueController.class);
+        });
         onLyricShow(show -> switchLyricStageByMode());
         onLyricDesktopShow(show -> switchLyricStageByMode());
 
@@ -221,7 +226,7 @@ public class MainController extends CommonController {
             //双击打开文件属性
             context.setFileAttributesTrack(getCurrentTrack());
             runFx(() -> {
-                Stage stage = getStageManger().getFileAttributesStage();
+                Stage stage = getStageManager().getFileAttributesStage();
                 stage.show();
                 stage.requestFocus();
             });
@@ -285,7 +290,11 @@ public class MainController extends CommonController {
                     getCurrentTrackIndex(),
                     getCurrentTrack()
             );
-            updateCover();
+            try {
+                updateCover();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         });
     }
 
@@ -362,11 +371,13 @@ public class MainController extends CommonController {
                 && getPlayerManager().isCurrentTrackSeekable();
 
         if(isPlaying()) {
-            setItemsHidden(play_btn);
+            setItemsHidden(play_btn, play_mini_btn);
             setItemsVisible(pause_btn);
+            setItemsAutoVisible(hasPauseMini, pause_mini_btn);
         } else {
-            setItemsHidden(pause_btn);
+            setItemsHidden(pause_btn, pause_mini_btn);
             setItemsVisible(play_btn);
+            setItemsAutoVisible(hasPlayMini, play_mini_btn);
         }
         stop_btn.setDisable(!playable);
         play_progress.setEnabled(seekable);
@@ -453,7 +464,12 @@ public class MainController extends CommonController {
                 if (stage == getLyricDesktopStage()) {
                     setBelowStageCenterAlign(stage, getMainStage(), 30);
                 } else if (stage != getLyricMiniModeStage()){
-                    setBelowStage(stage, getMainStage());
+                    SkinXmlWindowItem winItem = getSkinWindowItem(controllerClass);
+                    if (winItem != null) {
+                        getStageManager().resetStagePosition(stage, winItem);
+                    } else {
+                        setBelowStage(stage, getMainStage());
+                    }
                 }
                 stage.show();
             } else {
@@ -464,6 +480,18 @@ public class MainController extends CommonController {
             //setupStagesAutoLayout();
             setupExtraBtnAutoHighlight();
         });
+    }
+
+    private SkinXmlWindowItem getSkinWindowItem(Class<? extends CommonController> controllerClass) {
+        SkinXml skin = getActiveSkinXml();
+        if (controllerClass == EqualizerController.class) {
+            return skin.getEqualizerWindow();
+        } else if (controllerClass == PlaybackQueueController.class) {
+            return skin.getPlaylistWindow();
+        } else if (controllerClass == LyricController.class) {
+            return skin.getLyricWindow();
+        }
+        return null;
     }
 
 
@@ -496,7 +524,7 @@ public class MainController extends CommonController {
 
     public void minimized(MouseEvent event) {
         consumeContextMenuEvent(event);
-        getStageManger().minimized();
+        getStageManager().minimized();
     }
 
     private void updateVolumeState() {
@@ -534,7 +562,7 @@ public class MainController extends CommonController {
     public void openPreference(MouseEvent event) {
         consumeEvent(event);
         hideAllMenus(event);
-        new ShowStageAction(getStageManger().getPreferenceStage()).handle(event);
+        new ShowStageAction(getStageManager().getPreferenceStage()).handle(event);
     }
 
     public void togglePlayMode(MouseEvent event) {
@@ -544,11 +572,35 @@ public class MainController extends CommonController {
                 .toggle();
     }
 
+    private void setHasDelegatedToolbar(boolean value) {
+        hasDelegatedToolbar = value;
+    }
+
+    private void setHasPlayMini(boolean value) {
+        hasPlayMini = value;
+    }
+
+    private void setHasPauseMini(boolean value) {
+        hasPauseMini = value;
+    }
+
+    private void showDelegatedPlaylistToolbar(boolean show) {
+        if (hasDelegatedToolbar && show) {
+            setItemsVisible(toolbar);
+        } else {
+            setItemsHidden(toolbar);
+        }
+    }
+
     @Override
     public void setupSkin() {
         super.setupSkin();
-        setItemsHidden(visual_box, info, stereo, status, play_time,
-                stop_btn, open_btn, volume_fill, volume_fill_v);
+        setItemsHidden(toolbar, visual_box, info, stereo, status, play_time,
+                stop_btn, open_btn, volume_fill, volume_fill_v,
+                play_mini_btn, pause_mini_btn);
+        setHasDelegatedToolbar(false);
+        setHasPlayMini(false);
+        setHasPauseMini(false);
 
         SkinXml skin = getActiveSkinXml();
         SkinXmlWindowItem winItem = skin.getPlayerWindow();
@@ -621,7 +673,6 @@ public class MainController extends CommonController {
             else if (item.isMuteItem()) {
                 setPrefSize(mute, item.size());
                 setAnchorAuto(mute, skin, item, winItem);
-                setBackgroundImage(mute, skin, item.image);
             } else if (item.isVolumeItem()) {
                 volume_fill.setEnabled(!item.vertical);
                 volume_fill_v.setEnabled(item.vertical);
@@ -652,11 +703,22 @@ public class MainController extends CommonController {
             } else if (item.isStereoItem()) {
                 setItemsVisible(stereo);
                 setAnchorAuto(stereo, skin, item, winItem);
-            }  else if (item.isStatusItem()) {
+            } else if (item.isStatusItem()) {
                 setItemsVisible(status);
                 setAnchorAuto(status, skin, item, winItem);
+            } else if (item.isToolbarItem()) {
+                setHasDelegatedToolbar(true);
+                showDelegatedPlaylistToolbar(isPlaybackQueueShow());
+                setAnchorAuto(toolbar, skin, item, winItem);
+            } else if (item.isPlayMiniItem()) {
+                setHasPlayMini(true);
+                setItemsAutoVisible(!isPlaying(), play_mini_btn);
+                setAnchorAuto(play_mini_btn, skin, item, winItem);
+            } else if (item.isPauseMiniItem()) {
+                setHasPauseMini(true);
+                setItemsAutoVisible(isPlaying(), pause_mini_btn);
+                setAnchorAuto(pause_mini_btn, skin, item, winItem);
             }
-
         });
     }
 }

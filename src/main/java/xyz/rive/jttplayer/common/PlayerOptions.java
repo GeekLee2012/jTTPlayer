@@ -18,9 +18,9 @@ public class PlayerOptions {
     private int currentPlaybackQueueIndex = -1;
     private int activePlaybackQueueIndex = -1;
     private boolean musicOnlineShow;
-    private boolean equalizerShow;
-    private boolean playbackQueueShow;
-    private boolean lyricShow;
+    private boolean equalizerShow = true;
+    private boolean playbackQueueShow = true;
+    private boolean lyricShow = true;
     private boolean lyricDesktopMode;
     private boolean lyricDesktopLocked;
     private int lyricZhType = 0;

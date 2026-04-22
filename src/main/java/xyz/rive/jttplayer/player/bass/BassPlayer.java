@@ -6,8 +6,7 @@ import jouvieje.bass.BassInit;
 import jouvieje.bass.defines.BASS_ATTRIB;
 import jouvieje.bass.defines.BASS_DATA;
 import jouvieje.bass.defines.BASS_POS;
-import jouvieje.bass.enumerations.BASS_FX_BFX;
-import jouvieje.bass.structures.BASS_BFX_PEAKEQ;
+import jouvieje.bass.structures.BASS_BFX_BQF;
 import jouvieje.bass.structures.HFX;
 import jouvieje.bass.structures.HSTREAM;
 import xyz.rive.jttplayer.common.Pair;
@@ -17,11 +16,19 @@ import xyz.rive.jttplayer.player.AbastractPlayer;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Future;
 
+import static jouvieje.bass.defines.BASS_BFX_CHANNEL.BASS_BFX_CHANALL;
+import static xyz.rive.jttplayer.util.FileUtils.*;
+import static xyz.rive.jttplayer.util.FxUtils.isWindows;
 import static xyz.rive.jttplayer.util.StringUtils.isEmpty;
 import static xyz.rive.jttplayer.util.StringUtils.trim;
 
@@ -30,8 +37,9 @@ public class BassPlayer extends AbastractPlayer {
     private boolean bassReady;
     private boolean started;
     private boolean playing;
-    //private final List<HFX> hfxList = new ArrayList<>(10);
+    private final List<HFX> hfxList = new ArrayList<>(10);
     private final int[] eqValues = new int[10];
+    private String tmpUrl;
 
     public BassPlayer() {
         setBassReady(false);
@@ -64,23 +72,28 @@ public class BassPlayer extends AbastractPlayer {
         this.playing = playing;
     }
 
-    protected boolean setup() {
+    protected Future<Boolean> setup() {
+        CompletableFuture<Boolean> future = new CompletableFuture<>();
         if(isEmpty(getPlayCorePath())) {
-            return bassReady;
+            future.complete(false);
+            return future;
         }
-        //java.library.path
-        //org.lwjgl.librarypath
-        System.setProperty("java.library.path", trim(getPlayCorePath()));
-        try {
-            BassInit.loadLibraries();
-            boolean success = Bass.BASS_Init(-1, 44100, 0, null, null);
-            //Loading Plugins
-            //Bass.BASS_PluginLoad()
-            setBassReady(success);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return bassReady;
+        runTask(() -> {
+            //java.library.path
+            //org.lwjgl.librarypath
+            System.setProperty("java.library.path", trim(getPlayCorePath()));
+            try {
+                BassInit.loadLibraries();
+                boolean success = Bass.BASS_Init(-1, 44100, 0, null, null);
+                //Loading Plugins
+                //Bass.BASS_PluginLoad()
+                setBassReady(success);
+                future.complete(success);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        return future;
     }
 
     private void initTrack(Track track) {
@@ -89,7 +102,7 @@ public class BassPlayer extends AbastractPlayer {
         }
 
         setCurrentTrack(track);
-        if(!isTrackAvailable()) {
+        if(!isTrackPlayable()) {
             return;
         }
 
@@ -97,7 +110,7 @@ public class BassPlayer extends AbastractPlayer {
         if(url.startsWith("http")) {
             hstream = Bass.BASS_StreamCreateURL(url, 0, 0, null, null);
         } else {
-            hstream = Bass.BASS_StreamCreateFile(false, url, 0, 0, 0);
+            hstream = Bass.BASS_StreamCreateFile(false, patchWindowsUrl(url), 0, 0, 0);
         }
         setupVolume();
 
@@ -105,6 +118,34 @@ public class BassPlayer extends AbastractPlayer {
         setDuration();
         notifyTimePosition();
         //setupEqualizer();
+    }
+
+
+    private String patchWindowsUrl(String url) {
+        if(!isWindows()) {
+            return url;
+        }
+        if (isEmpty(tempPath)) {
+            return url;
+        }
+
+        cleanWindowsFile();
+
+        tmpUrl = transformPath(String.format("%s/%s.tmp", tempPath, currentTrack.getId()));
+        if (copy(url, tmpUrl)) {
+            url = tmpUrl;
+        }
+        return url;
+    }
+
+    private void cleanWindowsFile() {
+        if(!isWindows()) {
+            return;
+        }
+        if (isEmpty(tmpUrl)) {
+            return ;
+        }
+        deleteIfExists(Paths.get(tmpUrl));
     }
 
     private int getHandle() {
@@ -215,6 +256,7 @@ public class BassPlayer extends AbastractPlayer {
             Bass.BASS_Stop();
             Bass.BASS_Free();
         }
+        cleanWindowsFile();
     }
 
     @Override
@@ -242,14 +284,19 @@ public class BassPlayer extends AbastractPlayer {
     }
 
     public void setupEqualizer() {
-//        hfxList.clear();
-//        for (int i = 0; i < eqValues.length; i++) {
-//            HFX hfx = Bass.BASS_ChannelSetFX(getHandle(),
-//                    BASS_FX_BFX.BASS_FX_BFX_PEAKEQ.asInt(),
-//                    i);
-//            hfxList.add(hfx);
-//            setBandGain(i, eqValues[i]);
-//        }
+        hfxList.clear();
+        /*
+        for (int i = 0; i < eqValues.length; i++) {
+            BASS_BFX_BQF param = new BASS_BFX_BQF();
+            param.setChannel(BASS_BFX_CHANALL);
+            param.setCenter(eqValues[i]);
+            param.setBandwidth(1.0F);
+            param.setGain(0.0F);
+            param.lFilter = BASS_BFX_BQF.BASS_BFX_BQF_LOWPASS; // 实际用 PEAKING
+
+            int handle = Bass.BASS_ChannelSetFX(stream, BASSData.BASS_FX_BFX_BQF, 1);
+            Bass.BASS_FXSetParameters(handle, param);
+        }*/
     }
 
     @Override
@@ -261,14 +308,14 @@ public class BassPlayer extends AbastractPlayer {
     }
 
     private void setBandGain(int index, int value) {
-        /*HFX hfx = index < hfxList.size() ? hfxList.get(index) : null;
+        HFX hfx = index < hfxList.size() ? hfxList.get(index) : null;
         if(hfx != null) {
-            BASS_BFX_PEAKEQ peak = BASS_BFX_PEAKEQ.allocate();
-            peak.setCenter(FREQUENCIES[index]);
-            peak.setBandwidth(1);
-            peak.setGain(value);
-            Bass.BASS_FXSetParameters(hfx, peak);
-        }*/
+            BASS_BFX_BQF param = BASS_BFX_BQF.allocate();
+            param.setCenter(FREQUENCIES[index]);
+            param.setBandwidth(1);
+            param.setGain(value);
+            Bass.BASS_FXSetParameters(hfx, param);
+        }
     }
 
     @Override

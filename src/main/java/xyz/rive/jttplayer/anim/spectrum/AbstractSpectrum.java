@@ -8,6 +8,8 @@ import xyz.rive.jttplayer.ApplicationContext;
 import xyz.rive.jttplayer.player.Player;
 import xyz.rive.jttplayer.skin.StandaloneXml;
 
+import static xyz.rive.jttplayer.util.StringUtils.isEmpty;
+
 
 public abstract class AbstractSpectrum {
     protected ApplicationContext appContext;
@@ -20,6 +22,10 @@ public abstract class AbstractSpectrum {
 
     protected StandaloneXml getVisualXml() {
         return appContext.getActiveVisualXml();
+    }
+
+    protected StandaloneXml getLyricXml() {
+        return appContext.getActiveLyricXml();
     }
 
     protected Player getPlayer() {
@@ -37,10 +43,16 @@ public abstract class AbstractSpectrum {
     protected Paint getSpectrumColor(double percent, boolean pureColor) {
         StandaloneXml xml = getVisualXml();
         String topColor = xml.spectrumTopColor;
+        if (isEmpty(topColor)) {
+            StandaloneXml lyricXml = getLyricXml();
+            topColor = isEmpty(lyricXml.hilightColor) ?
+                    lyricXml.textColor : lyricXml.hilightColor;
+        }
+        topColor = isEmpty(topColor) ? "#f1f1f1" : topColor;
         if (pureColor) {
             return Color.valueOf(topColor);
         }
-
+        //暂时未启用
         String midColor = xml.spectrumMidColor;
         String btmColor = xml.spectrumBtmColor;
         String peakColor = xml.spectrumPeakColor;

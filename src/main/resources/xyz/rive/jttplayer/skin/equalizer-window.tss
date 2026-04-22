@@ -1,6 +1,6 @@
 @import url("common.css");
 
-#equalizer_view {
+#equalizer_view #view_bg {
     -fx-background-image: url("$BKGND");
     -fx-background-repeat: no-repeat;
 }

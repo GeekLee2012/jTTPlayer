@@ -5,7 +5,7 @@ Permissions: sandbox
 JavaFX-Version: 8.0_482
 Class-Path: apiguardian-api-1.0.0.jar heaven-0.13.0.jar jackson-annotations-2.21.1.jar jackson-core-2.21.1.jar jackson-databind-2.21.1.jar
  jaudiotagger-3.0.1.jar junixsocket-common-2.10.1.jar junixsocket-native-common-2.10.1.jar nlp-common-0.0.5.jar opencc4j-1.13.1.jar
- pinyin4j-2.5.0.jar jnativehook-2.1.0.jar okhttp-3.12.13.jar
+ pinyin4j-2.5.0.jar okhttp-3.12.13.jar jna-5.18.1.jar jna-platform-5.18.1.jar
 Created-By: JavaFX Packager
 Implementation-Vendor: RIVE2012
 Main-Class: xyz.rive.jttplayer.MainApplication

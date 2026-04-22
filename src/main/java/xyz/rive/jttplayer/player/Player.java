@@ -39,6 +39,8 @@ public interface Player {
     boolean isVisualSupported();
     float[] getFftData();
     float[] getTimeDomainData();
+    boolean isReady();
+    Player setTempPath(String path);
 
     default int getTimePositionSeconds() {
         double pos = getTimePosition();

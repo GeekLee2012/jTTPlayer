@@ -23,11 +23,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-import static javafx.stage.Modality.APPLICATION_MODAL;
 import static javafx.stage.Modality.WINDOW_MODAL;
 import static xyz.rive.jttplayer.util.FxUtils.*;
 
 public class StageManager extends AbstractManager {
+
     private Stage mainStage;
     private Scene mainScene;
     private Scene mainMiniScene;
@@ -52,6 +52,7 @@ public class StageManager extends AbstractManager {
     private Stage searchComputerStage;
     private Stage lyricServerManageStage;
     private Stage lyricServerEditStage;
+    private Stage searchTrackResourceOnlineStage;
 
     private Consumer<Boolean> equalizerShowListener;
     private Consumer<Boolean> playbackQueueShowListener;
@@ -158,7 +159,8 @@ public class StageManager extends AbstractManager {
             playbackQueueResizeAction = setResizable(playbackQueueStage)
                     .setMinSize(size.width(), size.height())
                     .onResized(getPlaybackQueueStageResizedListener());
-            setBelowStage(playbackQueueStage, getMainStage());
+            //setBelowStage(playbackQueueStage, getMainStage());
+            resetStagePosition(playbackQueueStage, skin.getPlaylistWindow());
         }
         return playbackQueueStage;
     }
@@ -180,7 +182,8 @@ public class StageManager extends AbstractManager {
             equalizerStage.setMaxHeight(size.height());
             equalizerStage.setResizable(false);
             setupStageAutoAttached(equalizerStage);
-            setBelowStage(equalizerStage, getMainStage());
+            //setBelowStage(equalizerStage, getMainStage());
+            resetStagePosition(equalizerStage, skin.getEqualizerWindow());
         }
         return equalizerStage;
     }
@@ -197,7 +200,8 @@ public class StageManager extends AbstractManager {
             setupStageAutoAttached(lyricStage);
             lyricResizeAction = setResizable(lyricStage)
                     .setMinSize(size.width(), size.height());
-            setBelowStage(lyricStage, getMainStage());
+            //setBelowStage(lyricStage, getMainStage());
+            resetStagePosition(lyricStage, skin.getLyricWindow());
         }
         return lyricStage;
     }
@@ -230,7 +234,7 @@ public class StageManager extends AbstractManager {
     public Stage getPreferenceStage() {
         if(preferenceStage == null) {
             preferenceStage = createModalityStage("preference-view.fxml", getMainStage(),
-                    "千千静听 - 选项", 609, 539, APPLICATION_MODAL);
+                    "千千静听 - 选项", 609, 539, WINDOW_MODAL);
         }
         return preferenceStage;
     }
@@ -238,7 +242,7 @@ public class StageManager extends AbstractManager {
     public Stage getPlayUrlStage() {
         if(playUrlStage == null) {
             playUrlStage = createModalityStage("play-url-view.fxml",
-                    getMainStage(), 396, 365, APPLICATION_MODAL);
+                    getMainStage(), 396, 365, WINDOW_MODAL);
         }
         return playUrlStage;
     }
@@ -246,7 +250,7 @@ public class StageManager extends AbstractManager {
     public Stage getAlertStage() {
         if(alertStage == null) {
             alertStage = createModalityStage("alert-view.fxml",
-                    getMainStage(), 396, 156, APPLICATION_MODAL);
+                    getMainStage(), 396, 156, WINDOW_MODAL);
         }
         return alertStage;
     }
@@ -254,7 +258,7 @@ public class StageManager extends AbstractManager {
     public Stage getConfirmStage() {
         if(confirmStage == null) {
             confirmStage = createModalityStage("confirm-view.fxml",
-                    getMainStage(), 396, 163, APPLICATION_MODAL);
+                    getMainStage(), 396, 163, WINDOW_MODAL);
         }
         return confirmStage;
     }
@@ -262,7 +266,7 @@ public class StageManager extends AbstractManager {
     public Stage getFileNameFormatStage() {
         if(fileNameFormatStage == null) {
             fileNameFormatStage = createModalityStage("file-name-format-view.fxml",
-                    getMainStage(), 396, 275, APPLICATION_MODAL);
+                    getMainStage(), 396, 275, WINDOW_MODAL);
         }
         return fileNameFormatStage;
     }
@@ -270,7 +274,7 @@ public class StageManager extends AbstractManager {
     public Stage getFileQuickPositionStage() {
         if(fileQuickPositionStage == null) {
             fileQuickPositionStage = createModalityStage("file-quick-position-view.fxml",
-                    getMainStage(), 396, 105, APPLICATION_MODAL);
+                    getMainStage(), 396, 105, WINDOW_MODAL);
         }
         return fileQuickPositionStage;
     }
@@ -278,7 +282,7 @@ public class StageManager extends AbstractManager {
     public Stage getFileSearchStage() {
         if(fileSearchStage == null) {
             fileSearchStage = createModalityStage("file-search-view.fxml",
-                    getMainStage(), 396, 163, APPLICATION_MODAL);
+                    getMainStage(), 396, 163, WINDOW_MODAL);
         }
         return fileSearchStage;
     }
@@ -286,7 +290,7 @@ public class StageManager extends AbstractManager {
     public Stage getLyricOffsetStage() {
         if(lyricOffsetStage == null) {
             lyricOffsetStage = createModalityStage("lyric-offset-view.fxml",
-                    getMainStage(), 366, 139, APPLICATION_MODAL);
+                    getMainStage(), 366, 139, WINDOW_MODAL);
         }
         return lyricOffsetStage;
     }
@@ -305,7 +309,7 @@ public class StageManager extends AbstractManager {
             Optional.ofNullable(getUserData(lyricMiniModeStage, StageDnmAction.class))
                             .ifPresent(action -> action.setEnable(false));
 
-            lyricMiniModeStage.setOnShown(__ -> setLyricMiniAttachToMainStage());
+            lyricMiniModeStage.setOnShown(__ -> runFx(this::setLyricMiniAttachToMainStage));
         }
         return lyricMiniModeStage;
     }
@@ -330,7 +334,7 @@ public class StageManager extends AbstractManager {
     public Stage getFontSelectionStage() {
         if(fontSelectionStage == null) {
             fontSelectionStage = createModalityStage("font-selection-view.fxml",
-                    getMainStage(), 606, 531, APPLICATION_MODAL);
+                    getMainStage(), 606, 531, WINDOW_MODAL);
         }
         return fontSelectionStage;
     }
@@ -338,7 +342,7 @@ public class StageManager extends AbstractManager {
     public Stage getPlaybackQueueSelectionStage() {
         if(playbackQueueSelectionStage == null) {
             playbackQueueSelectionStage = createModalityStage("playback-queue-selection-view.fxml",
-                    getMainStage(), 321, 404, APPLICATION_MODAL);
+                    getMainStage(), 321, 404, WINDOW_MODAL);
             playbackQueueSelectionStage.setOnShown(event -> {
                 hideAllPopups();
                 getContext().getControllerManager()
@@ -407,7 +411,15 @@ public class StageManager extends AbstractManager {
 
     public void setupStageAutoAttached(Stage stage) {
         Optional.ofNullable(getUserData(stage, StageDnmAction.class))
-                .ifPresent(action -> action.onMoving((e, p) -> doStageAutoAttached(stage, e, p)));
+                .ifPresent(action -> {
+                    if (isMacOS() || isWindows()) {
+                        action.onMoving((e, p) -> doStageAutoAttached(stage, e, p));
+                    } else {
+                        action.onMoveFinished((e, p) -> doStageAutoAttached(stage, e, new Position[] {
+                                p, new Position(stage.getX(), stage.getY())
+                        }));
+                    }
+                });
     }
 
     private void onMainStageMoved(MouseEvent event, Position[] positions) {
@@ -634,10 +646,6 @@ public class StageManager extends AbstractManager {
         getContext().getMenuManager().getAppMainContextMenu().refresh();
     }
 
-    public void closeLyricAll() {
-        setLyricShow(false);
-        setLyricDesktopMode(false);
-    }
 
     public void setEqualizerShow(boolean show) {
         getPlayerOptions().setEqualizerShow(show);
@@ -768,19 +776,6 @@ public class StageManager extends AbstractManager {
         return attachedIndexes;
     }
 
-    public void markStagesPosition(MouseEvent event, Position[] positions) {
-        getExtraStages().forEach(stage -> {
-            getContext().setAttribute(String.valueOf(stage.hashCode()),
-                    getStageRelativeBound(stage, true));
-        });
-    }
-
-    public void reset() {
-        equalizerStage = null;
-        lyricStage = null;
-        playbackQueueStage = null;
-    }
-
     public void refreshSkin() {
         boolean isMiniMode = getPlayerOptions().isMiniMode();
 
@@ -802,8 +797,16 @@ public class StageManager extends AbstractManager {
                         : getContext().getTssManager().boostrapPlayerWindow(skin)
         );
 
-        if (playbackQueueStage != null) {
-            size = getSkinManager().getItemSize(skin, skin.getPlaylistWindow());
+        SkinXmlWindowItem playlistWin = skin.getPlaylistWindow();
+        SkinXmlWindowItem lyricWin = skin.getLyricWindow();
+        SkinXmlWindowItem eqWin = skin.getEqualizerWindow();
+
+        setPlaybackQueueShow(playlistWin != null);
+        setLyricShow(lyricWin != null);
+        setEqualizerShow(eqWin != null);
+
+        if (playbackQueueStage != null && playlistWin != null) {
+            size = getSkinManager().getItemSize(skin, playlistWin);
             playbackQueueStage.setWidth(size.width());
             playbackQueueStage.setHeight(size.height());
             playbackQueueStage.setMinWidth(size.width());
@@ -814,8 +817,8 @@ public class StageManager extends AbstractManager {
             );
         }
 
-        if (lyricStage != null) {
-            size = getSkinManager().getItemSize(skin, skin.getLyricWindow());
+        if (lyricStage != null && lyricWin != null) {
+            size = getSkinManager().getItemSize(skin, lyricWin);
             lyricStage.setWidth(size.width());
             lyricStage.setHeight(size.height());
             lyricStage.setMinWidth(size.width());
@@ -843,26 +846,23 @@ public class StageManager extends AbstractManager {
             setLyricMiniAttachToMainStage();
         }
 
-        if (equalizerStage != null) {
-            SkinXmlWindowItem winItem = skin.getEqualizerWindow();
-            if (winItem != null) {
-                size = getSkinManager().getItemSize(skin, winItem);
-                equalizerStage.setWidth(size.width());
-                equalizerStage.setHeight(size.height());
-                equalizerStage.setMinWidth(size.width());
-                equalizerStage.setMinHeight(size.height());
-                equalizerStage.setMaxWidth(size.width());
-                equalizerStage.setMaxHeight(size.height());
-                equalizerStage.setResizable(false);
-                equalizerStage.getScene().getStylesheets().setAll(
-                        getContext().getTssManager().boostrapEqualizerWindow(skin)
-                );
-            }
+        if (equalizerStage != null && eqWin != null) {
+            size = getSkinManager().getItemSize(skin, eqWin);
+            equalizerStage.setWidth(size.width());
+            equalizerStage.setHeight(size.height());
+            equalizerStage.setMinWidth(size.width());
+            equalizerStage.setMinHeight(size.height());
+            equalizerStage.setMaxWidth(size.width());
+            equalizerStage.setMaxHeight(size.height());
+            equalizerStage.setResizable(false);
+            equalizerStage.getScene().getStylesheets().setAll(
+                    getContext().getTssManager().boostrapEqualizerWindow(skin)
+            );
         }
         setupStagesAutoLayout();
     }
 
-    public void setupStagesAutoLayout() {
+    public void setupStagesAutoLayout0() {
         Stage upStage = mainStage;
         if(isPlaybackQueueShow()) {
             playbackQueueStage.setWidth(playbackQueueStage.getMinWidth());
@@ -883,10 +883,42 @@ public class StageManager extends AbstractManager {
         }
     }
 
+    public void resetStagePosition(Stage stage, SkinXmlWindowItem winItem) {
+        if (stage != null) {
+            double x = mainStage.getX();
+            double y = mainStage.getY();
+            stage.setX(x + winItem.x1);
+            stage.setY(y + winItem.y1);
+        }
+    }
+
+    public void setupStagesAutoLayout() {
+        SkinXml skinXml = getContext().getActiveSkinXml();
+        if(isPlaybackQueueShow()) {
+            getPlaybackQueueStage().show();
+            playbackQueueStage.setWidth(playbackQueueStage.getMinWidth());
+            playbackQueueStage.setHeight(playbackQueueStage.getMinHeight());
+            resetStagePosition(playbackQueueStage, skinXml.getPlaylistWindow());
+        }
+        if(isLyricShow()) {
+            getLyricStage().show();
+            lyricStage.setWidth(lyricStage.getMinWidth());
+            lyricStage.setHeight(lyricStage.getMinHeight());
+            resetStagePosition(lyricStage, skinXml.getLyricWindow());
+            getContext().getControllerManager().refreshLyricView();
+        }
+        if(isEqualizerShow()) {
+            getEqualizerStage().show();
+            equalizerStage.setWidth(equalizerStage.getMinWidth());
+            equalizerStage.setHeight(equalizerStage.getMinHeight());
+            resetStagePosition(equalizerStage, skinXml.getEqualizerWindow());
+        }
+    }
+
     public Stage getLyricServerManageStage() {
         if(lyricServerManageStage == null) {
             lyricServerManageStage = createModalityStage("lyric-server-manage-view.fxml",
-                    getMainStage(), 321, 404, APPLICATION_MODAL);
+                    getMainStage(), 321, 404, WINDOW_MODAL);
             lyricServerManageStage.setOnShown(event -> {
                 hideAllPopups();
                 getContext().getControllerManager()
@@ -899,7 +931,7 @@ public class StageManager extends AbstractManager {
     public Stage getLyricServerEditStage() {
         if(lyricServerEditStage == null) {
             lyricServerEditStage = createModalityStage("lyric-server-edit-view.fxml",
-                    getMainStage(), 431, 325, APPLICATION_MODAL);
+                    getMainStage(), 431, 325, WINDOW_MODAL);
             lyricServerEditStage.setOnShown(event -> {
                 hideAllPopups();
                 getContext().getControllerManager()
@@ -908,4 +940,14 @@ public class StageManager extends AbstractManager {
         }
         return lyricServerEditStage;
     }
+
+    public Stage getSearchTrackResourceOnlineStage() {
+        if(searchTrackResourceOnlineStage == null) {
+            searchTrackResourceOnlineStage = createModalityStage("search-track-resource-online-view.fxml",
+                    getMainStage(), 618, 455, WINDOW_MODAL);
+            searchTrackResourceOnlineStage.setOnShown(event -> hideAllPopups());
+        }
+        return searchTrackResourceOnlineStage;
+    }
+
 }

@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -31,13 +30,16 @@
               spacing="3">
             <Label text="服务器名称：" />
             <TextField fx:id="server_name"/>
-            <Label text="API接口：" />
+            <Label text="API URL：" />
             <TextArea fx:id="api_url"
                       VBox.vgrow="ALWAYS" />
         </VBox>
     </center>
     <bottom>
         <AnchorPane fx:id="bottom">
+            <Label fx:id="error_msg"
+                   AnchorPane.leftAnchor="12"
+                   AnchorPane.topAnchor="3"/>
             <HBox AnchorPane.rightAnchor="12"
                   AnchorPane.topAnchor="3"
                   styleClass="actions"

@@ -9,19 +9,23 @@ import org.jaudiotagger.tag.TagField;
 import org.jaudiotagger.tag.id3.*;
 import org.jaudiotagger.tag.images.Artwork;
 import org.jaudiotagger.tag.images.StandardArtwork;
+import xyz.rive.jttplayer.ApplicationContext;
 import xyz.rive.jttplayer.common.Metadata;
 import xyz.rive.jttplayer.common.Track;
 
 import java.io.File;
+import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 
 import static org.jaudiotagger.tag.FieldKey.*;
 import static xyz.rive.jttplayer.util.FileUtils.*;
+import static xyz.rive.jttplayer.util.FxUtils.isWindows;
 import static xyz.rive.jttplayer.util.StringUtils.*;
 
 
@@ -173,10 +177,45 @@ public class MetadataService {
         return dest;
     }
 
+    private String patchWindowsUrl(String url) {
+        if(!isWindows()) {
+            return url;
+        }
+
+        String tempPath = ApplicationContext.getInstance().getWorkPath();
+        if (isEmpty(tempPath)) {
+            return url;
+        }
+
+        url = transformPath(url);
+        String tmpUrl = transformPath(String.format("%s/%s.tmp",
+                tempPath, UUID.randomUUID())
+        );
+        if (copy(url, tmpUrl)) {
+            return tmpUrl;
+        }
+        return url;
+    }
+
+    private void cleanWindowsFile(String tmpUrl, String url) {
+        if (isEmpty(tmpUrl)) {
+            return ;
+        }
+        if(!isWindows()) {
+            return;
+        }
+        tmpUrl = transformPath(tmpUrl);
+        //回写
+        copy(tmpUrl, url);
+        //移除临时文件
+        deleteIfExists(Paths.get(tmpUrl));
+    }
+
     private <T> void writeFields(String url, BiConsumer<Tag, T> handle, T data) {
         if (handle == null) {
             return ;
         }
+        //String tmpUrl = patchWindowsUrl(url);
         read(url, audioFile -> {
             try {
                 Tag tag = null;
@@ -192,6 +231,8 @@ public class MetadataService {
                     }
                     handle.accept(tag, data);
                     AudioFileIO.write(audioFile);
+
+                    //cleanWindowsFile(tmpUrl, url);
                 }
             } catch (Exception e) {
                 e.printStackTrace();

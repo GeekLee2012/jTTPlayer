@@ -72,7 +72,7 @@ public final class StageResizeAction {
 
     private StageResizeAction setupTrigger(Stage stage) {
         Node trigger = stage.getScene().getRoot();
-        trigger.setOnMouseMoved(e -> {
+        trigger.addEventHandler(MouseEvent.MOUSE_MOVED, e -> {
             e.consume();
             //Cursor
             resetCursorStyle(stage);
@@ -98,7 +98,7 @@ public final class StageResizeAction {
                     .addAll(styleClass);
         });
 
-        trigger.setOnMousePressed(e -> {
+        trigger.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
             e.consume();
             if(!enabled) {
                 return ;
@@ -114,7 +114,7 @@ public final class StageResizeAction {
             direction = getDirection(stage, e);
         });
 
-        trigger.setOnMouseDragged(e -> {
+        trigger.addEventHandler(MouseEvent.MOUSE_DRAGGED, e -> {
             e.consume();
             if(!this.enabled) {
                 return ;
@@ -170,7 +170,7 @@ public final class StageResizeAction {
             });
         });
 
-        trigger.setOnMouseReleased(e -> {
+        trigger.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> {
             e.consume();
             resetCursorStyle(stage);
             if(resizing) {

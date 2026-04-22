@@ -6,7 +6,7 @@ import xyz.rive.jttplayer.ApplicationContext;
 import xyz.rive.jttplayer.common.Track;
 
 import java.util.Optional;
-import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.*;
 import java.util.function.Consumer;
 
 import static xyz.rive.jttplayer.util.StringUtils.isEmpty;
@@ -26,20 +26,50 @@ public abstract class AbastractPlayer implements Player {
     protected volatile double duration = -1;
     protected volatile double volume = 100D;
     protected volatile boolean mute = false;
+    protected volatile boolean starting = false;
+    protected volatile boolean ready = false;
 
     public static final int[] FREQUENCIES = { 31, 62, 125, 250, 500, 1000, 2000, 4000, 8000, 16000 };
 
     private ScheduledFuture<?> tickFuture;
+    protected Future<Boolean> setupFuture;
+    protected String tempPath;
+
 
     public AbastractPlayer() {
-        playCorePath.addListener((__, oldValue, newValue) -> {
-            if (setup()) {
-                rebindListeners();
+        playCorePath.addListener((__, oldValue, newValue) -> restart());
+    }
+
+    protected void restart() {
+        if (starting) {
+            return ;
+        }
+        setStarting(true);
+        setupFuture = setup();
+        runTask(() -> {
+            try {
+                if (setReady(setupFuture.get())) {
+                    rebindListeners();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+            setStarting(false);
         });
     }
 
-    protected abstract boolean setup();
+
+    protected abstract Future<Boolean> setup();
+
+    protected boolean setStarting(boolean value) {
+        starting = value;
+        return starting;
+    }
+
+    protected boolean setReady(boolean value) {
+        ready = value;
+        return ready;
+    }
 
     public void setPlayCorePath(String path) {
         playCorePath.set(path);
@@ -55,8 +85,13 @@ public abstract class AbastractPlayer implements Player {
         this.currentTrack = track;
     }
 
-    protected boolean isTrackAvailable() {
-        return currentTrack != null && !isEmpty(currentTrack.getUrl());
+    protected boolean isTrackPlayable() {
+        if (!isReady()) {
+            restart();
+            return false;
+        }
+        return currentTrack != null &&
+                !isEmpty(currentTrack.getUrl());
     }
 
     @Override
@@ -161,6 +196,10 @@ public abstract class AbastractPlayer implements Player {
         return playCorePath.get();
     }
 
+    public void runTask(Runnable task) {
+        ApplicationContext.getInstance().runTask(task);
+    }
+
     public void tick(Runnable task) {
         tick(task, 1000);
     }
@@ -193,4 +232,13 @@ public abstract class AbastractPlayer implements Player {
         return null;
     }
 
+    @Override
+    public boolean isReady() {
+        return ready;
+    }
+
+    public Player setTempPath(String path) {
+        tempPath = path;
+        return this;
+    }
 }

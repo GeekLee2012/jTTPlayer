@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import xyz.rive.jttplayer.ApplicationContext;
+import xyz.rive.jttplayer.util.StringUtils;
 
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -30,7 +31,11 @@ public class PlaybackQueue {
     }
 
     public String getName() {
-        return name == null ? "默认" : name;
+        return StringUtils.isEmpty(name) ? "默认" : name;
+    }
+
+    public String getRawName() {
+        return name;
     }
 
     public void setName(String name) {
@@ -148,7 +153,7 @@ public class PlaybackQueue {
         if(size() < 1) {
             return -1;
         }
-        if(!track.getQueueId().equals(id)) {
+        if(track.getQueueId() == null || !track.getQueueId().equals(id)) {
             return -1;
         }
         return getData().indexOf(track);
@@ -208,16 +213,19 @@ public class PlaybackQueue {
         }
     }
 
+    @JsonIgnore
     public void clear() {
         getData().clear();
         sizeProperty.set(size());
     }
 
+    @JsonIgnore
     public void setAll(Collection<Track> uniqueSet) {
         clear();
         addAll(uniqueSet);
     }
 
+    @JsonIgnore
     public void move(int fromIndex, int toIndex) {
         if(isEmpty()) {
             return ;
@@ -235,6 +243,7 @@ public class PlaybackQueue {
         getData().remove(downAction ? fromIndex : fromIndex + 1);
     }
 
+    @JsonIgnore
     public void add(int index, Track track) {
         if(isEmpty()) {
             return ;

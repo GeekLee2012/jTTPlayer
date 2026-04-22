@@ -63,13 +63,14 @@
         <CheckBox text="自动覆盖已存在的歌词文件"/>
         <CheckBox text="保存成歌曲文件相同的文件名"/>
         <VBox spacing="3">
-            <CheckBox text="保存到歌曲所在的文件夹"/>
+            <CheckBox fx:id="save_to_track_path"
+                      text="保存到歌曲所在的文件夹"/>
             <HBox maxWidth="Infinity"
                   spacing="5">
                 <VBox.margin>
                     <Insets left="18" />
                 </VBox.margin>
-                <Label text="保存到其它文件夹:"/>
+                <Label text="保存到其他文件夹:"/>
                 <TextField fx:id="download_path"
                            HBox.hgrow="ALWAYS"/>
                 <FileBrowseButton onMouseClicked="#setDownloadPath"/>

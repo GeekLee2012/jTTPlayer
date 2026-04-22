@@ -185,7 +185,6 @@ public class MainPreviewController extends CommonController {
             else if (item.isMuteItem()) {
                 setPrefSize(mute, item.size());
                 setAnchorAuto(mute, skin, item, winItem);
-                setBackgroundImage(mute, skin, item.image);
             } else if (item.isVolumeItem()) {
                 setAnchorAuto(volume_fill, skin, item, winItem);
                 setPrefSize(volume_fill, item.size());

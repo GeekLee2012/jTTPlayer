@@ -9,16 +9,16 @@
             fx:id="playback_queue_view"
             fx:controller="xyz.rive.jttplayer.controller.PlaybackQueueController"
             onMouseClicked="#showNavigationContextMenu">
+
     <Region fx:id="view_bg"
+            mouseTransparent="true"
             AnchorPane.topAnchor="0"
             AnchorPane.bottomAnchor="0"
             AnchorPane.leftAnchor="0"
             AnchorPane.rightAnchor="0" />
-    <Region fx:id="view_title"/>
-    <Region fx:id="top"
-            AnchorPane.topAnchor="0"
-            AnchorPane.leftAnchor="0"
-            AnchorPane.rightAnchor="0" />
+
+    <Region fx:id="view_title"
+            mouseTransparent="true"/>
     <Region fx:id="close_btn"
             AnchorPane.rightAnchor="10"
             AnchorPane.topAnchor="6"

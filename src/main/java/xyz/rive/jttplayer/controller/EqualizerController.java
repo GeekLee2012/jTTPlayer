@@ -26,6 +26,8 @@ public class EqualizerController extends CommonController {
     @FXML
     private AnchorPane equalizer_view;
     @FXML
+    private Region view_bg;
+    @FXML
     private Region top;
     @FXML
     private Region close_btn;
@@ -162,6 +164,8 @@ public class EqualizerController extends CommonController {
     @Override
     public void setupSkin() {
         super.setupSkin();
+        setItemsHidden(close_btn);
+
         SkinXml skin = getActiveSkinXml();
         SkinXmlWindowItem winItem = skin.getEqualizerWindow();
         if (winItem == null) {
@@ -170,6 +174,7 @@ public class EqualizerController extends CommonController {
 
         winItem.items.forEach(item -> {
             if (item.isCloseItem()) {
+                setItemsVisible(close_btn);
                 setAnchorAuto(close_btn, skin, item, winItem);
             } //
             else if (item.isBalanceItem()) {

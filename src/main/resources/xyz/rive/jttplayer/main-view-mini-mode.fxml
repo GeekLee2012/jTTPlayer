@@ -9,8 +9,10 @@
 <?import javafx.scene.canvas.Canvas?>
 <?import xyz.rive.jttplayer.control.ProgressBarVertical?>
 <?import xyz.rive.jttplayer.control.PlayTime?>
+<?import javafx.scene.control.Label?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             fx:id="app_main_mini_mode"
+            styleClass="dnm_trigger"
             fx:controller="xyz.rive.jttplayer.controller.MainMiniModeController"
             onMouseClicked="#toggleAppMainMenu">
 
@@ -18,6 +20,13 @@
             styleClass="dnm_trigger" />
     <AnimatedTrackMetadata fx:id="info"
                            styleClass="dnm_trigger" />
+
+    <Label fx:id="stereo"
+           visible="false"
+           managed="false"/>
+    <Label fx:id="status"
+           visible="false"
+           managed="false"/>
 
     <ProgressBarHorizontal fx:id="play_progress" />
     <HBox fx:id="visual_box"

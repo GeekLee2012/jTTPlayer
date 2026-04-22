@@ -54,14 +54,12 @@
                   AnchorPane.bottomAnchor="9">
                 <Label styleClass="link"
                        text="软件主页" />
-                <!--
                 <Label styleClass="link"
                        text="千千音乐在线" />
                 <Label styleClass="link"
                        text="论坛" />
-                -->
                 <Label styleClass="link"
-                       text="贴吧反馈" />
+                       text="帮助" />
             </HBox>
             <HBox spacing="10"
                   AnchorPane.rightAnchor="9"

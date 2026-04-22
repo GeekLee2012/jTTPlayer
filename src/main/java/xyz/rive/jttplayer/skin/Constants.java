@@ -45,6 +45,8 @@ public final class Constants {
     public static final String ATTR_FLASH_MODE = "flash_mode";
     public static final String ATTR_FRAME_COUNT = "frame_count";
     public static final String ATTR_FRAME_INTERVAL = "frame_interval";
+    public static final String ATTR_PROXY = "proxy";
+
 
     //Lyric.xml
     //Playlist.xml
@@ -146,6 +148,9 @@ public final class Constants {
         public static final String TITLE = "title";
         public static final String MINI_BORDER = "mini_border";
 
+        //移植版本：自定义
+        public static final String PLAY_MINI = "play_mini";
+        public static final String PAUSE_MINI = "pause_mini";
     }
 
 

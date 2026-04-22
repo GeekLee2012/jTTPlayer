@@ -10,14 +10,11 @@
 <?import javafx.scene.control.Label?>
 <?import xyz.rive.jttplayer.control.ProgressBarVertical?>
 <?import javafx.scene.canvas.Canvas?>
+<?import xyz.rive.jttplayer.control.DelegatedPlaylistToolbar?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             fx:id="app_main"
             fx:controller="xyz.rive.jttplayer.controller.MainController"
             onMouseClicked="#toggleAppMainMenu">
-    <Region fx:id="top"
-            AnchorPane.topAnchor="0"
-            AnchorPane.leftAnchor="0"
-            AnchorPane.rightAnchor="0" />
 
     <Region fx:id="app_logo"
             AnchorPane.leftAnchor="10"
@@ -68,6 +65,16 @@
     <PlayTime fx:id="play_time"
               AnchorPane.leftAnchor="262"
               AnchorPane.topAnchor="68" />
+
+    <Region fx:id="play_mini_btn"
+            onMouseClicked="#togglePlay"
+            managed="false"
+            visible="false" />
+
+    <Region fx:id="pause_mini_btn"
+            onMouseClicked="#togglePlay"
+            managed="false"
+            visible="false" />
 
     <Region fx:id="stop_btn"
             onMouseClicked="#stopPlay"
@@ -140,5 +147,11 @@
             onMouseClicked="#toggleLyric" />
     <Region fx:id="browser_btn"
             AnchorPane.leftAnchor="282"
-            AnchorPane.topAnchor="152"/>
+            AnchorPane.topAnchor="152" />
+
+    <DelegatedPlaylistToolbar fx:id="toolbar"
+                              AnchorPane.rightAnchor="15"
+                              AnchorPane.bottomAnchor="20"
+                              managed="false"
+                              visible="false" />
 </AnchorPane>

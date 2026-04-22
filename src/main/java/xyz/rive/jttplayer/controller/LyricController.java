@@ -12,9 +12,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
@@ -30,7 +31,6 @@ import java.net.URL;
 import java.util.*;
 import java.util.concurrent.ScheduledFuture;
 
-import static javafx.scene.input.KeyCode.ESCAPE;
 import static xyz.rive.jttplayer.common.Constants.APP_TITLE_VERSION;
 import static xyz.rive.jttplayer.common.Constants.LYRIC;
 import static xyz.rive.jttplayer.util.FxUtils.*;
@@ -94,7 +94,7 @@ public class LyricController extends CommonController  {
     }
 
     private void setupListeners() {
-        onTrackChanged((o, ov, nv) -> startLyric(false));
+        onTrackChanged((o, ov, nv) ->  startLyric(false) );
 
         lyric_pane.heightProperty().addListener((o, ov, nv) -> {
             double halfHeight = (lyric_pane.getHeight() + top.getHeight()) / 2;
@@ -281,10 +281,13 @@ public class LyricController extends CommonController  {
     }
 
 
-    public void startLyric(boolean reset) {
+    public void startLyric(boolean cancel) {
+        setLyricDefault();
         Optional.ofNullable(getCurrentTrack()).ifPresent(track -> {
-            if(reset) {
+            if(cancel) {
                 track.setLyric(null);
+                track.setLyricEmbed(null);
+                track.setLyricTrans(null);
             }
             getTrackService().loadLyricSync(track);
             startLyricNow();
@@ -299,7 +302,7 @@ public class LyricController extends CommonController  {
     }
 
     private void setupLyric() {
-        cancelLyric();
+        ///cancelLyric();
         Optional.ofNullable(getCurrentTrack()).ifPresent(track -> {
             Lyric lyric = null;
             if(track.hasEmbedLyric()) {
@@ -310,6 +313,8 @@ public class LyricController extends CommonController  {
             if(lyric == null || !lyric.hasData()) {
                 return ;
             }
+            lyric_content.getChildren().clear();
+
             setWordMode(lyric.isWordMode());
             lyric.getData().forEach(this::addLine);
 
@@ -425,18 +430,29 @@ public class LyricController extends CommonController  {
         line.getChildren().add(text);
     }
 
+    private void setLyricDefault() {
+        runFx(() -> {
+            lyric_content.getChildren().clear();
+            setWordMode(false);
+            Track track = getCurrentTrack();
+            String key = "";
+            String value = APP_TITLE_VERSION;
+            if(track != null) {
+                value = track.basicMetadata();
+            }
+            addLine(key, value);
+            setupLyricStyle();
+            switchZhLyric();
+        });
+    }
+
     public void cancelLyric() {
-        lyric_content.getChildren().clear();
-        setWordMode(false);
-        Track track = getCurrentTrack();
-        String key = "";
-        String value = APP_TITLE_VERSION;
-        if(track != null) {
-            value = track.basicMetadata();
-        }
-        addLine(key, value);
-        setupLyricStyle();
-        switchZhLyric();
+        setLyricDefault();
+        Optional.ofNullable(getCurrentTrack()).ifPresent(track -> {
+            track.setLyric(null);
+            track.setLyricEmbed(null);
+            track.setLyricTrans(null);
+        });
     }
 
     public void switchZhLyric() {
@@ -476,13 +492,13 @@ public class LyricController extends CommonController  {
     }
 
     public void toggleLyricOntop() {
-        getStageManger().toggleLyricAlwaysTop();
+        getStageManager().toggleLyricAlwaysTop();
     }
 
     public void updateOntopState() {
         ontop_btn.getStyleClass().remove("active");
         boolean alwaysOnTop = getPlayerOptions().isLyricViewAlwaysOnTop();
-        getStageManger().getLyricStage().setAlwaysOnTop(alwaysOnTop);
+        getStageManager().getLyricStage().setAlwaysOnTop(alwaysOnTop);
         if(alwaysOnTop) {
             ontop_btn.getStyleClass().add("active");
         }
@@ -580,13 +596,13 @@ public class LyricController extends CommonController  {
 
     public void showDesktopLyric(MouseEvent event) {
         consumeEvent(event);
-        getStageManger().toggleLyricDesktopShow();
+        getStageManager().toggleLyricDesktopShow();
     }
 
     @Override
     public void setupSkin() {
         super.setupSkin();
-        setItemsHidden(desklrc_btn, ontop_btn);
+        setItemsHidden(desklrc_btn, ontop_btn, close_btn);
 
         SkinXml skin = getActiveSkinXml();
         SkinXmlWindowItem winItem = skin.getLyricWindow();
@@ -602,6 +618,7 @@ public class LyricController extends CommonController  {
                 setItemsVisible(ontop_btn);
                 setAnchorAuto(ontop_btn, skin, item, winItem);
             } else if (item.isCloseItem()) {
+                setItemsVisible(close_btn);
                 setAnchorAuto(close_btn, skin, item, winItem);
             } else if(item.isLyricItem()) {
                 Rect rect = item.getPositionRect();

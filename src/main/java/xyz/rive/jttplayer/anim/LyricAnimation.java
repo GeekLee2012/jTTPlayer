@@ -1,7 +1,6 @@
 package xyz.rive.jttplayer.anim;
 
 import javafx.animation.AnimationTimer;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;

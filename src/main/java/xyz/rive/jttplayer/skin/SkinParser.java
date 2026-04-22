@@ -281,6 +281,9 @@ public class SkinParser {
             item.frameCount = getIntAttr(elem, ATTR_FRAME_COUNT, 1);
             item.frameInterval = getIntAttr(elem, ATTR_FRAME_INTERVAL, 16);
 
+            // 移植版：自定义
+            item.proxy = getAttr(elem, ATTR_PROXY);
+
             windowItem.addItem(item);
         }
 

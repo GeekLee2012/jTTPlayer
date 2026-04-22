@@ -108,6 +108,12 @@ public class TrackService {
         });
     }
 
+    public void restorePlaybackQueue(File file) {
+        Optional.ofNullable(file).ifPresent(__ -> {
+            context.getPlaybackQueueService().restore(file);
+        });
+    }
+
     public boolean isSupportedAudios(File file) {
         if(file == null || !file.exists() || file.isDirectory()) {
             return false;

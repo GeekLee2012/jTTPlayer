@@ -4,6 +4,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import static xyz.rive.jttplayer.common.Constants.*;
 
@@ -17,9 +19,10 @@ public class AddPlaybackQueueAction extends AbstractMenuAction {
         FileChooser chooser = new FileChooser();
         chooser.setTitle("选择列表文件");
         chooser.getExtensionFilters().add(
-                new FileChooser.ExtensionFilter(
-                        PLAYBACK_QUEUE_SUFFIX_DESC,
-                        PLAYBACK_QUEUE_SUFFIX_PATTERN)
+                new FileChooser.ExtensionFilter(PLAYBACK_QUEUE_SUFFIX_DESC,
+                        PLAYBACK_QUEUE_SUFFIXES.stream().map("*"::concat)
+                                .collect(Collectors.toCollection(ArrayList::new))
+                )
         );
         File selection = chooser.showOpenDialog(getContext().getMainStage());
         if(selection == null) {

@@ -4,13 +4,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import xyz.rive.jttplayer.common.GeneralOptions;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static xyz.rive.jttplayer.common.Constants.VERSION;
+import static xyz.rive.jttplayer.common.Constants.*;
 
 public class PreferenceGeneralOptionsController extends CommonController {
     @FXML
@@ -80,4 +81,23 @@ public class PreferenceGeneralOptionsController extends CommonController {
         setupData();
     }
 
+    public void visitAuthor(MouseEvent event) {
+        consumeEvent(event);
+        context.browseUrl(GITHUB_AUTHOR);
+    }
+
+    public void visitReleases(MouseEvent event) {
+        consumeEvent(event);
+        context.browseUrl(GITHUB_RELEASES);
+    }
+
+    public void visitLicense(MouseEvent event) {
+        consumeEvent(event);
+        context.browseUrl(LICENSE_AGPL_V3);
+    }
+
+    public void visitRepository(MouseEvent event) {
+        consumeEvent(event);
+        context.browseUrl(GITHUB_REPOSITORY);
+    }
 }

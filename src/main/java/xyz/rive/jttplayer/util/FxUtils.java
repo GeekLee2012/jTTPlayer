@@ -37,6 +37,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.SecureRandom;
 import java.util.*;
 import java.util.function.BiConsumer;
@@ -434,10 +436,10 @@ public final class FxUtils {
                     "/select,",
                     "\"" + detransformPath(url) + "\""
             };
-        } else if(isLinux()) {
-            cmdArray = new String[] { "xdg-open", transformPath(url) };
         }
-        // Linux is now supported
+        else if(isLinux()) {
+            cmdArray = new String[] { "xdg-open", getParentPath(url) };
+        }
         if(cmdArray != null) {
             runExec(cmdArray);
         }
@@ -451,8 +453,8 @@ public final class FxUtils {
         Tooltip tooltip = new Tooltip(text);
         tooltip.setMaxWidth(314);
         //#dce9ed
-        tooltip.setStyle(String.format("-fx-background-color: %s;"
-                + "-fx-text-fill: %s;"
+        tooltip.setStyle(String.format("-fx-background-color: %s !important;"
+                + "-fx-text-fill: %s !important;"
                 + "-fx-wrap-text: true;"
                 + "-fx-font-size: %s;",
                 bgColor, textColor, fontSize));
@@ -743,5 +745,6 @@ public final class FxUtils {
             e.printStackTrace();
         }
     }
+
 
 }

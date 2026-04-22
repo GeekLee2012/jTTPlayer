@@ -9,8 +9,7 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static xyz.rive.jttplayer.util.FileUtils.guessSimpleName;
-import static xyz.rive.jttplayer.util.FileUtils.transformPath;
+import static xyz.rive.jttplayer.util.FileUtils.*;
 import static xyz.rive.jttplayer.util.FxUtils.isMacOS;
 import static xyz.rive.jttplayer.util.StringUtils.*;
 import static xyz.rive.jttplayer.util.StringUtils.contentEqualsIgnoreCase;
@@ -274,8 +273,7 @@ public class Track implements Cloneable {
     }
 
     /* 自定义 */
-
-
+    @JsonIgnore
     public double getDuration() {
         return trackLength / 60D;
     }
@@ -385,6 +383,7 @@ public class Track implements Cloneable {
                 || contentEquals(url, track.url);
     }
 
+    @JsonIgnore
     public boolean isMetadataSimilar(Track t) {
         if((containsIgnoreCase(title, t.title) || containsIgnoreCase(t.title, title))
                 && (contentEqualsIgnoreCase(artist, t.artist) || contentEqualsIgnoreCase(album, t.album))
@@ -438,16 +437,9 @@ public class Track implements Cloneable {
         return null;
     }
 
+    @JsonIgnore
     public String getParentUrl() {
-        if (isEmpty(url)) {
-            return url;
-        }
-        String transUrl = transformPath(url);
-        int index = transUrl.lastIndexOf("/");
-        if(index < 0) {
-            return "/";
-        }
-        return transUrl.substring(0, index + 1);
+        return isEmpty(url) ? url : getParentPath(url);
     }
 
     @JsonIgnore
@@ -483,6 +475,7 @@ public class Track implements Cloneable {
         return getTransformedTitle();
     }
 
+    @JsonIgnore
     public String getShortFileName() {
         return guessSimpleName(fileName);
     }

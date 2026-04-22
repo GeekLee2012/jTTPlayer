@@ -16,6 +16,7 @@ import static xyz.rive.jttplayer.common.ActionSource.AppMainMenu;
 import static xyz.rive.jttplayer.common.Constants.*;
 import static xyz.rive.jttplayer.util.FileUtils.guessSimpleName;
 import static xyz.rive.jttplayer.util.FxUtils.getIconStyle;
+import static xyz.rive.jttplayer.util.StringUtils.*;
 
 public class AppMainContextMenu extends AbstractContextMenu  {
 
@@ -279,8 +280,11 @@ public class AppMainContextMenu extends AbstractContextMenu  {
         menuMetas.add(MenuMeta.separator());
         menuMetas.add(new MenuMeta("在线搜索",
                 getIconStyle("common.png", 22),
-                (EventHandler<? super MouseEvent>) null,
-                (MenuMeta __) -> MenuMeta.toDisabledState(true)
+                new ShowSearchOnlineStageAction(),
+                (MenuMeta __) -> MenuMeta.toDisabledState(
+                        context.getConfiguration().getLyricSearchOptions()
+                                .getServers().isEmpty()
+                )
         ));
         menuMetas.add(new MenuMeta("关联歌词",
                 getIconStyle("common.png", 12),
@@ -389,7 +393,7 @@ public class AppMainContextMenu extends AbstractContextMenu  {
         return menuMetas;
     }
 
-    private List<MenuMeta> getSkinMenuList() {
+    private List<MenuMeta> getSkinMenuListExpand() {
         Map<String, SkinXml> skins = context.getSkinManager().getSkins();
         if(skins == null || skins.isEmpty()) {
             return null;
@@ -426,5 +430,113 @@ public class AppMainContextMenu extends AbstractContextMenu  {
                 new ShowPreferenceViewOptionsAction("皮肤")));
         return menuMetas;
     }
+
+    private List<MenuMeta> getSkinMenuList() {
+        Map<String, SkinXml> skins = context.getSkinManager().getSkins();
+        if(skins == null || skins.isEmpty()) {
+            return null;
+        }
+        return skins.size() < 18 ?
+                getSkinMenuListExpand() :
+                getSkinMenuListGroups();
+    }
+
+    private List<MenuMeta> getSkinMenuListGroups() {
+        Map<String, SkinXml> skins = context.getSkinManager().getSkins();
+        if(skins == null || skins.isEmpty()) {
+            return null;
+        }
+        /*
+        List<String> alphabets = new ArrayList<>(27);
+        skins.forEach((key, value) -> {
+            if (isEmpty(key)) {
+                return ;
+            }
+            String py = firstCharToPinyin(key);
+            if (isEmpty(py)) {
+                py = "#";
+            }
+            if (!alphabets.contains(py)) {
+                alphabets.add(py);
+            }
+        });
+        alphabets.sort(String::compareTo);
+        */
+        List<String> alphabets = new ArrayList<>(14);
+        alphabets.add("其他");
+        for (int i = 65; i < 91; i += 2) {
+            alphabets.add((char)i + " — " + (char)( i + 1));
+        }
+        alphabets.sort(String::compareTo);
+
+        List<MenuMeta> menuMetas = new ArrayList<>();
+        menuMetas.add(new MenuMeta("< 默认皮肤 >",
+                new SwitchSkinAction("DEFAULT.skn", null),
+                (MenuMeta __) -> MenuMeta.toActiveState(
+                        getPlayerManager().isActiveSkin("DEFAULT.skn")
+                ), 143, -1));
+        menuMetas.add(MenuMeta.separator());
+
+        for (String ch : alphabets) {
+            menuMetas.add(new MenuMeta(ch,
+                    null,
+                    (MenuMeta __) -> getSkinMenuListByGroup(ch),
+                    -1)
+            );
+        }
+
+        if (skins.size() > 1) {
+            menuMetas.add(MenuMeta.separator());
+        }
+        menuMetas.add(new MenuMeta("选项",
+                getIconStyle("common.png", 16),
+                new ShowPreferenceViewOptionsAction("皮肤")));
+        return menuMetas;
+    }
+
+    private List<MenuMeta> getSkinMenuListByGroup(String groupName) {
+        Map<String, SkinXml> skins = context.getSkinManager().getSkins();
+        if(skins == null || skins.isEmpty()) {
+            return null;
+        }
+        String[] grpNames = groupName.split("—");
+        List<MenuMeta> menuMetas = new ArrayList<>();
+        int count = 0, limit = 20;
+        for (Map.Entry<String, SkinXml> entry : skins.entrySet()) {
+            String key = entry.getKey();
+            SkinXml value = entry.getValue();
+            String name = guessSimpleName(key);
+            if ("DEFAULT".contentEquals(name)) {
+                continue;
+            }
+            String ch = firstCharToPinyin(name);
+            if (grpNames.length > 1
+                    && (ch.startsWith(trim(grpNames[0]))
+                    || ch.startsWith(trim(grpNames[1])))) {
+                menuMetas.add(new MenuMeta(name,
+                        new SwitchSkinAction(key, value),
+                        (MenuMeta __) -> MenuMeta.toActiveState(
+                                getPlayerManager().isActiveSkin(key)
+                        ), 168, -1));
+            } else if (contentEquals("其他", groupName)
+                    && !ch.matches("[A-Z]")) {
+                menuMetas.add(new MenuMeta(name,
+                        new SwitchSkinAction(key, value),
+                        (MenuMeta __) -> MenuMeta.toActiveState(
+                                getPlayerManager().isActiveSkin(key)
+                        ), 168, -1));
+            }
+        }
+        /*
+        if (skins.size() > limit) {
+            menuMetas.add(MenuMeta.separator());
+        }
+        menuMetas.add(new MenuMeta("更多皮肤",
+                getIconStyle("common.png", 16),
+                new ShowPreferenceViewOptionsAction("皮肤")));
+        */
+        return menuMetas.isEmpty() ? null : menuMetas;
+    }
+
 
 }

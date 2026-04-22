@@ -164,7 +164,7 @@ public final class StringUtils {
             dataRoot = "AppData/Roaming";
         } else if(isLinux()) {
             dataRoot = ".config";
-        } else {
+        } else if(!isMacOS()) {
             dataRoot = "Documents";
         }
         return String.format("%1$s/%2$s/jTTPlayer",
@@ -278,6 +278,22 @@ public final class StringUtils {
 
     public static String encodeUrl(String url) {
         return trim(url).replaceAll(" ","%20");
+    }
+
+    public static String firstCharToPinyin(String value) {
+        if (isEmpty(value)) {
+            return value;
+        }
+        char ch = trimUpperCase(value).charAt(0);
+        if (Character.isDigit(ch)
+                || (ch > 64 && ch < 91)) {
+            return ch + "";
+        }
+        String py = toPinyin(ch);
+        if (!isEmpty(py)) {
+            return trimUpperCase(py).substring(0, 1);
+        }
+        return "";
     }
 
 }

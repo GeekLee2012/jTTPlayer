@@ -2,7 +2,6 @@ package xyz.rive.jttplayer.controller;
 
 import com.github.houbb.opencc4j.util.ZhConverterUtil;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -20,7 +19,6 @@ import xyz.rive.jttplayer.control.TabsView;
 import xyz.rive.jttplayer.menu.MenuMeta;
 import xyz.rive.jttplayer.menu.PopMenu;
 import xyz.rive.jttplayer.menu.strategy.SharedStrategies;
-import xyz.rive.jttplayer.menu.strategy.ShowUnderItemStrategy;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
@@ -29,7 +27,6 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import static xyz.rive.jttplayer.common.Constants.*;
@@ -130,7 +127,7 @@ public class FileAttributesController extends CommonController {
         getPlayerManager().onFileAttributeTagsAdvanceMode((o, ov, nv) -> {
             setupCommonTags(getWorkingTrack());
         });
-        getStageManger().onFileAttributesShow(__ -> center.setActiveIndex(0));
+        getStageManager().onFileAttributesShow(__ -> center.setActiveIndex(0));
 
         advance_mode_table.onDoubleClick(this::editTagMetadata);
         advance_mode_table.setOnMouseExited(this::updateMetadataFromTable);
@@ -379,7 +376,7 @@ public class FileAttributesController extends CommonController {
                                 .collect(Collectors.toCollection(ArrayList::new))
                 )
         );
-        File selection = chooser.showOpenDialog(getStageManger().getMainStage());
+        File selection = chooser.showOpenDialog(getStageManager().getMainStage());
         setupImageFile(selection);
     }
 
@@ -497,7 +494,7 @@ public class FileAttributesController extends CommonController {
 
     public void showFileNameFormatView(MouseEvent event) {
         //consumeEvent(event);
-        getStageManger().getFileNameFormatStage().show();
+        getStageManager().getFileNameFormatStage().show();
         getControllerManager().updateFilename(filename.getText(), this::updateMetadataFromFileName);
     }
 
@@ -753,7 +750,7 @@ public class FileAttributesController extends CommonController {
         if(track == null) {
             return ;
         }
-        getStageManger().getFileTagEditStage().show();
+        getStageManager().getFileTagEditStage().show();
         getControllerManager().updateTagMetadata(track, edit, data, pair -> {
             doUpdateTagMetadata(track, pair, edit);
         });

@@ -19,7 +19,6 @@ import xyz.rive.jttplayer.skin.SkinXmlWindowItem;
 
 import java.net.URL;
 import java.util.*;
-import java.util.concurrent.Future;
 
 import static xyz.rive.jttplayer.common.Constants.APP_SLOGAN;
 import static xyz.rive.jttplayer.util.FxUtils.getUserData;
@@ -71,6 +70,7 @@ public class LyricDesktopController extends CommonController {
     private Label extra2;
     private boolean isDnmTriggersAdded = false;
     private boolean isAppMainContextMenuShowing = false;
+    private boolean wordMode = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -130,13 +130,17 @@ public class LyricDesktopController extends CommonController {
 
     public void normalize(MouseEvent event) {
         consumeContextMenuEvent(event);
-        getStageManger().toggleLyricDesktopShow();
+        getStageManager().toggleLyricDesktopShow();
     }
 
 
     public void closeLyric(MouseEvent event) {
         consumeContextMenuEvent(event);
-        getStageManger().toggleLyricShow();
+        getStageManager().toggleLyricShow();
+    }
+
+    private void setWordMode(boolean value) {
+        wordMode = value;
     }
 
     public void loadLyric() {
@@ -148,6 +152,10 @@ public class LyricDesktopController extends CommonController {
             } else if(track.hasEmbedLyric()) {
                 lyric = track.getLyricEmbed();
             }
+            if(lyric == null || !lyric.hasData()) {
+                return ;
+            }
+            setWordMode(lyric.isWordMode());
             renderLyric(getPlayerManager().getTimePosition());
         });
     }
@@ -182,7 +190,7 @@ public class LyricDesktopController extends CommonController {
         Track track = getCurrentTrack();
         String text = track != null ? track.basicMetadata() : APP_SLOGAN;
         runFx(() -> line1.setText(getZhLyricText(text)));
-
+        setWordMode(false);
         lyric = null;
     }
 
@@ -246,9 +254,11 @@ public class LyricDesktopController extends CommonController {
 
             String text = getZhLyricText(lyric.getData().get(key));
             String extra = getZhLyricText(getLyricTrans(key));
+            text = wordMode ? Lyric.mergeWordTokens(text) : text;
             line1.setText(text);
 
             if(!isEmpty(extra)) {
+                extra = wordMode ? Lyric.mergeWordTokens(extra) : extra;
                 extra1.setText(extra);
                 extra1.setManaged(true);
                 extra1.setVisible(true);
@@ -324,7 +334,7 @@ public class LyricDesktopController extends CommonController {
 
     public void toggleOnTop(MouseEvent event) {
         consumeEvent(event);
-        getStageManger().toggleLyricAlwaysTop();
+        getStageManager().toggleLyricAlwaysTop();
     }
 
     @Override
@@ -332,7 +342,7 @@ public class LyricDesktopController extends CommonController {
         super.afterShowView();
         updateOntopState();
         if (!isDnmTriggersAdded) {
-            StageDnmAction action = getUserData(getStageManger().getLyricDesktopStage(), StageDnmAction.class);
+            StageDnmAction action = getUserData(getStageManager().getLyricDesktopStage(), StageDnmAction.class);
             if(action != null) {
                 action.addTrigger(line1);
                 action.addTrigger(extra1);
@@ -346,7 +356,7 @@ public class LyricDesktopController extends CommonController {
     public void updateOntopState() {
         ontop_btn.getStyleClass().remove("active");
         boolean alwaysOnTop = getConfiguration().getPlayerOptions().isLyricViewAlwaysOnTop();
-        getStageManger().getLyricDesktopStage().setAlwaysOnTop(alwaysOnTop);
+        getStageManager().getLyricDesktopStage().setAlwaysOnTop(alwaysOnTop);
         if(alwaysOnTop) {
             ontop_btn.getStyleClass().add("active");
         }
@@ -363,7 +373,7 @@ public class LyricDesktopController extends CommonController {
     }
 
     public void lockLyric() {
-        getStageManger().setLyricDesktopLocked(true);
+        getStageManager().setLyricDesktopLocked(true);
     }
 
     public void adjustLyricDesktopStyle() {
@@ -383,7 +393,7 @@ public class LyricDesktopController extends CommonController {
     public void afterCloseView() {
         super.afterCloseView();
         if(getPlayerManager().isLyricDesktopAutoUnlock()) {
-            getStageManger().setLyricDesktopLocked(false);
+            getStageManager().setLyricDesktopLocked(false);
         }
     }
 
